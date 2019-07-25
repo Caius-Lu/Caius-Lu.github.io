@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-07-25T12:15:45.712Z</updated>
+  <updated>2019-07-25T12:34:13.382Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>helloworld</title>
+    <link href="https://caius-lu.github.io/2019/07/25/helloworld/"/>
+    <id>https://caius-lu.github.io/2019/07/25/helloworld/</id>
+    <published>2019-07-25T12:31:14.000Z</published>
+    <updated>2019-07-25T12:34:13.382Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Hello-World&quot;&gt;&lt;a href=&quot;#Hello-World&quot; class=&quot;headerlink&quot; title=&quot;Hello World&quot;&gt;&lt;/a&gt;Hello World&lt;/h2&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
+    
+    
+      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>firstblog</title>
     <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
     <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
     <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-25T12:15:45.712Z</updated>
+    <updated>2019-07-25T12:33:08.963Z</updated>
     
     <summary type="html">
     

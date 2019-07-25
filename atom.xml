@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-07-25T07:29:14.503Z</updated>
+  <updated>2019-07-25T11:57:35.898Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>firstblog</title>
+    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
+    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
+    <published>2019-07-25T11:36:21.000Z</published>
+    <updated>2019-07-25T11:57:35.898Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以上是摘要&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
+    
+    
+      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

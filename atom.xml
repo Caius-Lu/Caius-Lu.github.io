@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-07-25T13:18:27.554Z</updated>
+  <updated>2019-07-25T13:22:35.736Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>helloworld</title>
-    <link href="https://caius-lu.github.io/2019/07/25/helloworld/"/>
-    <id>https://caius-lu.github.io/2019/07/25/helloworld/</id>
-    <published>2019-07-25T12:31:14.000Z</published>
-    <updated>2019-07-25T13:18:27.554Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;img src=&quot;/2019/07/25/helloworld/kenan.png&quot; title=&quot;This is an example
-        
-      
-    
-    </summary>
-    
-      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
-    
-    
-      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
   
   <entry>
     <title>firstblog</title>
@@ -59,44 +33,6 @@
     
     
       <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://caius-lu.github.io/2019/07/25/hello-world/"/>
-    <id>https://caius-lu.github.io/2019/07/25/hello-world/</id>
-    <published>2019-07-25T07:29:14.503Z</published>
-    <updated>2019-07-25T07:29:14.503Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>404</title>
-    <link href="https://caius-lu.github.io/2019/07/19/404/"/>
-    <id>https://caius-lu.github.io/2019/07/19/404/</id>
-    <published>2019-07-19T08:41:10.000Z</published>
-    <updated>2019-07-25T11:59:27.984Z</updated>
-    
-    <summary type="html">
-    
-      你来到了没有知识的荒原 :(
-    
-    </summary>
-    
     
   </entry>
   

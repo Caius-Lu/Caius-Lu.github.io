@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-07-26T13:17:09.571Z</updated>
+  <updated>2019-08-14T06:26:34.864Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法竞赛入门经典第一章</title>
+    <link href="https://caius-lu.github.io/2019/08/14/algorithm1/"/>
+    <id>https://caius-lu.github.io/2019/08/14/algorithm1/</id>
+    <published>2019-08-14T06:23:54.000Z</published>
+    <updated>2019-08-14T06:26:34.864Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://caius-lu.github.io/2019/07/29/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B%E8%B0%83%E7%A0%94/"/>
+    <id>https://caius-lu.github.io/2019/07/29/文本检测调研/</id>
+    <published>2019-07-29T00:03:40.968Z</published>
+    <updated>2019-07-29T02:02:07.048Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。&lt;br&gt;而视频中的文本检测，也可以看做是视频中的目标检测中
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>c++中级教程 顺序容器的定义</title>
@@ -97,26 +147,6 @@
   </entry>
   
   <entry>
-    <title>firstblog</title>
-    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
-    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
-    <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-25T13:22:35.736Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;以上是摘要&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
-    
-    
-      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>c++中级教程  STL stack</title>
     <link href="https://caius-lu.github.io/2019/07/25/STL-stack/"/>
     <id>https://caius-lu.github.io/2019/07/25/STL-stack/</id>
@@ -140,6 +170,26 @@
     
     
       <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>firstblog</title>
+    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
+    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
+    <published>2019-07-25T11:36:21.000Z</published>
+    <updated>2019-07-25T13:22:35.736Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以上是摘要&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
+    
+    
+      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   

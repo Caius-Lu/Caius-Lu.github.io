@@ -103,16 +103,17 @@
   };
 </script>
 
-  <meta name="description" content="hello,every body!~">
-<meta property="og:type" content="website">
+  <meta name="description" content="文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。 通常目标跟踪面临的极大难点：物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主">
+<meta property="og:type" content="article">
 <meta property="og:title" content="一只程序猿的小小博客">
-<meta property="og:url" content="https://caius-lu.github.io/archives/2019/07/index.html">
+<meta property="og:url" content="https://caius-lu.github.io/2019/07/29/文本检测调研/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="hello,every body!~">
+<meta property="og:description" content="文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。 通常目标跟踪面临的极大难点：物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-29T02:02:07.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一只程序猿的小小博客">
-<meta name="twitter:description" content="hello,every body!~">
+<meta name="twitter:description" content="文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。 通常目标跟踪面临的极大难点：物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主">
 
 
 
@@ -122,7 +123,7 @@
 
   
   
-  <link rel="canonical" href="https://caius-lu.github.io/archives/2019/07/">
+  <link rel="canonical" href="https://caius-lu.github.io/2019/07/29/文本检测调研/">
 
 
 
@@ -133,7 +134,7 @@
 </script>
 
   
-  <title>归档 | 一只程序猿的小小博客</title>
+  <title> | 一只程序猿的小小博客</title>
   
 
 
@@ -181,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href https: github.com caius-lu" class="github-corner" aria-label="View source on GitHub">
 <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; 
@@ -245,7 +246,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -261,7 +262,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -343,276 +344,191 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/29/文本检测调研/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+
           
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+          
 
-        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+              
+                
+              
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/29/文本检测调研/" itemprop="url">
+              <time title="创建时间：2019-07-29 08:03:40 / 修改时间：10:02:07" itemprop="dateCreated datePublished" datetime="2019-07-29T08:03:40+08:00">2019-07-29</time>
+            </span>
+          
+
+          
             
-              <span itemprop="name">未命名</span>
+
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-29T08:03:40+08:00" content="2019-07-29">
-          07-29
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
+            
+            
+          
 
+          
+          
 
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/26/顺序容器的定义/" itemprop="url">
-            
-              <span itemprop="name">c++中级教程 顺序容器的定义</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-26T21:15:21+08:00" content="2019-07-26">
-          07-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/26/STLqueue/" itemprop="url">
-            
-              <span itemprop="name">c++中级教程  STL queue</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-26T20:10:21+08:00" content="2019-07-26">
-          07-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/25/顺序容器-STL-deque-类/" itemprop="url">
-            
-              <span itemprop="name">c++中级教程(一)</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-25T19:36:21+08:00" content="2019-07-25">
-          07-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <p>文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。<br>而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。</p>
+<h4 id="通常目标跟踪面临的极大难点："><a href="#通常目标跟踪面临的极大难点：" class="headerlink" title="通常目标跟踪面临的极大难点："></a>通常目标跟踪面临的极大难点：</h4><p>物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主要的三个难题分别是目标背景的变化，物体本身的变化，光照强度的变化。</p>
+<h5 id="光流法"><a href="#光流法" class="headerlink" title="光流法"></a>光流法</h5><h5 id="帧间差分法"><a href="#帧间差分法" class="headerlink" title="帧间差分法"></a>帧间差分法</h5><h5 id="背景差分法"><a href="#背景差分法" class="headerlink" title="背景差分法"></a>背景差分法</h5>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/25/STL-stack/" itemprop="url">
-            
-              <span itemprop="name">c++中级教程  STL stack</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-25T19:36:21+08:00" content="2019-07-25">
-          07-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/25/firstblog/" itemprop="url">
-            
-              <span itemprop="name">firstblog</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-25T19:36:21+08:00" content="2019-07-25">
-          07-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/26/顺序容器的定义/" rel="next" title="c++中级教程 顺序容器的定义">
+                <i class="fa fa-chevron-left"></i> c++中级教程 顺序容器的定义
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/algorithm1/" rel="prev" title="算法竞赛入门经典第一章">
+                算法竞赛入门经典第一章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTU1Ni8yMjA2Nw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -632,8 +548,17 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -725,6 +650,23 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#通常目标跟踪面临的极大难点："><span class="nav-text">通常目标跟踪面临的极大难点：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#光流法"><span class="nav-text">光流法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#帧间差分法"><span class="nav-text">帧间差分法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#背景差分法"><span class="nav-text">背景差分法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -861,6 +803,10 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -881,6 +827,26 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
 
+
+  
+    
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/07/29/文本检测调研/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
 

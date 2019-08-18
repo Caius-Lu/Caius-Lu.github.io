@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-16T13:19:36.548Z</updated>
+  <updated>2019-08-18T14:07:52.566Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法竞赛入门经典第四章</title>
+    <link href="https://caius-lu.github.io/2019/08/18/algorithm4/"/>
+    <id>https://caius-lu.github.io/2019/08/18/algorithm4/</id>
+    <published>2019-08-18T14:06:43.000Z</published>
+    <updated>2019-08-18T14:07:52.566Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>算法竞赛入门经典第三章</title>
@@ -211,33 +239,6 @@
   </entry>
   
   <entry>
-    <title>c++中级教程  STL stack</title>
-    <link href="https://caius-lu.github.io/2019/07/25/STL-stack/"/>
-    <id>https://caius-lu.github.io/2019/07/25/STL-stack/</id>
-    <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-26T06:47:42.561Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;STL-stack&quot;&gt;&lt;a href=&quot;#STL-stack&quot; class=&quot;headerlink&quot; title=&quot;STL stack&quot;&gt;&lt;/a&gt;STL stack&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;(堆) 栈： LIFO
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
     <title>c++中级教程(一)</title>
     <link href="https://caius-lu.github.io/2019/07/25/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB/"/>
     <id>https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/</id>
@@ -280,6 +281,33 @@
     
     
       <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++中级教程  STL stack</title>
+    <link href="https://caius-lu.github.io/2019/07/25/STL-stack/"/>
+    <id>https://caius-lu.github.io/2019/07/25/STL-stack/</id>
+    <published>2019-07-25T11:36:21.000Z</published>
+    <updated>2019-07-26T06:47:42.561Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;STL-stack&quot;&gt;&lt;a href=&quot;#STL-stack&quot; class=&quot;headerlink&quot; title=&quot;STL stack&quot;&gt;&lt;/a&gt;STL stack&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;(堆) 栈： LIFO
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
     
   </entry>
   

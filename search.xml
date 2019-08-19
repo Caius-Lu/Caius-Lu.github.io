@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[多层感知机的反向传播]]></title>
     <url>%2F2019%2F08%2F19%2FMLP-Back-Propagation%2F</url>
-    <content type="text"><![CDATA[全连接神经网络是形式上最简单的神经网络，反向传播算法是一种常用的训练神经网络的算法，理解全连接神经网络中的反向传播算法是理解其他更加复杂网络中反向传播算法的重要基础。]]></content>
+    <content type="text"><![CDATA[全连接神经网络是形式上最简单的神经网络，反向传播算法是一种常用的训练神经网络的算法，理解全连接神经网络中的反向传播算法是理解其他更加复杂网络中反向传播算法的重要基础。 参考链接： https://zhuanlan.zhihu.com/p/61863634]]></content>
       <categories>
         <category>Math</category>
         <category>algorithm</category>

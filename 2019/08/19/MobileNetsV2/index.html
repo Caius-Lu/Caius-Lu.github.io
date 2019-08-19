@@ -111,10 +111,12 @@
 <meta property="og:site_name" content="一只程序猿的小小博客">
 <meta property="og:description" content="论文地址:MobileNetV2: Inverted Residuals and Linear Bottlenecks 非官方代码:pytorch 介绍这篇文章是谷歌在2019提出来的文章在MobileNets 基础上做的改进。 深度可分离卷积示例 首先在Xception 中被广泛使用 好处： 理论上可以成倍的减少卷积层的时间复杂度和空间复杂度    文章内容与MobileNets 的对比 相同点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T08:19:00.734Z">
+<meta property="og:image" content="https://caius-lu.github.io/2019/08/19/MobileNetsV2/MobileNets.jpg">
+<meta property="og:updated_time" content="2019-08-19T08:24:34.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MobileNetsV2">
 <meta name="twitter:description" content="论文地址:MobileNetV2: Inverted Residuals and Linear Bottlenecks 非官方代码:pytorch 介绍这篇文章是谷歌在2019提出来的文章在MobileNets 基础上做的改进。 深度可分离卷积示例 首先在Xception 中被广泛使用 好处： 理论上可以成倍的减少卷积层的时间复杂度和空间复杂度    文章内容与MobileNets 的对比 相同点">
+<meta name="twitter:image" content="https://caius-lu.github.io/2019/08/19/MobileNetsV2/MobileNets.jpg">
 
 
 
@@ -408,7 +410,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
               
 
-              <time title="创建时间：2019-08-19 16:09:46 / 修改时间：16:19:00" itemprop="dateCreated datePublished" datetime="2019-08-19T16:09:46+08:00">2019-08-19</time>
+              <time title="创建时间：2019-08-19 16:09:46 / 修改时间：16:24:34" itemprop="dateCreated datePublished" datetime="2019-08-19T16:09:46+08:00">2019-08-19</time>
             </span>
           
 
@@ -471,7 +473,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这篇文章是谷歌在2019提出来的文章在MobileNets 基础上做的改进。</p>
 <h2 id="深度可分离卷积示例"><a href="#深度可分离卷积示例" class="headerlink" title="深度可分离卷积示例"></a>深度可分离卷积示例</h2><ul>
 <li>首先在Xception 中被广泛使用</li>
-<li>好处： 理论上可以成倍的减少卷积层的时间复杂度和空间复杂度
+<li>好处： 理论上可以成倍的减少卷积层的时间复杂度和空间复杂度<img src="/2019/08/19/MobileNetsV2/MobileNets.jpg" title="MobileNets">
 
 </li>
 </ul>
@@ -489,11 +491,14 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 </li>
 <li>V2 去掉了第二个 PW 的激活函数<ul>
 <li>激活函数在高维空间能够有效的增加非线性，而在低维空间时则会破坏特征</li>
-<li>第二个 PW 的主要功能就是降维<h3 id="与ResNet的对比"><a href="#与ResNet的对比" class="headerlink" title="与ResNet的对比"></a>与ResNet的对比</h3></li>
+<li>第二个 PW 的主要功能就是降维</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<hr>
+<h3 id="与ResNet的对比"><a href="#与ResNet的对比" class="headerlink" title="与ResNet的对比"></a>与ResNet的对比</h3><ul>
 <li>相同点<ul>
 <li>MobileNet V2 借鉴 ResNet，都采用了 1x1-&gt;3x3-&gt;1x1的模式</li>
 <li>MobileNet V2 借鉴 ResNet，同样使用 Shortcut 将输出与输入相加</li>
@@ -502,9 +507,12 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <li>不同点<ul>
 <li>Inverted Residual Block</li>
 <li>ResNet 使用 标准卷积 提特征，MobileNet 始终使用 DW卷积 提特征</li>
-<li>ResNet 先降维 (0.25倍)、卷积、再升维，而 MobileNet V2 则是 先升维 (6倍)、卷积、再降维。直观的形象上来看，ResNet 的微结构是沙漏形，而 MobileNet V2 则是纺锤形，刚好相反。因此论文作者将 MobileNet V2 的结构称为 Inverted Residual Block。使用DW卷积而作的适配，特征提取能够在高维进行<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2></li>
+<li>ResNet 先降维 (0.25倍)、卷积、再升维，而 MobileNet V2 则是 先升维 (6倍)、卷积、再降维。直观的形象上来看，ResNet 的微结构是沙漏形，而 MobileNet V2 则是纺锤形，刚好相反。因此论文作者将 MobileNet V2 的结构称为 Inverted Residual Block。使用DW卷积而作的适配，特征提取能够在高维进行</li>
 </ul>
 </li>
+</ul>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
 <li>MobileNets 与MobileNets V2在模型结构上的对比</li>
 <li>MobileNetsV2 的卷积层数比V1要多，但是时间复杂度，以及空间复杂度，以及在cpu上的推理时间要远远优于MobileNets</li>
 </ul>

@@ -103,16 +103,18 @@
   };
 </script>
 
-  <meta name="description" content="hello,every body!~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一只程序猿的小小博客">
-<meta property="og:url" content="https://caius-lu.github.io/archives/2019/index.html">
+  <meta name="description" content="问题： 给定一组数，要求从中找出第k小的元素。分析：这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一：   nleft等于k-1，则枢纽值即为所求；  nleft大于k-1,则继续在左子树中找；  nleft小于k-1,则继续在右子集中找C++代码实现123456789101112131415161718192021222324">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分治算法">
+<meta property="og:url" content="https://caius-lu.github.io/2019/08/19/分治算法/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="hello,every body!~">
+<meta property="og:description" content="问题： 给定一组数，要求从中找出第k小的元素。分析：这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一：   nleft等于k-1，则枢纽值即为所求；  nleft大于k-1,则继续在左子树中找；  nleft小于k-1,则继续在右子集中找C++代码实现123456789101112131415161718192021222324">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-19T11:24:33.071Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一只程序猿的小小博客">
-<meta name="twitter:description" content="hello,every body!~">
+<meta name="twitter:title" content="分治算法">
+<meta name="twitter:description" content="问题： 给定一组数，要求从中找出第k小的元素。分析：这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一：   nleft等于k-1，则枢纽值即为所求；  nleft大于k-1,则继续在左子树中找；  nleft小于k-1,则继续在右子集中找C++代码实现123456789101112131415161718192021222324">
 
 
 
@@ -122,7 +124,7 @@
 
   
   
-  <link rel="canonical" href="https://caius-lu.github.io/archives/2019/">
+  <link rel="canonical" href="https://caius-lu.github.io/2019/08/19/分治算法/">
 
 
 
@@ -133,7 +135,7 @@
 </script>
 
   
-  <title>归档 | 一只程序猿的小小博客</title>
+  <title>分治算法 | 一只程序猿的小小博客</title>
   
 
 
@@ -181,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/Caius-Lu" class="github-corner" aria-label="View source on GitHub">
 <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; 
@@ -245,7 +247,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -261,7 +263,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -343,420 +345,224 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/19/分治算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">分治算法
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+
           
-        
-        嗯..! 目前共计 15 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+          
 
-        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+              
+                
+              
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/19/分治算法/" itemprop="url">
+              <time title="创建时间：2019-08-19 19:21:24 / 修改时间：19:24:33" itemprop="dateCreated datePublished" datetime="2019-08-19T19:21:24+08:00">2019-08-19</time>
+            </span>
+          
+
+          
             
-              <span itemprop="name">分治算法</span>
+
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T19:21:24+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
 
-    </header>
-  </article>
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
 
+                
+                
+              
+            </span>
+          
 
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/19/MobileNetsV2/" itemprop="url">
-            
-              <span itemprop="name">MobileNetsV2</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T16:09:46+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>问题： 给定一组数，要求从中找出第k小的元素。<br>分析：<br>这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一： </p>
+<ul>
+<li>nleft等于k-1，则枢纽值即为所求； </li>
+<li>nleft大于k-1,则继续在左子树中找； </li>
+<li>nleft小于k-1,则继续在右子集中找<br>C++代码实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// t5.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;time.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int quickSelect(int a[], int l, int r, int k)</span><br><span class="line">&#123;</span><br><span class="line">	int p = rand() % (r - l + 1) + l;</span><br><span class="line">	int pivot = a[p];</span><br><span class="line">	&#123;int t = a[p]; a[p] = a[r]; a[r] = t; &#125;</span><br><span class="line">	int i = l,j = r;</span><br><span class="line">	while (i &lt; j)</span><br><span class="line">	&#123;</span><br><span class="line">		while (i &lt; j&amp;&amp;a[i] &lt; pivot) i++;</span><br><span class="line">		if (i &lt; j) &#123;</span><br><span class="line">			a[j] = a[i];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		while (i &lt; j&amp;&amp;a[i] &gt;pivot) j--;</span><br><span class="line">		if (i &lt; j) &#123;</span><br><span class="line">			a[i] = a[j];</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	a[i] = pivot;</span><br><span class="line">	p = i;</span><br><span class="line">	if (i - l + 1 == k) return a[i];</span><br><span class="line">	// j + 1, right, k - (j - left + 1)1)</span><br><span class="line">	if (i - l + 1 &lt; k) return quickSelect(a, i+1, r, k-i+l-1);</span><br><span class="line">	else return  quickSelect(a, l, i-1, k);</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a[] = &#123; 1,4,54,8,3,7,45,58,27,8,25,26,21,12 &#125;;</span><br><span class="line">	printf_s(&quot;%d\n&quot;, quickSelect(a, 0, 14, 6));</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/19/MobileNets/" itemprop="url">
-            
-              <span itemprop="name">MobileNets</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T13:48:05+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/19/MLP-Back-Propagation/" itemprop="url">
-            
-              <span itemprop="name">多层感知机的反向传播</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-19T09:08:57+08:00" content="2019-08-19">
-          08-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/18/algorithm4/" itemprop="url">
-            
-              <span itemprop="name">算法竞赛入门经典第四章</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-18T22:06:43+08:00" content="2019-08-18">
-          08-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/16/algorithm3/" itemprop="url">
-            
-              <span itemprop="name">算法竞赛入门经典第三章</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-16T21:13:17+08:00" content="2019-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/16/LNMS/" itemprop="url">
-            
-              <span itemprop="name">LNMS</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-16T15:23:37+08:00" content="2019-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/15/algorithm2/" itemprop="url">
-            
-              <span itemprop="name">算法竞赛入门经典第二章</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-15T22:52:01+08:00" content="2019-08-15">
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/14/algorithm1/" itemprop="url">
-            
-              <span itemprop="name">算法竞赛入门经典第一章</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-14T14:23:54+08:00" content="2019-08-14">
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/29/文本检测调研/" itemprop="url">
-            
-              <span itemprop="name">未命名</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-29T08:03:40+08:00" content="2019-07-29">
-          07-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"> <i class="fa fa-tag"></i>c++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/19/MobileNetsV2/" rel="next" title="MobileNetsV2">
+                <i class="fa fa-chevron-left"></i> MobileNetsV2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTU1Ni8yMjA2Nw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1021,6 +827,10 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -1041,6 +851,26 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
 
+
+  
+    
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/08/19/分治算法/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
 

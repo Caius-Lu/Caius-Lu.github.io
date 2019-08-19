@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-19T08:24:34.820Z</updated>
+  <updated>2019-08-19T11:24:33.071Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分治算法</title>
+    <link href="https://caius-lu.github.io/2019/08/19/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/"/>
+    <id>https://caius-lu.github.io/2019/08/19/分治算法/</id>
+    <published>2019-08-19T11:21:24.000Z</published>
+    <updated>2019-08-19T11:24:33.071Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;问题： 给定一组数，要求从中找出第k小的元素。&lt;br&gt;分析：&lt;br&gt;这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一： &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nleft等于k-1，则枢纽值即为所求；
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>MobileNetsV2</title>
@@ -324,33 +354,6 @@
   </entry>
   
   <entry>
-    <title>c++中级教程  STL stack</title>
-    <link href="https://caius-lu.github.io/2019/07/25/STL-stack/"/>
-    <id>https://caius-lu.github.io/2019/07/25/STL-stack/</id>
-    <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-26T06:47:42.561Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;STL-stack&quot;&gt;&lt;a href=&quot;#STL-stack&quot; class=&quot;headerlink&quot; title=&quot;STL stack&quot;&gt;&lt;/a&gt;STL stack&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;(堆) 栈： LIFO
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
     <title>c++中级教程(一)</title>
     <link href="https://caius-lu.github.io/2019/07/25/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB/"/>
     <id>https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/</id>
@@ -393,6 +396,33 @@
     
     
       <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++中级教程  STL stack</title>
+    <link href="https://caius-lu.github.io/2019/07/25/STL-stack/"/>
+    <id>https://caius-lu.github.io/2019/07/25/STL-stack/</id>
+    <published>2019-07-25T11:36:21.000Z</published>
+    <updated>2019-07-26T06:47:42.561Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;STL-stack&quot;&gt;&lt;a href=&quot;#STL-stack&quot; class=&quot;headerlink&quot; title=&quot;STL stack&quot;&gt;&lt;/a&gt;STL stack&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;(堆) 栈： LIFO
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
     
   </entry>
   

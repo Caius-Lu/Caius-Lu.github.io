@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-19T06:40:32.947Z</updated>
+  <updated>2019-08-19T08:19:00.734Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MobileNetsV2</title>
+    <link href="https://caius-lu.github.io/2019/08/19/MobileNetsV2/"/>
+    <id>https://caius-lu.github.io/2019/08/19/MobileNetsV2/</id>
+    <published>2019-08-19T08:09:46.000Z</published>
+    <updated>2019-08-19T08:19:00.734Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;论文地址:&lt;a href=&quot;https://arxiv.org/pdf/1801.04381.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MobileNetV2: Inverted Residuals and Linear
+        
+      
+    
+    </summary>
+    
+      <category term="轻量级网络" scheme="https://caius-lu.github.io/categories/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
+    
+      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>MobileNets</title>
@@ -296,26 +324,6 @@
   </entry>
   
   <entry>
-    <title>firstblog</title>
-    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
-    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
-    <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-25T13:22:35.736Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;以上是摘要&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
-    
-    
-      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>c++中级教程(一)</title>
     <link href="https://caius-lu.github.io/2019/07/25/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB/"/>
     <id>https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/</id>
@@ -338,6 +346,26 @@
     
     
       <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>firstblog</title>
+    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
+    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
+    <published>2019-07-25T11:36:21.000Z</published>
+    <updated>2019-07-25T13:22:35.736Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以上是摘要&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
+    
+    
+      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   

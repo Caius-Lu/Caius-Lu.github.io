@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-19T11:24:33.071Z</updated>
+  <updated>2019-08-20T09:07:47.389Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SqueezeNet</title>
+    <link href="https://caius-lu.github.io/2019/08/20/squeezenet/"/>
+    <id>https://caius-lu.github.io/2019/08/20/squeezenet/</id>
+    <published>2019-08-20T08:36:47.000Z</published>
+    <updated>2019-08-20T09:07:47.389Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;论文地址:      &lt;a href=&quot;https://arxiv.org/pdf/1602.07360.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SqueezeNet: AlexNet-level accuracy with 50x
+        
+      
+    
+    </summary>
+    
+      <category term="轻量级网络" scheme="https://caius-lu.github.io/categories/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
+    
+      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分治算法</title>
     <link href="https://caius-lu.github.io/2019/08/19/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/"/>
     <id>https://caius-lu.github.io/2019/08/19/分治算法/</id>
     <published>2019-08-19T11:21:24.000Z</published>
-    <updated>2019-08-19T11:24:33.071Z</updated>
+    <updated>2019-08-19T11:26:11.257Z</updated>
     
     <summary type="html">
     

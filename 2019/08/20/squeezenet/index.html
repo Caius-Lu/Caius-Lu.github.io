@@ -103,18 +103,23 @@
   };
 </script>
 
-  <meta name="description" content="STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&amp;lt;int, deque&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, vector&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, list&amp;lt;int&amp;gt;&amp;gt;   s;s.empty()s.size()s.pop">
-<meta name="keywords" content="c++">
+  <meta name="description" content="论文地址:      SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &amp;lt;0.5MB model size非官方代码:  pytorch 介绍这篇文章是DeepScal，加州大学伯克利分校，以及斯坦福大学在ICLR 2017发表的一篇文章。文章的主要目的是为了压缩模型，提高运行速度。这篇文章主要提出了Squeez">
+<meta name="keywords" content="Deep Learning,论文阅读">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c++中级教程  STL stack">
-<meta property="og:url" content="https://caius-lu.github.io/2019/07/25/STL-stack/index.html">
+<meta property="og:title" content="SqueezeNet">
+<meta property="og:url" content="https://caius-lu.github.io/2019/08/20/squeezenet/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&amp;lt;int, deque&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, vector&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, list&amp;lt;int&amp;gt;&amp;gt;   s;s.empty()s.size()s.pop">
+<meta property="og:description" content="论文地址:      SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &amp;lt;0.5MB model size非官方代码:  pytorch 介绍这篇文章是DeepScal，加州大学伯克利分校，以及斯坦福大学在ICLR 2017发表的一篇文章。文章的主要目的是为了压缩模型，提高运行速度。这篇文章主要提出了Squeez">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T06:47:42.561Z">
+<meta property="og:image" content="https://caius-lu.github.io/2019/08/20/squeezenet/fire.png">
+<meta property="og:image" content="https://caius-lu.github.io/2019/08/20/squeezenet/squeezenet.jpg">
+<meta property="og:image" content="https://caius-lu.github.io/2019/08/20/squeezenet/struct.png">
+<meta property="og:image" content="https://caius-lu.github.io/2019/08/20/squeezenet/params.png">
+<meta property="og:updated_time" content="2019-08-20T09:07:47.389Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c++中级教程  STL stack">
-<meta name="twitter:description" content="STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&amp;lt;int, deque&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, vector&amp;lt;int&amp;gt;&amp;gt;   s;stack&amp;lt;int, list&amp;lt;int&amp;gt;&amp;gt;   s;s.empty()s.size()s.pop">
+<meta name="twitter:title" content="SqueezeNet">
+<meta name="twitter:description" content="论文地址:      SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &amp;lt;0.5MB model size非官方代码:  pytorch 介绍这篇文章是DeepScal，加州大学伯克利分校，以及斯坦福大学在ICLR 2017发表的一篇文章。文章的主要目的是为了压缩模型，提高运行速度。这篇文章主要提出了Squeez">
+<meta name="twitter:image" content="https://caius-lu.github.io/2019/08/20/squeezenet/fire.png">
 
 
 
@@ -124,7 +129,7 @@
 
   
   
-  <link rel="canonical" href="https://caius-lu.github.io/2019/07/25/STL-stack/">
+  <link rel="canonical" href="https://caius-lu.github.io/2019/08/20/squeezenet/">
 
 
 
@@ -135,7 +140,7 @@
 </script>
 
   
-  <title>c++中级教程  STL stack | 一只程序猿的小小博客</title>
+  <title>SqueezeNet | 一只程序猿的小小博客</title>
   
 
 
@@ -365,7 +370,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/25/STL-stack/">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/20/squeezenet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chao Lu">
@@ -382,7 +387,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
         
         
-          <h1 class="post-title" itemprop="name headline">c++中级教程  STL stack
+          <h1 class="post-title" itemprop="name headline">SqueezeNet
 
               
             
@@ -408,23 +413,13 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
               
 
-              <time title="创建时间：2019-07-25 19:36:21" itemprop="dateCreated datePublished" datetime="2019-07-25T19:36:21+08:00">2019-07-25</time>
+              <time title="创建时间：2019-08-20 16:36:47 / 修改时间：17:07:47" itemprop="dateCreated datePublished" datetime="2019-08-20T16:36:47+08:00">2019-08-20</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-26 14:47:42" itemprop="dateModified" datetime="2019-07-26T14:47:42+08:00">2019-07-26</time>
-              </span>
             
           
 
@@ -437,7 +432,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/轻量级网络/" itemprop="url" rel="index"><span itemprop="name">轻量级网络</span></a></span>
 
                 
                 
@@ -477,15 +472,32 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       
 
       
-        <h2 id="STL-stack"><a href="#STL-stack" class="headerlink" title="STL stack"></a>STL stack</h2><ul>
-<li>(堆) 栈： LIFO 后进先出</li>
-<li>自适应容器（容器适配器）</li>
-<li>栈适配器 STL stack<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;&gt;   s;</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;   s;</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt;   s;</span><br><span class="line">s.empty()</span><br><span class="line">s.size()</span><br><span class="line">s.pop()</span><br><span class="line">s.push(item)</span><br></pre></td></tr></table></figure>
-
-</li>
+        <p>论文地址:      <a href="https://arxiv.org/pdf/1602.07360.pdf" target="_blank" rel="noopener">SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &lt;0.5MB model size</a><br>非官方代码:  <a href="https://github.com/arvention/SqueezeNet-PyTorch" target="_blank" rel="noopener">pytorch</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这篇文章是DeepScal，加州大学伯克利分校，以及斯坦福大学在ICLR 2017发表的一篇文章。文章的主要目的是为了压缩模型，提高运行速度。这篇文章主要提出了SqueezeNet: 使用少量参数保持精度。</p>
+<h2 id="结构设计策略"><a href="#结构设计策略" class="headerlink" title="结构设计策略"></a>结构设计策略</h2><p>这篇文章的首要目标是在保持准确率 的同时，有几个参数的CNN架构。这篇文章在设计CNN架构的时候采取了三个主要策略。这篇文章的主要模块 是Fire模块。</p>
+<ul>
+<li>用1x1的卷积核代替3x3的卷积核，从而减少参数量。1x1 卷积的参数比3x3的卷积核少了 9X.</li>
+<li>减少3x3 卷积输入通道的数量。假设有一个卷积层, 它完全由3x3 卷积组成。此层中参数的总数量为：(输入通道数) * (过滤器数) * (3 * 3)。要在squeeze层中将输入的通道数减少。</li>
+<li>在网络中减少下采样(maxpooling)实现, 以便卷积层具有较大的特征图。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stack1.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;&gt;   a;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;  b;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt;    c;</span><br><span class="line">	<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;               d; <span class="comment">//默认用deque</span></span><br><span class="line">	<span class="comment">//什么是堆栈？ 先进后出，后进先出</span></span><br><span class="line"></span><br><span class="line">	d.push(<span class="number">25</span>);</span><br><span class="line">	d.push(<span class="number">10</span>);</span><br><span class="line">	d.push(<span class="number">1</span>);</span><br><span class="line">	d.push(<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"现在栈里一共有："</span> &lt;&lt; d.size() &lt;&lt; <span class="string">"个数据。"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">while</span> (d.empty() == <span class="literal">false</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		x = d.top(); <span class="comment">//查看数据并且返回</span></span><br><span class="line">		d.pop();<span class="comment">//删除，不返回 </span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">//x = d.top(); //查看数据并且返回</span></span><br><span class="line">	<span class="comment">//d.pop();//删除，不返回 </span></span><br><span class="line">	<span class="comment">//cout &lt;&lt; x &lt;&lt; endl;</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"现在栈里一共有："</span> &lt;&lt; d.size() &lt;&lt; <span class="string">"个数据。"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">现在栈里一共有：<span class="number">4</span>个数据。</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">25</span></span><br><span class="line">现在栈里一共有：<span class="number">0</span>个数据。</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+<h2 id="Fire-Module"><a href="#Fire-Module" class="headerlink" title="Fire Module"></a>Fire Module</h2><p>Fire Module是将原来一层conv层变成两层：squeeze层+expand层，各自带上Relu激活层。在squeeze层里面全是1x1的卷积kernel，数量记为S11；在expand层里面有1x1和3x3的卷积kernel，expand层之后将1x1和3x3的卷积output feature maps在channel维度cat。</p>
+<img src="/2019/08/20/squeezenet/fire.png" title="fire">
 
+<hr>
+<p>自己手推的一张图，字比较丑，也没时间重现写一下。</p>
+<img src="/2019/08/20/squeezenet/squeezenet.jpg" title="squeezenet">
+
+<h3 id="fire-moudle的pytorch代码"><a href="#fire-moudle的pytorch代码" class="headerlink" title="fire moudle的pytorch代码"></a>fire moudle的pytorch代码</h3><p>很奇怪的是论文中用的是3个1x1，以及expand用的是4个1x1的卷积核和4个 3x3的卷积核，但是pytroch版本的代码并没有体现出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class fire(nn.Module):</span><br><span class="line">    def __init__(self, inplanes,squeeze_planes, expand_planes):</span><br><span class="line">        super(fire,self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(inplanes,squeeze_planes, kernel_size=1, stride=1)</span><br><span class="line">        self.bn1 = nn.BatchNorm2d(squeeze_planes)</span><br><span class="line">        self.relu1 = nn.ReLU(inplace=True)</span><br><span class="line">        self.conv2 = nn.Conv2d(squeeze_planes, expand_planes, kernel_size=1, stride=1)</span><br><span class="line">        self.bn2 = nn.BatchNorm2d(expand_planes)</span><br><span class="line">        self.conv3 = nn.Conv2d(squeeze_planes,expand_planes,kernel_size=3, stride=1,padding=1)</span><br><span class="line">        self.bn3 = nn.BatchNorm2d(expand_planes)</span><br><span class="line">        self.relu2 = nn.ReLU(inplace=True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        # using MSR initialization</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        for m in self.modules():</span><br><span class="line">            if isinstance(m,nn.Conv2d):</span><br><span class="line">                n = m.kernel_size[0]*m.kernel_size[1]*m.in_channels</span><br><span class="line">                m.weight.data.normal_(0,math.sqrt(2./n))</span><br><span class="line">    def forward(self,x):</span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.bn1(x)</span><br><span class="line">        x = self.relu1(x)</span><br><span class="line">        out1 = self.conv2(x)</span><br><span class="line">        out1 = self.bn2(out1)</span><br><span class="line">        out2 = self.conv3(x)</span><br><span class="line">        out2 = self.bn3(out2)</span><br><span class="line"></span><br><span class="line">        out = torch.cat([out1,out2],1)</span><br><span class="line">        out = self.relu2(out)</span><br><span class="line"></span><br><span class="line">        return out</span><br></pre></td></tr></table></figure>
+
+<h2 id="SqueezeNet的具体网络结构"><a href="#SqueezeNet的具体网络结构" class="headerlink" title="SqueezeNet的具体网络结构"></a>SqueezeNet的具体网络结构</h2><img src="/2019/08/20/squeezenet/struct.png" title="struct">
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>imagenet数据上比较了alexnet，可以看到准确率差不多的情况下，squeezeNet模型参数数量显著降低了（下表倒数第三行），参数减少50X；如果再加上deep compression技术，压缩比可以达到461X！还是不错的结果。</p>
+<img src="/2019/08/20/squeezenet/params.png" title="params">
+
+
+
+
+<p>参考文章：<a href="https://blog.csdn.net/xbinworld/article/details/50897870" target="_blank" rel="noopener">https://blog.csdn.net/xbinworld/article/details/50897870</a></p>
 
       
     </div>
@@ -516,7 +528,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag"> <i class="fa fa-tag"></i>c++</a>
+            <a href="/tags/Deep-Learning/" rel="tag"> <i class="fa fa-tag"></i>Deep Learning</a>
+          
+            <a href="/tags/论文阅读/" rel="tag"> <i class="fa fa-tag"></i>论文阅读</a>
           
         </div>
       
@@ -529,15 +543,15 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/08/19/分治算法/" rel="next" title="分治算法">
+                <i class="fa fa-chevron-left"></i> 分治算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/25/firstblog/" rel="prev" title="firstblog">
-                firstblog <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -715,7 +729,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STL-stack"><span class="nav-text">STL stack</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构设计策略"><span class="nav-text">结构设计策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fire-Module"><span class="nav-text">Fire Module</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fire-moudle的pytorch代码"><span class="nav-text">fire moudle的pytorch代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SqueezeNet的具体网络结构"><span class="nav-text">SqueezeNet的具体网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-text">实验结果</span></a></li></ol></div>
             
 
           </div>
@@ -888,7 +902,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 <script>
   window.livereOptions = {
-    refer: '2019/07/25/STL-stack/'
+    refer: '2019/08/20/squeezenet/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

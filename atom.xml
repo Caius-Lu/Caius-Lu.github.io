@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-24T08:39:00.122Z</updated>
+  <updated>2019-08-24T10:18:30.167Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSD源码解析</title>
+    <link href="https://caius-lu.github.io/2019/08/24/ssd/"/>
+    <id>https://caius-lu.github.io/2019/08/24/ssd/</id>
+    <published>2019-08-24T08:40:05.000Z</published>
+    <updated>2019-08-24T10:18:30.167Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;论文地址:        &lt;a href=&quot;https://arxiv.org/pdf/1512.02325.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SSD: Single Shot MultiBox Detector
+        
+      
+    
+    </summary>
+    
+      <category term="pytorch" scheme="https://caius-lu.github.io/categories/pytorch/"/>
+    
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
+    
+      <category term="论文阅读，pytorch" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%8Cpytorch/"/>
+    
+  </entry>
   
   <entry>
     <title>Matplotlib绘制六种可视化图表</title>

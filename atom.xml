@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-24T10:18:30.167Z</updated>
+  <updated>2019-08-24T10:26:28.995Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://caius-lu.github.io/2019/08/24/ssd/"/>
     <id>https://caius-lu.github.io/2019/08/24/ssd/</id>
     <published>2019-08-24T08:40:05.000Z</published>
-    <updated>2019-08-24T10:18:30.167Z</updated>
+    <updated>2019-08-24T10:26:28.995Z</updated>
     
     <summary type="html">
     
@@ -40,7 +40,9 @@
     
       <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
     
-      <category term="论文阅读，pytorch" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%8Cpytorch/"/>
+      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+      <category term="pytorch" scheme="https://caius-lu.github.io/tags/pytorch/"/>
     
   </entry>
   

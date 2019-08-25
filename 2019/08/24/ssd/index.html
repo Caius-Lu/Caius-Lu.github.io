@@ -113,7 +113,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://caius-lu.github.io/2019/08/24/ssd/ssdarchitecture.png">
 <meta property="og:image" content="https://caius-lu.github.io/2019/08/24/ssd/priorbox.png">
-<meta property="og:updated_time" content="2019-08-25T06:40:27.839Z">
+<meta property="og:updated_time" content="2019-08-25T07:53:04.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSD源码解析">
 <meta name="twitter:description" content="论文地址:        SSD: Single Shot MultiBox Detector 非官方代码:    pytorch 介绍SSD，全称Single Shot MultiBox Detector，是一种One-Stage的方法，它由Wei Liu在ECCV 2016上提出，SSD具有如下主要特点：  从YOLO中继承了将detection转化为regression的思路，同时一次即可完">
@@ -426,7 +426,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-25 14:40:27" itemprop="dateModified" datetime="2019-08-25T14:40:27+08:00">2019-08-25</time>
+                <time title="修改时间：2019-08-25 15:53:04" itemprop="dateModified" datetime="2019-08-25T15:53:04+08:00">2019-08-25</time>
               </span>
             
           
@@ -499,7 +499,15 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <li>最终网络生成固定数量的Prior Box</li>
 <li>每个feature map 对应prior box的min_size 和max_size 由以下的公式决定，公式中的m是使用feature map的数量(m=6)<script type="math/tex; mode=display">
 S_k = S_min + \frac{S_max-S_min}{m-1}(k-1) , k \in[1,m]</script>第一层feature map对应的min_size=S1，max_size=S2；第二层min_size=S2，max_size=S3；其他类推。在原文中，Smin=0.2，Smax=0.9<img src="/2019/08/24/ssd/priorbox.png" title="priorbox">
-|         | min_size | max_size |def.boxes num |<br>| ——— | ——— | ——— |——— |<br>| conv4_3 | 30 | 60 | 4 |<br>| fc7 | 60 | 111 | 6 |<br>| conv6_2 | 111 | 162 | 6 |<br>| fc7 | 162 | 213 | 6 |<br>| conv4_3 | 213 | 264 | 4 |<br>| fc7 | 264 | 315 | 4 |</li>
+<script type="math/tex; mode=display">
+|         | min_size | max_size |def.boxes num |
+| ------ | ------ | ------ |------ |
+| conv4_3 | 30 | 60 | 4 |
+| fc7 | 60 | 111 | 6 |
+| conv6_2 | 111 | 162 | 6 |
+| fc7 | 162 | 213 | 6 |
+| conv4_3 | 213 | 264 | 4 |
+| fc7 | 264 | 315 | 4 |</script></li>
 </ul>
 <h2 id="训练策略"><a href="#训练策略" class="headerlink" title="训练策略"></a>训练策略</h2><h3 id="正负样本"><a href="#正负样本" class="headerlink" title="正负样本"></a>正负样本</h3><p>给定输入图像以及每个物体的Ground Truth,首先找到每个Ground True box对应的default box中IOU最大的最为正样本。然后,在剩下的default box中寻找与Ground Truth 的IOU大于0.5的default box作为正样本。一个Ground Truth可能对应多个正样本default box.其他的default box作为负样本。,为了保证样本尽量平衡,SSD采用了hard nagative mining,即对负样本进行抽样,抽样时按照置信度误差(预测背景的置信度越小,误差越大)进行奖序排列,选取误差较大的top-k作为训练的负样本,保证正负样本比例接近1:3。</p>
 <h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>目标函数为训练过程中的优化标准,目标函数也称损失函数,主要包括位置误差(localization loss,loc) 与置信度误差(confidence loss,conf,分类损失)的加权和,定义为：</p>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-28T08:46:12.545Z</updated>
+  <updated>2019-08-28T11:13:06.345Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pytorch手册</title>
+    <link href="https://caius-lu.github.io/2019/08/28/Pytorch%E6%89%8B%E5%86%8C/"/>
+    <id>https://caius-lu.github.io/2019/08/28/Pytorch手册/</id>
+    <published>2019-08-28T09:39:31.000Z</published>
+    <updated>2019-08-28T11:13:06.345Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;PyTorch 主要提供以下两大特色：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持强力GPU加速的Tensor计算能力&lt;/li&gt;
+&lt;li&gt;基于tape的具有自动微分求导能力的深度神经网络框架&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PyTorch 主要包含以下组成要素:&lt;/p&gt;
+&lt;div
+        
+      
+    
+    </summary>
+    
+      <category term="pytorch" scheme="https://caius-lu.github.io/categories/pytorch/"/>
+    
+    
+      <category term="pytorch" scheme="https://caius-lu.github.io/tags/pytorch/"/>
+    
+  </entry>
   
   <entry>
     <title>numpy实现神经网络</title>
@@ -47,7 +79,7 @@
     <link href="https://caius-lu.github.io/2019/08/28/glob%E6%A8%A1%E5%9D%97/"/>
     <id>https://caius-lu.github.io/2019/08/28/glob模块/</id>
     <published>2019-08-28T08:13:37.000Z</published>
-    <updated>2019-08-28T08:37:59.404Z</updated>
+    <updated>2019-08-28T09:39:41.780Z</updated>
     
     <summary type="html">
     
@@ -163,7 +195,7 @@
     <link href="https://caius-lu.github.io/2019/08/28/skimage%E6%A8%A1%E5%9D%97/"/>
     <id>https://caius-lu.github.io/2019/08/28/skimage模块/</id>
     <published>2019-08-28T07:46:39.000Z</published>
-    <updated>2019-08-28T08:47:01.985Z</updated>
+    <updated>2019-08-28T09:39:44.685Z</updated>
     
     <summary type="html">
     
@@ -189,7 +221,7 @@
     <link href="https://caius-lu.github.io/2019/08/28/opencv%E6%A8%A1%E5%9D%97/"/>
     <id>https://caius-lu.github.io/2019/08/28/opencv模块/</id>
     <published>2019-08-28T07:07:52.000Z</published>
-    <updated>2019-08-28T07:33:53.199Z</updated>
+    <updated>2019-08-28T09:39:37.532Z</updated>
     
     <summary type="html">
     
@@ -548,36 +580,6 @@
         
         
           &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法竞赛入门经典第三章</title>
-    <link href="https://caius-lu.github.io/2019/08/16/algorithm3/"/>
-    <id>https://caius-lu.github.io/2019/08/16/algorithm3/</id>
-    <published>2019-08-16T13:13:17.000Z</published>
-    <updated>2019-08-16T13:19:36.548Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;今天心情不好，所以就敲了这一点代码，希望明天的状态能好一点！&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
     

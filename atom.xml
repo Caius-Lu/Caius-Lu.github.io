@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-28T08:18:14.914Z</updated>
+  <updated>2019-08-28T08:37:59.404Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://caius-lu.github.io/2019/08/28/glob%E6%A8%A1%E5%9D%97/"/>
     <id>https://caius-lu.github.io/2019/08/28/glob模块/</id>
     <published>2019-08-28T08:13:37.000Z</published>
-    <updated>2019-08-28T08:18:14.914Z</updated>
+    <updated>2019-08-28T08:37:59.404Z</updated>
     
     <summary type="html">
     
@@ -31,11 +31,9 @@
         
           &lt;p&gt;glob模块是Python最简单的模块之一, 内容非常少, 用它可以查找符合特定规则的文件路径名, 查找文件时只会用到三个匹配符:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;: 匹配0个或多个字符&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;? :
+&lt;li&gt;* : 匹配0个或多个字符&lt;/li&gt;
+&lt;li&gt;? : 匹配单个字符&lt;/li&gt;
+&lt;li&gt;[] :
         
       
     

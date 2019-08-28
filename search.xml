@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[glob模块]]></title>
+    <url>%2F2019%2F08%2F28%2Fglob%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[glob模块是Python最简单的模块之一, 内容非常少, 用它可以查找符合特定规则的文件路径名, 查找文件时只会用到三个匹配符: : 匹配0个或多个字符 ? : 匹配单个字符 [] : 匹配指定范围内的字符, 如[0-9]匹配数字 glob.glob()参数:_(str): 文件路径的正则表达式 返回值:_(list): 符合正则表达式的文件路径列表 备注:返回所有匹配的文件路径列表, 它只有一个参数pathname, 定义了文件路径匹配的规则, 这里可以是绝对路径或者相对路径:123456import globpathes_list = glob.glob("~/Pictures/*.jpg")# 获取Pictures下的所有图片relative_pathes_list = glob.glob("../*.py")# 获取上级目录中的所有.py文件 在 linux, osx 系统中, 通配符的匹配是大小写区分的, 也就是需要特别指定大小写:1extensions = ['jpg', 'JPG', 'jpeg', 'JPEG'] 但是在 windows 当中, 通配符的匹配是不区分大小写的, 因此只需要指定大小写中的一个即可, 两个都指定的话, 会出现重复的情况1extensions = ['jpg', 'jpeg'] glob.iglob获取一个可遍历的对象, 使用它可以逐个获取匹配的文件路径名. 与glob.glob()的区别是: glob.glob()会同时获取到所有的匹配路径, 而glob.iglob()一次只获取一个匹配路径.1234f = glob.iglob("../*.py")print f # &lt;generator object iglob at 0x00B9FF80&gt;for py in f: print(py)]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[logging模块]]></title>
+    <url>%2F2019%2F08%2F28%2Flogging%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[简单使用1234567import logginglogging.debug("debug msg")logging.info("info msg")logging.warn("warn msg")logging.error("error msg")logging.critical("critical msg") 默认情况下, logging模块将日志打印到屏幕上, 只有日志级别高于WARNING的日志信息才回输出]]></content>
+      <categories>
+        <category>opencv</category>
+        <category>python</category>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[shutil模块]]></title>
+    <url>%2F2019%2F08%2F28%2Fshutil%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[1234567shutil.copyfile("old","new") # 复制文件，都只能是文件shutil.copytree("old","new") # 复制文件夹，都只能是目录，且new必须不存在shutil.copy("old","new") # 复制文件/文件夹，复制 old 为 new（new是文件，若不存在，即新建），复制 old 为至 new 文件夹（文件夹已存在）shutil.move("old","new") # 移动文件/文件夹至 new 文件夹中]]></content>
+      <categories>
+        <category>opencv</category>
+        <category>python</category>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PIL模块]]></title>
+    <url>%2F2019%2F08%2F28%2FPIL%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[导入1from PIL import Image 读取1img = Image.open(filepath) 显示1img.show() 与 numpy 数组的互相转换PIL Image 转 numpy 数组1img_to_array = np.array(img) numpy 数组转 PIL Image (注意要确保数组内的值符合 PIL 的要求)1array_to_img = Image.fromarray(img_to_array) PIL 与 cv2 格式互相转换PIL.Image读入的图片数据类型不是 numpy 数组, 它的size属性为 (w, h), 利用np.array转换成 numpy 数组后, 它的通道顺序为 (r, g, b)1234567891011from PIL import Imageimport numpy as np# PIL to cv2pil_img = Image.open(img_path)print(pil_img.size) # (w, h)np_img = np.array(pil_img)cv2_img = np_img[:, :, ::-1] # 交换通道# cv2 to PILpil_img = Image.fromarray(cv2_img[:, :, ::-1])]]></content>
+      <categories>
+        <category>opencv</category>
+        <category>python</category>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[skimage模块]]></title>
+    <url>%2F2019%2F08%2F28%2Fskimage%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[比opencv的速度要慢很多, 但是使用起来更加简单, 真的对速度要求很高的话, 一般都会C++和opecv使用. 所以一般情况下, 首先看skimage能否实现, 不行的话再转用opencv123import skimagefrom skimage import io # IO is a submodule. Submodules need to be imported from the parent module explicitly.img = io.imread("1.jpg")]]></content>
+      <categories>
+        <category>opencv</category>
+        <category>python</category>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>opencv</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[opencv模块]]></title>
     <url>%2F2019%2F08%2F28%2Fopencv%E6%A8%A1%E5%9D%97%2F</url>
     <content type="text"><![CDATA[opencv 基础知识cv2.imread 读入的图片, 其shape为(h, w, c), 颜色通道顺序为 (b, g, r) 常用颜色读取图片1img = cv2.imread(img_path) 保存图片1cv2.imwrite(save_path, img) 文本(startX, startY) 为左上角坐标1cv2.putText(img, "text test", (startX, startY), cv2.FONT_HERSHEY_SIMPLEX, font_size, (B,G,R), thickness) 画框(x,y) 为左上角坐标(x+h,y+w) 为右下角坐标1cv2.rectangle(img,(x,y), (x+h,y+w), (0,255,0), thickness) waitKey()12345keypress = cv2.waitKey(200) # 200为当前图片的显示持续时间if keypress == ord('c') # keypress为按键的整数形式, 所以需要用ord将字符类型转换if cv2.waitKey(200) == 27: # Decimal 27 = Esc opencv与numpyopencv的基础类型为numpy.ndarray, 因此可以直接使用 ndarray 的一些属性的方法1234import cv2img = cv2.imread('./test.jpg')print(type(img)) # &lt;class 'numpy.ndarray'&gt;print(img.shape) # (500, 1069, 3) (高, 宽, 通道) 利用 cv2.merge 方法将 numpy.ndarray 数据转换成opencv的图片数据:12345678910# 图片的分辨率为300*200(宽*高)，这里b, g, r设为随机值，注意dtype属性b = np.random.randint(0, 255, (200, 300), dtype=np.uint8)g = np.random.randint(0, 255, (200, 300), dtype=np.uint8)r = np.random.randint(0, 255, (200, 300), dtype=np.uint8)# 合并通道，形成图片img = cv2.merge([b, g, r]) # opencv的通道是b在最前,r在最后# 显示图片cv2.imshow('test', img)cv2.waitKey(0)cv2.destroyWindow('test') 通道的拆分与合并拆分: cv2.split合并: cv2.merge123456789101112# 图片的分辨率为800*200(宽*高)，这里b, g, r设为随机值，注意dtype属性b = np.random.randint(0, 255, (200, 800), dtype=np.uint8)g = np.random.randint(0, 255, (200, 800), dtype=np.uint8)r = np.random.randint(0, 255, (200, 800), dtype=np.uint8)# 合并通道，形成图片img = cv2.merge([b, g, r]) # opencv的通道是b在最前,r在最后# 显示图片cv2.imshow('test', img)cv2.waitKey(0)cv2.destroyWindow('test')# 拆分通道, 每个通道都变成了单通道数组[blue, green, red] = cv2.split(img) 将 BGR 转换成 RGB 通道顺序12345# 方法一:rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)# 方法二:rgb_img = img[:, :, [2, 1, 0]] # img[h,w,v]rgb_img = img[:, :, ::-1] PIL 与 cv2 格式互相转换PIL.Image读入的图片数据类型不是 numpy 数组, 它的size属性为 (w, h), 利用np.array转换成 numpy 数组后, 它的通道顺序为 (r, g, b)1234567891011from PIL import Imageimport numpy as np# PIL to cv2pil_img = Image.open(img_path)print(pil_img.size) # (w, h)np_img = np.array(pil_img)cv2_img = np_img[:, :, ::-1] # 交换通道# cv2 to PILpil_img = Image.fromarray(cv2_img[:, :, ::-1]) 用matplotlib显示图像1234b,g,r=cv2.split(img)img2=cv2.merge([r,g,b])plt.imshow(img2)plt.show() 截取子图12# 已知子图左上角坐标 (x1, y1), 右下角坐标(x2, y2)crop_img = img[y1:y2, x1:x2, :] opencv 核心算法cv212345678910111213141516import cv2image_path = './test.jpg'src_image = cv2.imread(image_path) # 读取图片size = src_image.shape # 获取图片的尺寸, 返回一个元组: (height, width, depth)copy_image = src_image.copy() # 复制图片cv2.imwrite('./dst_test.jpg', copy_image) # 保存图片cv2.imshow('image', src_image) # 显示图片# 利用下标访问指定像素for x in range(src_image.shape[0]): # 以行为主, 行数=图片height for y in range(src_image.shape[1]): # 列数 = 图片width src_image[x,y] = (255,0,255) # (blue, green, red) 值越高表示对应颜色越显著, 全0为黑, 全255为白]]></content>
@@ -238,9 +305,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[c++中级教程 STL stack]]></title>
-    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
-    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
+    <title><![CDATA[c++中级教程(一)]]></title>
+    <url>%2F2019%2F07%2F25%2F%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[顺序容器 STL deque 类 deque是一个动态数组 deque与vector 非常类似 deque可以在数组开头和末尾插入和删除数据 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263// demo3.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;deque&gt;#include &lt;algorithm&gt;using namespace std;int main()&#123; deque&lt;int&gt; a; a.push_back(3); a.push_back(4); a.push_back(5); a.push_back(6); //vector只能push_back a.push_front(2); a.push_front(1); a.push_front(9); a.push_front(8); for (size_t nCount = 0; nCount &lt; a.size(); ++nCount) &#123; cout &lt;&lt;"a["&lt;&lt;nCount&lt;&lt;"]" &lt;&lt; "= " &lt;&lt; a[nCount] &lt;&lt; endl; &#125; cout &lt;&lt; endl&lt;&lt;endl; a.pop_front();// 前面删除 a.pop_back();// 后面删除 cout &lt;&lt; "删除之后：" &lt;&lt; endl; /*for (size_t nCount = 0; nCount &lt; a.size(); ++nCount) &#123; cout &lt;&lt; "a[" &lt;&lt; nCount &lt;&lt; "]" &lt;&lt; a[nCount] &lt;&lt; endl; &#125;*/ deque&lt;int&gt;::iterator iElementLocater; //这边使用了迭代器 distence 可以计算当前 for (iElementLocater = a.begin(); iElementLocater != a.end(); ++iElementLocater) &#123; size_t nOffset = distance(a.begin(), iElementLocater);//distence 可以计算当前下标与begin开始的，距离正好是下标 cout &lt;&lt; "a[" &lt;&lt; nOffset &lt;&lt; "]" &lt;&lt; "= "&lt;&lt;*iElementLocater &lt;&lt; endl; &#125; system("pause"); return 0;&#125;a[0]= 8a[1]= 9a[2]= 1a[3]= 2a[4]= 3a[5]= 4a[6]= 5a[7]= 6删除之后：a[0]= 9a[1]= 1a[2]= 2a[3]= 3a[4]= 4a[5]= 5请按任意键继续. . . 順序容器 STL list 類 实例化std::list对象 在list开头插入元素 在list末尾插入元素 在list中间插入元素 删除list中的元素 对list中的元素进行反转和排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758// list.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; list&lt;int&gt; b; b.push_back(100); b.push_back(200); b.push_back(300); b.push_back(400); b.push_back(500); PrintListContent(b); cout &lt;&lt; endl; a.push_front(4); a.push_front(3); a.push_front(2); a.push_front(1); a.push_back(5); //使用链表数据，不能使用下标，只能使用迭代器 list&lt;int&gt;::iterator iter; iter = a.begin(); a.insert(iter, 10);// 在begin前面插入10，第一个参数迭代器，指定插入的位置 a.insert(a.end(),10); PrintListContent(a); //将b插入到a之中 a.insert(a.begin(), b.begin(), b.end()); a.insert(iter,++b.begin(),--b.end()) PrintListContent(a); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; endl; &#125;&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849// listdelet.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; a.push_front(4); a.push_front(3); list&lt;int&gt;::iterator iElementValueTwo; iElementValueTwo = a.insert(a.begin(),2); // inset 才返回迭代器迭代器指向这个位置 a.push_front(1); a.push_back(0); cout &lt;&lt; "删除之前" &lt;&lt; endl; PrintListContent(a); // 删除2 cout &lt;&lt; "删除之后" &lt;&lt; endl; a.erase(iElementValueTwo); //a.erase(a.beigin(),iElementValueTwo); 删除从第一个迭代器到第二个迭代器所有的数据 PrintListContent(a); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 cout &lt;&lt; "&#123;"; list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; " "; &#125; cout &lt;&lt; "&#125;" &lt;&lt; endl;&#125;删除之前&#123;1 2 3 4 0 &#125;删除之后&#123;1 3 4 0 &#125;请按任意键继续. . . 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556// list3.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; a.push_front(4); a.push_front(3); a.push_front(2); a.push_front(1); PrintListContent(a); cout &lt;&lt; "反转之后的数据：" &lt;&lt; endl; a.reverse(); PrintListContent(a); list&lt;int&gt; b; b.push_front(4); b.push_front(53); b.push_front(24); b.push_front(132); PrintListContent(b); cout &lt;&lt; "排序之后的数据：" &lt;&lt; endl; b.sort(); PrintListContent(b); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 cout &lt;&lt; "&#123;"; list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; " "; &#125; cout &lt;&lt; "&#125;" &lt;&lt; endl;&#125;&#123;1 2 3 4 &#125;反转之后的数据：&#123;4 3 2 1 &#125;&#123;132 24 53 4 &#125;排序之后的数据：&#123;4 24 53 132 &#125;请按任意键继续. . .]]></content>
       <categories>
         <category>programs</category>
       </categories>
@@ -260,9 +327,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[c++中级教程(一)]]></title>
-    <url>%2F2019%2F07%2F25%2F%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB%2F</url>
-    <content type="text"><![CDATA[顺序容器 STL deque 类 deque是一个动态数组 deque与vector 非常类似 deque可以在数组开头和末尾插入和删除数据 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263// demo3.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;deque&gt;#include &lt;algorithm&gt;using namespace std;int main()&#123; deque&lt;int&gt; a; a.push_back(3); a.push_back(4); a.push_back(5); a.push_back(6); //vector只能push_back a.push_front(2); a.push_front(1); a.push_front(9); a.push_front(8); for (size_t nCount = 0; nCount &lt; a.size(); ++nCount) &#123; cout &lt;&lt;"a["&lt;&lt;nCount&lt;&lt;"]" &lt;&lt; "= " &lt;&lt; a[nCount] &lt;&lt; endl; &#125; cout &lt;&lt; endl&lt;&lt;endl; a.pop_front();// 前面删除 a.pop_back();// 后面删除 cout &lt;&lt; "删除之后：" &lt;&lt; endl; /*for (size_t nCount = 0; nCount &lt; a.size(); ++nCount) &#123; cout &lt;&lt; "a[" &lt;&lt; nCount &lt;&lt; "]" &lt;&lt; a[nCount] &lt;&lt; endl; &#125;*/ deque&lt;int&gt;::iterator iElementLocater; //这边使用了迭代器 distence 可以计算当前 for (iElementLocater = a.begin(); iElementLocater != a.end(); ++iElementLocater) &#123; size_t nOffset = distance(a.begin(), iElementLocater);//distence 可以计算当前下标与begin开始的，距离正好是下标 cout &lt;&lt; "a[" &lt;&lt; nOffset &lt;&lt; "]" &lt;&lt; "= "&lt;&lt;*iElementLocater &lt;&lt; endl; &#125; system("pause"); return 0;&#125;a[0]= 8a[1]= 9a[2]= 1a[3]= 2a[4]= 3a[5]= 4a[6]= 5a[7]= 6删除之后：a[0]= 9a[1]= 1a[2]= 2a[3]= 3a[4]= 4a[5]= 5请按任意键继续. . . 順序容器 STL list 類 实例化std::list对象 在list开头插入元素 在list末尾插入元素 在list中间插入元素 删除list中的元素 对list中的元素进行反转和排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758// list.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; list&lt;int&gt; b; b.push_back(100); b.push_back(200); b.push_back(300); b.push_back(400); b.push_back(500); PrintListContent(b); cout &lt;&lt; endl; a.push_front(4); a.push_front(3); a.push_front(2); a.push_front(1); a.push_back(5); //使用链表数据，不能使用下标，只能使用迭代器 list&lt;int&gt;::iterator iter; iter = a.begin(); a.insert(iter, 10);// 在begin前面插入10，第一个参数迭代器，指定插入的位置 a.insert(a.end(),10); PrintListContent(a); //将b插入到a之中 a.insert(a.begin(), b.begin(), b.end()); a.insert(iter,++b.begin(),--b.end()) PrintListContent(a); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; endl; &#125;&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849// listdelet.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; a.push_front(4); a.push_front(3); list&lt;int&gt;::iterator iElementValueTwo; iElementValueTwo = a.insert(a.begin(),2); // inset 才返回迭代器迭代器指向这个位置 a.push_front(1); a.push_back(0); cout &lt;&lt; "删除之前" &lt;&lt; endl; PrintListContent(a); // 删除2 cout &lt;&lt; "删除之后" &lt;&lt; endl; a.erase(iElementValueTwo); //a.erase(a.beigin(),iElementValueTwo); 删除从第一个迭代器到第二个迭代器所有的数据 PrintListContent(a); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 cout &lt;&lt; "&#123;"; list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; " "; &#125; cout &lt;&lt; "&#125;" &lt;&lt; endl;&#125;删除之前&#123;1 2 3 4 0 &#125;删除之后&#123;1 3 4 0 &#125;请按任意键继续. . . 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556// list3.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include&lt;iostream&gt;#include&lt;list&gt;using namespace std;void PrintListContent(const list&lt;int&gt;&amp; listInput);int main()&#123; list&lt;int&gt; a; a.push_front(4); a.push_front(3); a.push_front(2); a.push_front(1); PrintListContent(a); cout &lt;&lt; "反转之后的数据：" &lt;&lt; endl; a.reverse(); PrintListContent(a); list&lt;int&gt; b; b.push_front(4); b.push_front(53); b.push_front(24); b.push_front(132); PrintListContent(b); cout &lt;&lt; "排序之后的数据：" &lt;&lt; endl; b.sort(); PrintListContent(b); system("pause"); return 0;&#125;void PrintListContent(const list&lt;int&gt;&amp; listInput)&#123; //会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。 cout &lt;&lt; "&#123;"; list&lt;int&gt;::const_iterator iter; for (iter = listInput.begin(); iter != listInput.end(); ++iter) &#123; cout &lt;&lt; *iter &lt;&lt; " "; &#125; cout &lt;&lt; "&#125;" &lt;&lt; endl;&#125;&#123;1 2 3 4 &#125;反转之后的数据：&#123;4 3 2 1 &#125;&#123;132 24 53 4 &#125;排序之后的数据：&#123;4 24 53 132 &#125;请按任意键继续. . .]]></content>
+    <title><![CDATA[c++中级教程 STL stack]]></title>
+    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
+    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
       <categories>
         <category>programs</category>
       </categories>

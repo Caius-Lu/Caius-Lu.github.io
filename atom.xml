@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-28T07:33:53.199Z</updated>
+  <updated>2019-08-28T08:18:14.914Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,166 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>glob模块</title>
+    <link href="https://caius-lu.github.io/2019/08/28/glob%E6%A8%A1%E5%9D%97/"/>
+    <id>https://caius-lu.github.io/2019/08/28/glob模块/</id>
+    <published>2019-08-28T08:13:37.000Z</published>
+    <updated>2019-08-28T08:18:14.914Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;glob模块是Python最简单的模块之一, 内容非常少, 用它可以查找符合特定规则的文件路径名, 查找文件时只会用到三个匹配符:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;: 匹配0个或多个字符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;? :
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>logging模块</title>
+    <link href="https://caius-lu.github.io/2019/08/28/logging%E6%A8%A1%E5%9D%97/"/>
+    <id>https://caius-lu.github.io/2019/08/28/logging模块/</id>
+    <published>2019-08-28T08:03:24.000Z</published>
+    <updated>2019-08-28T08:05:41.197Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;简单使用&quot;&gt;&lt;a href=&quot;#简单使用&quot; class=&quot;headerlink&quot; title=&quot;简单使用&quot;&gt;&lt;/a&gt;简单使用&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shutil模块</title>
+    <link href="https://caius-lu.github.io/2019/08/28/shutil%E6%A8%A1%E5%9D%97/"/>
+    <id>https://caius-lu.github.io/2019/08/28/shutil模块/</id>
+    <published>2019-08-28T07:56:46.000Z</published>
+    <updated>2019-08-28T07:57:43.739Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PIL模块</title>
+    <link href="https://caius-lu.github.io/2019/08/28/PIL%E6%A8%A1%E5%9D%97/"/>
+    <id>https://caius-lu.github.io/2019/08/28/PIL模块/</id>
+    <published>2019-08-28T07:49:11.000Z</published>
+    <updated>2019-08-28T07:51:46.864Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;导入&quot;&gt;&lt;a href=&quot;#导入&quot; class=&quot;headerlink&quot; title=&quot;导入&quot;&gt;&lt;/a&gt;导入&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>skimage模块</title>
+    <link href="https://caius-lu.github.io/2019/08/28/skimage%E6%A8%A1%E5%9D%97/"/>
+    <id>https://caius-lu.github.io/2019/08/28/skimage模块/</id>
+    <published>2019-08-28T07:46:39.000Z</published>
+    <updated>2019-08-28T07:48:43.769Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;比opencv的速度要慢很多, 但是使用起来更加简单, 真的对速度要求很高的话, 一般都会C++和opecv使用. 所以一般情况下, 首先看skimage能否实现, 不行的话再转用opencv&lt;br&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>opencv模块</title>
@@ -453,138 +613,6 @@
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
       <category term="nms" scheme="https://caius-lu.github.io/tags/nms/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法竞赛入门经典第二章</title>
-    <link href="https://caius-lu.github.io/2019/08/15/algorithm2/"/>
-    <id>https://caius-lu.github.io/2019/08/15/algorithm2/</id>
-    <published>2019-08-15T14:52:01.000Z</published>
-    <updated>2019-08-15T14:53:48.441Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法竞赛入门经典第一章</title>
-    <link href="https://caius-lu.github.io/2019/08/14/algorithm1/"/>
-    <id>https://caius-lu.github.io/2019/08/14/algorithm1/</id>
-    <published>2019-08-14T06:23:54.000Z</published>
-    <updated>2019-08-14T06:26:34.864Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://caius-lu.github.io/2019/07/29/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B%E8%B0%83%E7%A0%94/"/>
-    <id>https://caius-lu.github.io/2019/07/29/文本检测调研/</id>
-    <published>2019-07-29T00:03:40.968Z</published>
-    <updated>2019-07-29T02:02:07.048Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。&lt;br&gt;而视频中的文本检测，也可以看做是视频中的目标检测中
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>c++中级教程 顺序容器的定义</title>
-    <link href="https://caius-lu.github.io/2019/07/26/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89/"/>
-    <id>https://caius-lu.github.io/2019/07/26/顺序容器的定义/</id>
-    <published>2019-07-26T13:15:21.000Z</published>
-    <updated>2019-07-26T13:17:09.571Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;顺序容器的定义&quot;&gt;&lt;a href=&quot;#顺序容器的定义&quot; class=&quot;headerlink&quot; title=&quot;顺序容器的定义&quot;&gt;&lt;/a&gt;顺序容器的定义&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h3 id=&quot;顺序容器&quot;&gt;&lt;a href=&quot;#顺序容器&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++中级教程  STL queue</title>
-    <link href="https://caius-lu.github.io/2019/07/26/STLqueue/"/>
-    <id>https://caius-lu.github.io/2019/07/26/STLqueue/</id>
-    <published>2019-07-26T12:10:21.000Z</published>
-    <updated>2019-07-26T13:14:11.105Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;STL-queue&quot;&gt;&lt;a href=&quot;#STL-queue&quot; class=&quot;headerlink&quot; title=&quot;STL queue&quot;&gt;&lt;/a&gt;STL queue&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;队列： FIFO
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
     
   </entry>
   

@@ -113,7 +113,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://caius-lu.github.io/2019/08/24/ssd/ssdarchitecture.png">
 <meta property="og:image" content="https://caius-lu.github.io/2019/08/24/ssd/priorbox.png">
-<meta property="og:updated_time" content="2019-08-27T05:10:25.052Z">
+<meta property="og:updated_time" content="2019-08-28T04:49:37.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSD源码解析">
 <meta name="twitter:description" content="论文地址:        SSD: Single Shot MultiBox Detector 非官方代码:    pytorch 介绍SSD，全称Single Shot MultiBox Detector，是一种One-Stage的方法，它由Wei Liu在ECCV 2016上提出，SSD具有如下主要特点：  从YOLO中继承了将detection转化为regression的思路，同时一次即可完">
@@ -426,7 +426,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-27 13:10:25" itemprop="dateModified" datetime="2019-08-27T13:10:25+08:00">2019-08-27</time>
+                <time title="修改时间：2019-08-28 12:49:37" itemprop="dateModified" datetime="2019-08-28T12:49:37+08:00">2019-08-28</time>
               </span>
             
           
@@ -489,6 +489,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 </ul>
 <h2 id="SSD的-网络结构"><a href="#SSD的-网络结构" class="headerlink" title="SSD的 网络结构"></a>SSD的 网络结构</h2><img src="/2019/08/24/ssd/ssdarchitecture.png" title="ssdarchitecture">
 <p>由上图可以看出，SSD的基础网络结构由基础网络VGG16组成，在VGG16基础网络之后接了一个3x3的卷积和一个1x1的卷积做特征融合，然后增加了一个Extra Feature Layers 层，这个层由八个卷积层构成。SSD在前面的基础网络去conv_4_3之后的relu层输出，以及倒数第二层的conv_7_1的relu再加上Extra Feature Layers层的第1,3,5,7层 共有6个 featuremap层，在此基础上对box进行预测。但感觉要提升效果的话可以对基础网络进行更改，增加特征融合等等。</p>
+<h3 id="空洞卷积-Dilation-Conv"><a href="#空洞卷积-Dilation-Conv" class="headerlink" title="空洞卷积(Dilation Conv)"></a>空洞卷积(Dilation Conv)</h3><p> ssd网络里还使用了空洞卷积(Dilation Conv),采用VGG16做基础模型，首先VGG16是在ILSVRC CLS-LOC数据集预训练。然后借鉴了DeepLab-LargeFOV，分别将VGG16的全连接层fc6和fc7转换成 3×3卷积层 conv6和 1×1 卷积层conv7，同时将池化层 pool5 由原来的 stride=2 的 2×2 变成 stride=1 的(猜想是不想reduce特征图大小)，为了配合这种变化，采用了一种 Atrous Algorithm，其实就是conv6采用扩展卷积或带孔卷积（Dilation Conv），其在不增加参数与模型复杂度的条件下指数级扩大卷积的视野，其使用扩张率(dilation rate)参数，来表示扩张的大小，如下图所示，(a)是普通的 3×3 卷积，其视野就是 3×3 ，(b)是扩张率为 1，此时视野变成 7×7 ，(c)扩张率为3时，视野扩大为 15×15 ，但是视野的特征更稀疏了。Conv6采用 3×3 大小但dilation rate=6的扩展卷积。</p>
 <h2 id="Prior-Box"><a href="#Prior-Box" class="headerlink" title="Prior Box"></a>Prior Box</h2><p>  SSD中有着类似anchor机制的Prior Box机制，用于来生成先验框，后面将这些先验框与真实的gt进行匹配，然后与预测的进行回归。从而得到物体真实的 位置。<br>SSD的prior Box 按照如下规则生成：</p>
 <ul>
 <li><p>以feature map上每个点的中点为中心（offset=0.5），生成一些列同心的prior box（然后中心点的坐标会乘以step，相当于从feature map位置映射回原图位置）</p>
@@ -698,7 +699,7 @@ S_k = S_min + \frac{S_max-S_min}{m-1}(k-1) , k \in[1,m]</script>第一层feature
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -737,7 +738,9 @@ S_k = S_min + \frac{S_max-S_min}{m-1}(k-1) , k \in[1,m]</script>第一层feature
         
           
         
-        <span class="site-state-item-count">11</span>
+          
+        
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -813,7 +816,7 @@ S_k = S_min + \frac{S_max-S_min}{m-1}(k-1) , k \in[1,m]</script>第一层feature
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD的-网络结构"><span class="nav-text">SSD的 网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prior-Box"><span class="nav-text">Prior Box</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练策略"><span class="nav-text">训练策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正负样本"><span class="nav-text">正负样本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-text">目标函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码解析"><span class="nav-text">代码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础模型定义"><span class="nav-text">基础模型定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型Head部分的生成"><span class="nav-text">模型Head部分的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型先验框的生成"><span class="nav-text">模型先验框的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MultiBox-损失函数"><span class="nav-text">MultiBox 损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#match函数的解析"><span class="nav-text">match函数的解析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD的-网络结构"><span class="nav-text">SSD的 网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空洞卷积-Dilation-Conv"><span class="nav-text">空洞卷积(Dilation Conv)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prior-Box"><span class="nav-text">Prior Box</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练策略"><span class="nav-text">训练策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正负样本"><span class="nav-text">正负样本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-text">目标函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码解析"><span class="nav-text">代码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础模型定义"><span class="nav-text">基础模型定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型Head部分的生成"><span class="nav-text">模型Head部分的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型先验框的生成"><span class="nav-text">模型先验框的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MultiBox-损失函数"><span class="nav-text">MultiBox 损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#match函数的解析"><span class="nav-text">match函数的解析</span></a></li></ol></li></ol></div>
             
 
           </div>

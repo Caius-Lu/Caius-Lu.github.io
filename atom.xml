@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-27T05:16:37.440Z</updated>
+  <updated>2019-08-28T06:30:03.457Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python手册</title>
+    <link href="https://caius-lu.github.io/2019/08/28/python%E6%89%8B%E5%86%8C/"/>
+    <id>https://caius-lu.github.io/2019/08/28/python手册/</id>
+    <published>2019-08-28T05:00:02.000Z</published>
+    <updated>2019-08-28T06:30:03.457Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近在学习查找资料的过程之中，看到了大佬的博客，觉得写得很好，也是我现在所欠缺的，所以下面先对大佬的博客进行复现。以供自己日后复习，查找，完善成自己的东西。&lt;/p&gt;
+&lt;h2 id=&quot;字符串固定字数，不足的空格补齐&quot;&gt;&lt;a href=&quot;#字符串固定字数，不足的空格补齐&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/programs/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>二维数组中的查找</title>
@@ -83,7 +112,7 @@
     <link href="https://caius-lu.github.io/2019/08/24/ssd/"/>
     <id>https://caius-lu.github.io/2019/08/24/ssd/</id>
     <published>2019-08-24T08:40:05.000Z</published>
-    <updated>2019-08-27T05:10:25.052Z</updated>
+    <updated>2019-08-28T04:49:37.785Z</updated>
     
     <summary type="html">
     
@@ -500,22 +529,28 @@
   </entry>
   
   <entry>
-    <title>firstblog</title>
-    <link href="https://caius-lu.github.io/2019/07/25/firstblog/"/>
-    <id>https://caius-lu.github.io/2019/07/25/firstblog/</id>
+    <title>c++中级教程(一)</title>
+    <link href="https://caius-lu.github.io/2019/07/25/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB/"/>
+    <id>https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/</id>
     <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-25T13:22:35.736Z</updated>
+    <updated>2019-07-26T06:46:53.043Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;以上是摘要&lt;br&gt;&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h2 id=&quot;顺序容器-STL-deque-类&quot;&gt;&lt;a href=&quot;#顺序容器-STL-deque-类&quot; class=&quot;headerlink&quot; title=&quot;顺序容器 STL deque 类&quot;&gt;&lt;/a&gt;顺序容器 STL deque
+        
+      
     
     </summary>
     
-      <category term="dailylife" scheme="https://caius-lu.github.io/categories/dailylife/"/>
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
     
     
-      <category term="生活" scheme="https://caius-lu.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
     
   </entry>
   
@@ -534,32 +569,6 @@
         
           &lt;h2 id=&quot;STL-stack&quot;&gt;&lt;a href=&quot;#STL-stack&quot; class=&quot;headerlink&quot; title=&quot;STL stack&quot;&gt;&lt;/a&gt;STL stack&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;(堆) 栈： LIFO
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++中级教程(一)</title>
-    <link href="https://caius-lu.github.io/2019/07/25/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8-STL-deque-%E7%B1%BB/"/>
-    <id>https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/</id>
-    <published>2019-07-25T11:36:21.000Z</published>
-    <updated>2019-07-26T06:46:53.043Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;顺序容器-STL-deque-类&quot;&gt;&lt;a href=&quot;#顺序容器-STL-deque-类&quot; class=&quot;headerlink&quot; title=&quot;顺序容器 STL deque 类&quot;&gt;&lt;/a&gt;顺序容器 STL deque
         
       
     

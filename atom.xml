@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-28T12:29:49.110Z</updated>
+  <updated>2019-08-29T00:17:41.124Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>替换空格</title>
+    <link href="https://caius-lu.github.io/2019/08/29/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
+    <id>https://caius-lu.github.io/2019/08/29/替换空格/</id>
+    <published>2019-08-29T00:13:20.000Z</published>
+    <updated>2019-08-29T00:17:41.124Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：1142927&lt;br&gt;本题知识点： 字符串&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>从上往下打印二叉树</title>
@@ -48,11 +79,11 @@
   </entry>
   
   <entry>
-    <title>Pytorch_trick</title>
+    <title>Pytorch trick</title>
     <link href="https://caius-lu.github.io/2019/08/28/Pytorch-trick/"/>
     <id>https://caius-lu.github.io/2019/08/28/Pytorch-trick/</id>
     <published>2019-08-28T11:21:48.000Z</published>
-    <updated>2019-08-28T11:33:30.920Z</updated>
+    <updated>2019-08-29T00:15:23.623Z</updated>
     
     <summary type="html">
     
@@ -550,34 +581,6 @@
         
         
           &lt;p&gt;论文地址:&lt;a href=&quot;https://arxiv.org/pdf/1801.04381.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MobileNetV2: Inverted Residuals and Linear
-        
-      
-    
-    </summary>
-    
-      <category term="轻量级网络" scheme="https://caius-lu.github.io/categories/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
-    
-      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MobileNets</title>
-    <link href="https://caius-lu.github.io/2019/08/19/MobileNets/"/>
-    <id>https://caius-lu.github.io/2019/08/19/MobileNets/</id>
-    <published>2019-08-19T05:48:05.000Z</published>
-    <updated>2019-08-19T06:40:32.947Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;论文地址:&lt;a href=&quot;https://arxiv.org/abs/1704.04861&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MobileNets: Efficient Convolutional Neural Networks for
         
       
     

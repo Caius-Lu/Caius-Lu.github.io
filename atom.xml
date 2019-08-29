@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-08-29T00:17:41.124Z</updated>
+  <updated>2019-08-29T02:54:51.794Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从尾到头打印链表</title>
+    <link href="https://caius-lu.github.io/2019/08/29/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
+    <id>https://caius-lu.github.io/2019/08/29/从尾到头打印链表/</id>
+    <published>2019-08-29T02:53:29.000Z</published>
+    <updated>2019-08-29T02:54:51.794Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：1022710&lt;br&gt;本题知识点： 链表&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>透视变换</title>
+    <link href="https://caius-lu.github.io/2019/08/29/%E9%80%8F%E8%A7%86%E5%8F%98%E6%8D%A2/"/>
+    <id>https://caius-lu.github.io/2019/08/29/透视变换/</id>
+    <published>2019-08-29T00:21:16.000Z</published>
+    <updated>2019-08-29T02:53:36.883Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>替换空格</title>
@@ -523,64 +578,6 @@
         
         
           &lt;p&gt;论文地址:      &lt;a href=&quot;https://arxiv.org/pdf/1602.07360.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SqueezeNet: AlexNet-level accuracy with 50x
-        
-      
-    
-    </summary>
-    
-      <category term="轻量级网络" scheme="https://caius-lu.github.io/categories/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
-    
-      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分治算法</title>
-    <link href="https://caius-lu.github.io/2019/08/19/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/"/>
-    <id>https://caius-lu.github.io/2019/08/19/分治算法/</id>
-    <published>2019-08-19T11:21:24.000Z</published>
-    <updated>2019-08-19T11:26:11.257Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;问题： 给定一组数，要求从中找出第k小的元素。&lt;br&gt;分析：&lt;br&gt;这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一： &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;nleft等于k-1，则枢纽值即为所求；
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MobileNetsV2</title>
-    <link href="https://caius-lu.github.io/2019/08/19/MobileNetsV2/"/>
-    <id>https://caius-lu.github.io/2019/08/19/MobileNetsV2/</id>
-    <published>2019-08-19T08:09:46.000Z</published>
-    <updated>2019-08-19T08:24:34.820Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;论文地址:&lt;a href=&quot;https://arxiv.org/pdf/1801.04381.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MobileNetV2: Inverted Residuals and Linear
         
       
     

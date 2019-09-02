@@ -364,6 +364,157 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/29/文本检测调研/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/29/文本检测调研/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-29 08:03:40 / 修改时间：10:02:07" itemprop="dateCreated datePublished" datetime="2019-07-29T08:03:40+08:00">2019-07-29</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。<br>而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。</p>
+<h4 id="通常目标跟踪面临的极大难点："><a href="#通常目标跟踪面临的极大难点：" class="headerlink" title="通常目标跟踪面临的极大难点："></a>通常目标跟踪面临的极大难点：</h4><p>物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主要的三个难题分别是目标背景的变化，物体本身的变化，光照强度的变化。</p>
+<h5 id="光流法"><a href="#光流法" class="headerlink" title="光流法"></a>光流法</h5><h5 id="帧间差分法"><a href="#帧间差分法" class="headerlink" title="帧间差分法"></a>帧间差分法</h5><h5 id="背景差分法"><a href="#背景差分法" class="headerlink" title="背景差分法"></a>背景差分法</h5>
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/26/顺序容器的定义/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -666,6 +817,205 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;int, deque&lt;int&gt;&gt; pg1;</span><br><span class="line">//对队列里的数据进行随机操作，所以不能使用list</span><br><span class="line">priority_queue&lt;int, vector&lt;int&gt;&gt; pg2; //vector是默认的</span><br><span class="line">								//谓词</span><br><span class="line">priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; pg2; //vector是默认的，最小优先队列</span><br><span class="line">pg.empty()</span><br><span class="line">pg.size()</span><br><span class="line">pg.top()</span><br><span class="line">pg.pop()</span><br><span class="line">pg.push(item)</span><br><span class="line">~~~~~~~~~~</span><br></pre></td></tr></table></figure>
 <hr>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">// priority_queue.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;deque&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	priority_queue&lt;int, deque&lt;int&gt;&gt; pg1;</span><br><span class="line">    //对队列里的数据进行随机操作，所以不能使用list</span><br><span class="line">	priority_queue&lt;int, vector&lt;int&gt;&gt; pg2; //vector是默认的</span><br><span class="line">									//谓词</span><br><span class="line">	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; pg2; //vector是默认的，最小优先队列</span><br><span class="line"></span><br><span class="line">	pg2.push(10);</span><br><span class="line">	pg2.push(5);</span><br><span class="line">	pg2.push(-1);</span><br><span class="line">	pg2.push(20);</span><br><span class="line">	cout &lt;&lt; &quot;优先级队列一共有： &quot; &lt;&lt; pg2.size() &lt;&lt; &quot;个数据&quot; &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; pg2.top() &lt;&lt; endl;</span><br><span class="line">	while (!pg2.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;从优先级队列里删除： &quot; &lt;&lt; pg2.top() &lt;&lt; endl;</span><br><span class="line">		pg2.pop();</span><br><span class="line">	&#125;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">优先级队列一共有： 4个数据</span><br><span class="line">20</span><br><span class="line">从优先级队列里删除： 20</span><br><span class="line">从优先级队列里删除： 10</span><br><span class="line">从优先级队列里删除： 5</span><br><span class="line">从优先级队列里删除： -1</span><br><span class="line">请按任意键继续. . .</span><br><span class="line"></span><br><span class="line">~~</span><br></pre></td></tr></table></figure>
+<hr>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/25/顺序容器-STL-deque-类/" class="post-title-link" itemprop="url">c++中级教程(一)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-25 19:36:21" itemprop="dateCreated datePublished" datetime="2019-07-25T19:36:21+08:00">2019-07-25</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-26 14:46:53" itemprop="dateModified" datetime="2019-07-26T14:46:53+08:00">2019-07-26</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="顺序容器-STL-deque-类"><a href="#顺序容器-STL-deque-类" class="headerlink" title="顺序容器 STL deque 类"></a>顺序容器 STL deque 类</h2><ul>
+<li><p>deque是一个动态数组</p>
+</li>
+<li><p>deque与vector 非常类似</p>
+</li>
+<li><p>deque可以在数组开头和末尾插入和删除数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo3.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_back(<span class="number">3</span>);</span><br><span class="line">	a.push_back(<span class="number">4</span>);</span><br><span class="line">	a.push_back(<span class="number">5</span>);</span><br><span class="line">	a.push_back(<span class="number">6</span>);</span><br><span class="line">	<span class="comment">//vector只能push_back</span></span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_front(<span class="number">9</span>);</span><br><span class="line">	a.push_front(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> nCount = <span class="number">0</span>; nCount &lt; a.size(); ++nCount)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt;<span class="string">"a["</span>&lt;&lt;nCount&lt;&lt;<span class="string">"]"</span> &lt;&lt; <span class="string">"= "</span> &lt;&lt; a[nCount] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a.pop_front();<span class="comment">// 前面删除</span></span><br><span class="line">	a.pop_back();<span class="comment">// 后面删除</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之后："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">/*for (size_t nCount = 0; nCount &lt; a.size(); ++nCount)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "a[" &lt;&lt; nCount &lt;&lt; "]" &lt;&lt; a[nCount] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;::iterator iElementLocater; <span class="comment">//这边使用了迭代器  distence 可以计算当前</span></span><br><span class="line">	<span class="keyword">for</span> (iElementLocater = a.begin();</span><br><span class="line">		iElementLocater != a.end();</span><br><span class="line">		++iElementLocater)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">size_t</span> nOffset = distance(a.begin(), iElementLocater);<span class="comment">//distence 可以计算当前下标与begin开始的，距离正好是下标</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"a["</span> &lt;&lt; nOffset &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="string">"= "</span>&lt;&lt;*iElementLocater &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">0</span>]= <span class="number">8</span></span><br><span class="line">a[<span class="number">1</span>]= <span class="number">9</span></span><br><span class="line">a[<span class="number">2</span>]= <span class="number">1</span></span><br><span class="line">a[<span class="number">3</span>]= <span class="number">2</span></span><br><span class="line">a[<span class="number">4</span>]= <span class="number">3</span></span><br><span class="line">a[<span class="number">5</span>]= <span class="number">4</span></span><br><span class="line">a[<span class="number">6</span>]= <span class="number">5</span></span><br><span class="line">a[<span class="number">7</span>]= <span class="number">6</span></span><br><span class="line"></span><br><span class="line">删除之后：</span><br><span class="line">a[<span class="number">0</span>]= <span class="number">9</span></span><br><span class="line">a[<span class="number">1</span>]= <span class="number">1</span></span><br><span class="line">a[<span class="number">2</span>]= <span class="number">2</span></span><br><span class="line">a[<span class="number">3</span>]= <span class="number">3</span></span><br><span class="line">a[<span class="number">4</span>]= <span class="number">4</span></span><br><span class="line">a[<span class="number">5</span>]= <span class="number">5</span></span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>順序容器 STL list 類</p>
+<ul>
+<li>实例化std::list对象</li>
+<li>在list开头插入元素</li>
+<li>在list末尾插入元素</li>
+<li>在list中间插入元素</li>
+<li>删除list中的元素</li>
+<li>对list中的元素进行反转和排序<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line"></span><br><span class="line">	b.push_back(<span class="number">100</span>);</span><br><span class="line">	b.push_back(<span class="number">200</span>);</span><br><span class="line">	b.push_back(<span class="number">300</span>);</span><br><span class="line">	b.push_back(<span class="number">400</span>);</span><br><span class="line">	b.push_back(<span class="number">500</span>);</span><br><span class="line">	PrintListContent(b);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_back(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//使用链表数据，不能使用下标，只能使用迭代器</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">	iter = a.begin();</span><br><span class="line">	a.insert(iter, <span class="number">10</span>);<span class="comment">// 在begin前面插入10，第一个参数迭代器，指定插入的位置</span></span><br><span class="line">	a.insert(a.end(),<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="comment">//将b插入到a之中</span></span><br><span class="line">	a.insert(a.begin(), b.begin(), b.end());</span><br><span class="line">	a.insert(iter,++b.begin(),--b.end())</span><br><span class="line">	</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// listdelet.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iElementValueTwo;</span><br><span class="line">	iElementValueTwo = a.insert(a.begin(),<span class="number">2</span>); <span class="comment">// inset 才返回迭代器迭代器指向这个位置</span></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_back(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之前"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="comment">// 删除2</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之后"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a.erase(iElementValueTwo);</span><br><span class="line">	<span class="comment">//a.erase(a.beigin(),iElementValueTwo); 删除从第一个迭代器到第二个迭代器所有的数据</span></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#123;"</span>;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#125;"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">删除之前</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> &#125;</span><br><span class="line">删除之后</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> &#125;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list3.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"反转之后的数据："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	a.reverse();</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line">	b.push_front(<span class="number">4</span>);</span><br><span class="line">	b.push_front(<span class="number">53</span>);</span><br><span class="line">	b.push_front(<span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">	b.push_front(<span class="number">132</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(b);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"排序之后的数据："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	b.sort();</span><br><span class="line">	PrintListContent(b);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#123;"</span>;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#125;"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> &#125;</span><br><span class="line">反转之后的数据：</span><br><span class="line">&#123;<span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> &#125;</span><br><span class="line">&#123;<span class="number">132</span> <span class="number">24</span> <span class="number">53</span> <span class="number">4</span> &#125;</span><br><span class="line">排序之后的数据：</span><br><span class="line">&#123;<span class="number">4</span> <span class="number">24</span> <span class="number">53</span> <span class="number">132</span> &#125;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
 <hr>
 
           
@@ -1062,205 +1412,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/25/顺序容器-STL-deque-类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/25/顺序容器-STL-deque-类/" class="post-title-link" itemprop="url">c++中级教程(一)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-25 19:36:21" itemprop="dateCreated datePublished" datetime="2019-07-25T19:36:21+08:00">2019-07-25</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-26 14:46:53" itemprop="dateModified" datetime="2019-07-26T14:46:53+08:00">2019-07-26</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="顺序容器-STL-deque-类"><a href="#顺序容器-STL-deque-类" class="headerlink" title="顺序容器 STL deque 类"></a>顺序容器 STL deque 类</h2><ul>
-<li><p>deque是一个动态数组</p>
-</li>
-<li><p>deque与vector 非常类似</p>
-</li>
-<li><p>deque可以在数组开头和末尾插入和删除数据</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo3.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_back(<span class="number">3</span>);</span><br><span class="line">	a.push_back(<span class="number">4</span>);</span><br><span class="line">	a.push_back(<span class="number">5</span>);</span><br><span class="line">	a.push_back(<span class="number">6</span>);</span><br><span class="line">	<span class="comment">//vector只能push_back</span></span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_front(<span class="number">9</span>);</span><br><span class="line">	a.push_front(<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">size_t</span> nCount = <span class="number">0</span>; nCount &lt; a.size(); ++nCount)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt;<span class="string">"a["</span>&lt;&lt;nCount&lt;&lt;<span class="string">"]"</span> &lt;&lt; <span class="string">"= "</span> &lt;&lt; a[nCount] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a.pop_front();<span class="comment">// 前面删除</span></span><br><span class="line">	a.pop_back();<span class="comment">// 后面删除</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之后："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">/*for (size_t nCount = 0; nCount &lt; a.size(); ++nCount)</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		cout &lt;&lt; "a[" &lt;&lt; nCount &lt;&lt; "]" &lt;&lt; a[nCount] &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">	&#125;*/</span></span><br><span class="line">	<span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;::iterator iElementLocater; <span class="comment">//这边使用了迭代器  distence 可以计算当前</span></span><br><span class="line">	<span class="keyword">for</span> (iElementLocater = a.begin();</span><br><span class="line">		iElementLocater != a.end();</span><br><span class="line">		++iElementLocater)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">size_t</span> nOffset = distance(a.begin(), iElementLocater);<span class="comment">//distence 可以计算当前下标与begin开始的，距离正好是下标</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"a["</span> &lt;&lt; nOffset &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="string">"= "</span>&lt;&lt;*iElementLocater &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">a[<span class="number">0</span>]= <span class="number">8</span></span><br><span class="line">a[<span class="number">1</span>]= <span class="number">9</span></span><br><span class="line">a[<span class="number">2</span>]= <span class="number">1</span></span><br><span class="line">a[<span class="number">3</span>]= <span class="number">2</span></span><br><span class="line">a[<span class="number">4</span>]= <span class="number">3</span></span><br><span class="line">a[<span class="number">5</span>]= <span class="number">4</span></span><br><span class="line">a[<span class="number">6</span>]= <span class="number">5</span></span><br><span class="line">a[<span class="number">7</span>]= <span class="number">6</span></span><br><span class="line"></span><br><span class="line">删除之后：</span><br><span class="line">a[<span class="number">0</span>]= <span class="number">9</span></span><br><span class="line">a[<span class="number">1</span>]= <span class="number">1</span></span><br><span class="line">a[<span class="number">2</span>]= <span class="number">2</span></span><br><span class="line">a[<span class="number">3</span>]= <span class="number">3</span></span><br><span class="line">a[<span class="number">4</span>]= <span class="number">4</span></span><br><span class="line">a[<span class="number">5</span>]= <span class="number">5</span></span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<p>順序容器 STL list 類</p>
-<ul>
-<li>实例化std::list对象</li>
-<li>在list开头插入元素</li>
-<li>在list末尾插入元素</li>
-<li>在list中间插入元素</li>
-<li>删除list中的元素</li>
-<li>对list中的元素进行反转和排序<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line"></span><br><span class="line">	b.push_back(<span class="number">100</span>);</span><br><span class="line">	b.push_back(<span class="number">200</span>);</span><br><span class="line">	b.push_back(<span class="number">300</span>);</span><br><span class="line">	b.push_back(<span class="number">400</span>);</span><br><span class="line">	b.push_back(<span class="number">500</span>);</span><br><span class="line">	PrintListContent(b);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_back(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//使用链表数据，不能使用下标，只能使用迭代器</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">	iter = a.begin();</span><br><span class="line">	a.insert(iter, <span class="number">10</span>);<span class="comment">// 在begin前面插入10，第一个参数迭代器，指定插入的位置</span></span><br><span class="line">	a.insert(a.end(),<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="comment">//将b插入到a之中</span></span><br><span class="line">	a.insert(a.begin(), b.begin(), b.end());</span><br><span class="line">	a.insert(iter,++b.begin(),--b.end())</span><br><span class="line">	</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// listdelet.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator iElementValueTwo;</span><br><span class="line">	iElementValueTwo = a.insert(a.begin(),<span class="number">2</span>); <span class="comment">// inset 才返回迭代器迭代器指向这个位置</span></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line">	a.push_back(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之前"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="comment">// 删除2</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"删除之后"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	a.erase(iElementValueTwo);</span><br><span class="line">	<span class="comment">//a.erase(a.beigin(),iElementValueTwo); 删除从第一个迭代器到第二个迭代器所有的数据</span></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#123;"</span>;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#125;"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">删除之前</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> &#125;</span><br><span class="line">删除之后</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> &#125;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// list3.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	a.push_front(<span class="number">4</span>);</span><br><span class="line">	a.push_front(<span class="number">3</span>);</span><br><span class="line">	a.push_front(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	a.push_front(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"反转之后的数据："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	a.reverse();</span><br><span class="line">	PrintListContent(a);</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; b;</span><br><span class="line">	b.push_front(<span class="number">4</span>);</span><br><span class="line">	b.push_front(<span class="number">53</span>);</span><br><span class="line">	b.push_front(<span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">	b.push_front(<span class="number">132</span>);</span><br><span class="line"></span><br><span class="line">	PrintListContent(b);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"排序之后的数据："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	b.sort();</span><br><span class="line">	PrintListContent(b);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintListContent</span><span class="params">(<span class="keyword">const</span> <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; listInput)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//会是一个底层 const，即其所指对象可以改变，但不能改变其所指对象的值。</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#123;"</span>;</span><br><span class="line">	<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = listInput.begin(); iter != listInput.end(); ++iter)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; *iter &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"&#125;"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#123;<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> &#125;</span><br><span class="line">反转之后的数据：</span><br><span class="line">&#123;<span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> &#125;</span><br><span class="line">&#123;<span class="number">132</span> <span class="number">24</span> <span class="number">53</span> <span class="number">4</span> &#125;</span><br><span class="line">排序之后的数据：</span><br><span class="line">&#123;<span class="number">4</span> <span class="number">24</span> <span class="number">53</span> <span class="number">132</span> &#125;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-<hr>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1310,7 +1461,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1577,6 +1728,8 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
   
   
+    
+      
     
       
     

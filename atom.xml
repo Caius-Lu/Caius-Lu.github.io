@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-02T10:50:19.983Z</updated>
+  <updated>2019-09-03T06:48:27.767Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>遍历文件夹图片</title>
+    <link href="https://caius-lu.github.io/2019/09/03/%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E7%89%87/"/>
+    <id>https://caius-lu.github.io/2019/09/03/遍历文件夹图片/</id>
+    <published>2019-09-03T06:43:04.000Z</published>
+    <updated>2019-09-03T06:48:27.767Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;题目要求&quot;&gt;&lt;a href=&quot;#题目要求&quot; class=&quot;headerlink&quot; title=&quot;题目要求&quot;&gt;&lt;/a&gt;题目要求&lt;/h2&gt;&lt;p&gt;要求从下图所示的文件夹遍历子文件夹，并将所在的图片路径保存到txt文件中&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码如下&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/python/"/>
+    
+      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>用两个栈实现队列</title>
@@ -427,7 +456,7 @@
     <link href="https://caius-lu.github.io/2019/08/28/python%E6%89%8B%E5%86%8C/"/>
     <id>https://caius-lu.github.io/2019/08/28/python手册/</id>
     <published>2019-08-28T05:00:02.000Z</published>
-    <updated>2019-08-28T06:59:28.051Z</updated>
+    <updated>2019-09-03T06:33:35.058Z</updated>
     
     <summary type="html">
     
@@ -566,32 +595,6 @@
       <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
     
       <category term="pytorch" scheme="https://caius-lu.github.io/tags/pytorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Matplotlib绘制六种可视化图表</title>
-    <link href="https://caius-lu.github.io/2019/08/24/pythonplot/"/>
-    <id>https://caius-lu.github.io/2019/08/24/pythonplot/</id>
-    <published>2019-08-24T08:20:39.000Z</published>
-    <updated>2019-08-24T08:39:00.122Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;01-折线图&quot;&gt;&lt;a href=&quot;#01-折线图&quot; class=&quot;headerlink&quot; title=&quot;01 折线图&quot;&gt;&lt;/a&gt;01 折线图&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
   </entry>
   

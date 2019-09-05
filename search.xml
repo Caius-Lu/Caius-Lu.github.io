@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[跳台阶]]></title>
+    <url>%2F2019%2F09%2F05%2F%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[时间限制：1秒 空间限制：32768K 热度指数：489122本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。 1234567891011class Solution &#123;public: int jumpFloor(int number) &#123; if(number == 1) return 1; else if(number==2) return 2; else return jumpFloor(number-1)+jumpFloor(number-2); &#125;&#125;; 运行时间：519 ms占用内存：456K]]></content>
+      <categories>
+        <category>programs</category>
+        <category>algorithm</category>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[斐波那契数列]]></title>
     <url>%2F2019%2F09%2F04%2F%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%2F</url>
     <content type="text"><![CDATA[时间限制：1秒 空间限制：32768K 热度指数：640784本题知识点： 递归 题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&lt;=39 12345678class Solution &#123;public: int Fibonacci(int n) &#123; if(n &lt;= 0) return 0; if(n==1 || n==2) return 1; return Fibonacci(n-1)+Fibonacci(n-2); &#125;&#125;; 运行时间：694 ms占用内存：484K]]></content>

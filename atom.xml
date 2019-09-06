@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-06T02:21:17.148Z</updated>
+  <updated>2019-09-06T04:29:52.402Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mx-maskrcnn环境搭建</title>
+    <link href="https://caius-lu.github.io/2019/09/06/mx-maskrcnn%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>https://caius-lu.github.io/2019/09/06/mx-maskrcnn环境搭建/</id>
+    <published>2019-09-06T04:29:52.000Z</published>
+    <updated>2019-09-06T04:29:52.402Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker使用笔记</title>
+    <link href="https://caius-lu.github.io/2019/09/06/docker%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
+    <id>https://caius-lu.github.io/2019/09/06/docker使用笔记/</id>
+    <published>2019-09-06T04:25:33.000Z</published>
+    <updated>2019-09-06T04:29:28.773Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;0-查看需要的Docker列表&quot;&gt;&lt;a href=&quot;#0-查看需要的Docker列表&quot; class=&quot;headerlink&quot; title=&quot;0. 查看需要的Docker列表&quot;&gt;&lt;/a&gt;0. 查看需要的Docker列表&lt;/h2&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="其他" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/"/>
+    
+      <category term="Tools" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/Tools/"/>
+    
+    
+      <category term="Tools" scheme="https://caius-lu.github.io/tags/Tools/"/>
+    
+  </entry>
   
   <entry>
     <title>变态跳台阶</title>
@@ -52,7 +94,7 @@
     <link href="https://caius-lu.github.io/2019/09/05/cmd%E6%89%8B%E5%86%8C/"/>
     <id>https://caius-lu.github.io/2019/09/05/cmd手册/</id>
     <published>2019-09-05T07:59:25.000Z</published>
-    <updated>2019-09-06T02:18:04.878Z</updated>
+    <updated>2019-09-06T04:26:32.076Z</updated>
     
     <summary type="html">
     
@@ -69,8 +111,10 @@
     
       <category term="其他" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/"/>
     
+      <category term="Tools" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/Tools/"/>
     
-      <category term="linux" scheme="https://caius-lu.github.io/tags/linux/"/>
+    
+      <category term="Tools" scheme="https://caius-lu.github.io/tags/Tools/"/>
     
   </entry>
   
@@ -538,64 +582,6 @@
     
     
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>skimage模块</title>
-    <link href="https://caius-lu.github.io/2019/08/28/skimage%E6%A8%A1%E5%9D%97/"/>
-    <id>https://caius-lu.github.io/2019/08/28/skimage模块/</id>
-    <published>2019-08-28T07:46:39.000Z</published>
-    <updated>2019-08-28T09:39:44.685Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;比opencv的速度要慢很多, 但是使用起来更加简单, 真的对速度要求很高的话, 一般都会C++和opecv使用. 所以一般情况下, 首先看skimage能否实现, 不行的话再转用opencv&lt;br&gt;&lt;figure class=&quot;highlight
-        
-      
-    
-    </summary>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/python/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>opencv模块</title>
-    <link href="https://caius-lu.github.io/2019/08/28/opencv%E6%A8%A1%E5%9D%97/"/>
-    <id>https://caius-lu.github.io/2019/08/28/opencv模块/</id>
-    <published>2019-08-28T07:07:52.000Z</published>
-    <updated>2019-08-28T09:39:37.532Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;opencv-基础知识&quot;&gt;&lt;a href=&quot;#opencv-基础知识&quot; class=&quot;headerlink&quot; title=&quot;opencv 基础知识&quot;&gt;&lt;/a&gt;opencv 基础知识&lt;/h2&gt;&lt;p&gt;cv2.imread 读入的图片, 其shape为(h, w,
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
     
   </entry>
   

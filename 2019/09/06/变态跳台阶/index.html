@@ -103,18 +103,18 @@
   };
 </script>
 
-  <meta name="description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 12345678910class Solution">
+  <meta name="description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 123456789class Solution &amp;">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="变态跳台阶">
 <meta property="og:url" content="https://caius-lu.github.io/2019/09/06/变态跳台阶/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 12345678910class Solution">
+<meta property="og:description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 123456789class Solution &amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-06T02:11:03.383Z">
+<meta property="og:updated_time" content="2019-09-06T02:21:17.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="变态跳台阶">
-<meta name="twitter:description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 12345678910class Solution">
+<meta name="twitter:description" content="时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 123456789class Solution &amp;">
 
 
 
@@ -408,7 +408,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
               
 
-              <time title="创建时间：2019-09-06 10:07:06 / 修改时间：10:11:03" itemprop="dateCreated datePublished" datetime="2019-09-06T10:07:06+08:00">2019-09-06</time>
+              <time title="创建时间：2019-09-06 10:07:06 / 修改时间：10:21:17" itemprop="dateCreated datePublished" datetime="2019-09-06T10:07:06+08:00">2019-09-06</time>
             </span>
           
 
@@ -485,7 +485,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>f(n) = f(n-1)+f(n-2)+…+f(1)<br>f(n-1) = f(n-2)+f(n-3)+…f(1)</p>
 <p>f(n) = 2*f(n-1)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(number == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>*jumpFloorII(number<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(number == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>*jumpFloorII(number<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>运行时间：4ms<br>占用内存：480k</p>
 
       
@@ -703,7 +703,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">9</span>
+          
+        
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

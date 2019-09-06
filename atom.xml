@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-06T02:11:03.383Z</updated>
+  <updated>2019-09-06T02:21:17.148Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://caius-lu.github.io/2019/09/06/%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
     <id>https://caius-lu.github.io/2019/09/06/变态跳台阶/</id>
     <published>2019-09-06T02:07:06.000Z</published>
-    <updated>2019-09-06T02:11:03.383Z</updated>
+    <updated>2019-09-06T02:21:17.148Z</updated>
     
     <summary type="html">
     
@@ -52,7 +52,7 @@
     <link href="https://caius-lu.github.io/2019/09/05/cmd%E6%89%8B%E5%86%8C/"/>
     <id>https://caius-lu.github.io/2019/09/05/cmd手册/</id>
     <published>2019-09-05T07:59:25.000Z</published>
-    <updated>2019-09-05T08:32:41.585Z</updated>
+    <updated>2019-09-06T02:18:04.878Z</updated>
     
     <summary type="html">
     
@@ -69,6 +69,8 @@
     
       <category term="其他" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/"/>
     
+    
+      <category term="linux" scheme="https://caius-lu.github.io/tags/linux/"/>
     
   </entry>
   

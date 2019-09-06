@@ -104,13 +104,14 @@
 </script>
 
   <meta name="description" content="查看磁盘空间df -hl 查看磁盘剩余空间df -h 查看每个根路径的分区大小 查看文件/文件夹大小查看指定文件/文件夹大小：du -hs &amp;lt;文件名或文件夹名&amp;gt;查看当前文件夹下所有文件大小（包括子文件夹）：du -sh 查看文件数量统计当前目录下文件的个数（不包括目录）ls -l | grep “^-“ | wc -l ls 命令ls -a 显示全部的文件及文件夹，包括隐藏的文件或文件">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Terminal 手册">
 <meta property="og:url" content="https://caius-lu.github.io/2019/09/05/cmd手册/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
 <meta property="og:description" content="查看磁盘空间df -hl 查看磁盘剩余空间df -h 查看每个根路径的分区大小 查看文件/文件夹大小查看指定文件/文件夹大小：du -hs &amp;lt;文件名或文件夹名&amp;gt;查看当前文件夹下所有文件大小（包括子文件夹）：du -sh 查看文件数量统计当前目录下文件的个数（不包括目录）ls -l | grep “^-“ | wc -l ls 命令ls -a 显示全部的文件及文件夹，包括隐藏的文件或文件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-05T08:32:41.585Z">
+<meta property="og:updated_time" content="2019-09-06T02:18:04.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Terminal 手册">
 <meta name="twitter:description" content="查看磁盘空间df -hl 查看磁盘剩余空间df -h 查看每个根路径的分区大小 查看文件/文件夹大小查看指定文件/文件夹大小：du -hs &amp;lt;文件名或文件夹名&amp;gt;查看当前文件夹下所有文件大小（包括子文件夹）：du -sh 查看文件数量统计当前目录下文件的个数（不包括目录）ls -l | grep “^-“ | wc -l ls 命令ls -a 显示全部的文件及文件夹，包括隐藏的文件或文件">
@@ -407,13 +408,23 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
               
 
-              <time title="创建时间：2019-09-05 15:59:25 / 修改时间：16:32:41" itemprop="dateCreated datePublished" datetime="2019-09-05T15:59:25+08:00">2019-09-05</time>
+              <time title="创建时间：2019-09-05 15:59:25" itemprop="dateCreated datePublished" datetime="2019-09-05T15:59:25+08:00">2019-09-05</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-06 10:18:04" itemprop="dateModified" datetime="2019-09-06T10:18:04+08:00">2019-09-06</time>
+              </span>
             
           
 
@@ -472,7 +483,8 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <h2 id="ls-命令"><a href="#ls-命令" class="headerlink" title="ls 命令"></a>ls 命令</h2><p>ls -a 显示全部的文件及文件夹，包括隐藏的文件或文件夹<br>ls -l 显示较全的文件信息，包括权限、用户、用户组等。<br>ls —color 显示文件及文件夹，并标有不同的颜色。</p>
 <h2 id="tab键"><a href="#tab键" class="headerlink" title="tab键"></a>tab键</h2><p>tab command 用于当你的命令记不全时，输入一部再按一下进行补全，如果有多个前面部分相同命令，则按两次tab键</p>
 <h2 id="cmp"><a href="#cmp" class="headerlink" title="cmp"></a>cmp</h2><p>cmp /bin/ls /bin/dir 用于比较两个文件是否是完全相同的。</p>
-<h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p>cp /bin/ls /bin/a 用于复制文件的命令。这时就复制了一个命令文件，就可以运行a命令，与ls用法相同</p>
+<h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><p>cp /bin/ls /bin/a 用于复制文件的命令。这时就复制了一个命令文件，就可以运行a命令，与ls用法相同<br> cp命令与操作文件一样是用来复制的，带r表示将其子目录一起复制。</p>
+<h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><p>格式：mv /home/user1/桌面/ruijie/xrgsu /usr/share/local/bin/xrgsu</p>
 <h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>用于改为用户对于文件的操作权限。chmod 0+r 添加读的权限。sudo chmod 0-r filename取消读的权限。</p>
 <h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><ul>
 <li>cat 命令就是用于查看ubuntu中文本文件的内容的命令。</li>
@@ -480,7 +492,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 <li>cat /proc/meminfo 用于查看计算机的内在信息。</li>
 <li>cat /etc/issue 查看ubuntu的版本信息。</li>
 <li>查看cuda 版本  cat /usr/local/cuda/version.txt</li>
-<li>查看cudnn 版本 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</li>
+<li>查看cudnn 版本 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2>格式：touch test1 test2 test3<br>touch命令用于创建文件，可以同一时间创建多个文件。<h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2>pwd命令是用来指出当前所在的路径。是print working directory的缩写</li>
 </ul>
 
       
@@ -506,6 +518,15 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
     
 
     <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"> <i class="fa fa-tag"></i>linux</a>
+          
+        </div>
       
 
       
@@ -693,7 +714,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">9</span>
+          
+        
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -734,7 +757,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看磁盘空间"><span class="nav-text">查看磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件-文件夹大小"><span class="nav-text">查看文件/文件夹大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件数量"><span class="nav-text">查看文件数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls-命令"><span class="nav-text">ls 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tab键"><span class="nav-text">tab键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmp"><span class="nav-text">cmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-text">cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看磁盘空间"><span class="nav-text">查看磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件-文件夹大小"><span class="nav-text">查看文件/文件夹大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件数量"><span class="nav-text">查看文件数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls-命令"><span class="nav-text">ls 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tab键"><span class="nav-text">tab键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmp"><span class="nav-text">cmp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-text">cp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv"><span class="nav-text">mv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-text">touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-text">pwd</span></a></li></ol></div>
             
 
           </div>

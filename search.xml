@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[变态跳台阶]]></title>
+    <url>%2F2019%2F09%2F06%2F%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6%2F</url>
+    <content type="text"><![CDATA[时间限制：1秒 空间限制：32768K 热度指数：396047本题知识点： 递归 题目描述一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。 解析f(n) = f(n-1)+f(n-2)+…+f(1)f(n-1) = f(n-2)+f(n-3)+…f(1) f(n) = 2*f(n-1) 12345678910class Solution &#123;public: int jumpFloorII(int number) &#123; int count = 0; if(number == 1) return 1; else return 2*jumpFloorII(number-1); &#125;&#125;; 运行时间：4ms占用内存：480k]]></content>
+      <categories>
+        <category>programs</category>
+        <category>algorithm</category>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Terminal 手册]]></title>
     <url>%2F2019%2F09%2F05%2Fcmd%E6%89%8B%E5%86%8C%2F</url>
     <content type="text"><![CDATA[查看磁盘空间df -hl 查看磁盘剩余空间df -h 查看每个根路径的分区大小 查看文件/文件夹大小查看指定文件/文件夹大小：du -hs &lt;文件名或文件夹名&gt;查看当前文件夹下所有文件大小（包括子文件夹）：du -sh 查看文件数量统计当前目录下文件的个数（不包括目录）ls -l | grep “^-“ | wc -l ls 命令ls -a 显示全部的文件及文件夹，包括隐藏的文件或文件夹ls -l 显示较全的文件信息，包括权限、用户、用户组等。ls —color 显示文件及文件夹，并标有不同的颜色。 tab键tab command 用于当你的命令记不全时，输入一部再按一下进行补全，如果有多个前面部分相同命令，则按两次tab键 cmpcmp /bin/ls /bin/dir 用于比较两个文件是否是完全相同的。 cpcp /bin/ls /bin/a 用于复制文件的命令。这时就复制了一个命令文件，就可以运行a命令，与ls用法相同 chmod用于改为用户对于文件的操作权限。chmod 0+r 添加读的权限。sudo chmod 0-r filename取消读的权限。 cat cat 命令就是用于查看ubuntu中文本文件的内容的命令。 cat /proc/cpuinfo 用于查看计算机的cpu信息。 cat /proc/meminfo 用于查看计算机的内在信息。 cat /etc/issue 查看ubuntu的版本信息。 查看cuda 版本 cat /usr/local/cuda/version.txt 查看cudnn 版本 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2]]></content>
@@ -464,17 +477,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[c++中级教程 STL stack]]></title>
-    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
-    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
-      <categories>
-        <category>programs</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[firstblog]]></title>
     <url>%2F2019%2F07%2F25%2Ffirstblog%2F</url>
     <content type="text"><![CDATA[以上是摘要 Hello World]]></content>
@@ -483,6 +485,17 @@
       </categories>
       <tags>
         <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[c++中级教程 STL stack]]></title>
+    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
+    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
+      <categories>
+        <category>programs</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
 </search>

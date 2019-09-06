@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-05T08:32:41.585Z</updated>
+  <updated>2019-09-06T02:11:03.383Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>变态跳台阶</title>
+    <link href="https://caius-lu.github.io/2019/09/06/%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6/"/>
+    <id>https://caius-lu.github.io/2019/09/06/变态跳台阶/</id>
+    <published>2019-09-06T02:07:06.000Z</published>
+    <updated>2019-09-06T02:11:03.383Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：396047&lt;br&gt;本题知识点： 递归&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>Terminal 手册</title>
@@ -563,35 +594,6 @@
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
       <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python手册</title>
-    <link href="https://caius-lu.github.io/2019/08/28/python%E6%89%8B%E5%86%8C/"/>
-    <id>https://caius-lu.github.io/2019/08/28/python手册/</id>
-    <published>2019-08-28T05:00:02.000Z</published>
-    <updated>2019-09-03T06:33:35.058Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;最近在学习查找资料的过程之中，看到了大佬的博客，觉得写得很好，也是我现在所欠缺的，所以下面先对大佬的博客进行复现。以供自己日后复习，查找，完善成自己的东西。&lt;/p&gt;
-&lt;h2 id=&quot;字符串固定字数，不足的空格补齐&quot;&gt;&lt;a href=&quot;#字符串固定字数，不足的空格补齐&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/programs/python/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
   </entry>
   

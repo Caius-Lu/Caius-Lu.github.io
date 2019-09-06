@@ -364,6 +364,236 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/Pytorch-trick/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/28/Pytorch-trick/" class="post-title-link" itemprop="url">Pytorch trick</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-28 19:21:48" itemprop="dateCreated datePublished" datetime="2019-08-28T19:21:48+08:00">2019-08-28</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-29 16:47:37" itemprop="dateModified" datetime="2019-08-29T16:47:37+08:00">2019-08-29</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目录： </p>
+<ol>
+<li>指定GPU编号</li>
+<li>查看模型每层输出详情</li>
+<li>梯度裁剪</li>
+<li>扩展单张图片维度</li>
+<li>独热编码</li>
+<li>防止验证模型时爆显存</li>
+<li>学习率衰减</li>
+<li>冻结某些层的参数</li>
+<li>对不同层使用不同学习率</li>
+</ol>
+<h2 id="1-指定GPU编号"><a href="#1-指定GPU编号" class="headerlink" title="1. 指定GPU编号"></a>1. 指定GPU编号</h2><ul>
+<li>设置当前使用的GPU设备仅为0号设备，设备名称为 /gpu:0：os.environ[“CUDA_VISIBLE_DEVICES”] = “0”</li>
+<li>设置当前使用的GPU设备为0,1号两个设备，名称依次为 /gpu:0、/gpu:1： os.environ[“CUDA_VISIBLE_DEVICES”] = “0,1” ，根据顺序表示优先使用0号设备,然后使用1号设备。<br>指定GPU的命令需要放在和神经网络相关的一系列操作的前面。</li>
+</ul>
+<h2 id="2-查看模型每层输出详情"><a href="#2-查看模型每层输出详情" class="headerlink" title="2.查看模型每层输出详情"></a>2.查看模型每层输出详情</h2><p>Keras有一个简洁的API来查看模型的每一层输出尺寸，这在调试网络时非常有用。现在在PyTorch中也可以实现这个功能。</p>
+<p>使用很简单，如下用法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchsummary <span class="keyword">import</span> summary</span><br><span class="line">summary(your_model, input_size=(channels, H, W))</span><br></pre></td></tr></table></figure></p>
+<p>input_size 是根据你自己的网络模型的输入尺寸进行设置。</p>
+<h2 id="3-梯度裁剪（Gradient-Clipping）"><a href="#3-梯度裁剪（Gradient-Clipping）" class="headerlink" title="3.梯度裁剪（Gradient Clipping）"></a>3.梯度裁剪（Gradient Clipping）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">outputs = model(data)</span><br><span class="line">loss= loss_fn(outputs, target)</span><br><span class="line">optimizer.zero_grad()</span><br><span class="line">loss.backward()</span><br><span class="line">nn.utils.clip_grad_norm_(model.parameters(), max_norm=<span class="number">20</span>, norm_type=<span class="number">2</span>)</span><br><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure>
+<p>nn.utils.clip_grad_norm_ 的参数：</p>
+<ul>
+<li>parameters – 一个基于变量的迭代器，会进行梯度归一化</li>
+<li>max_norm – 梯度的最大范数</li>
+<li>max_norm – 梯度的最大范数<br>知乎用户 不椭的椭圆 提出：梯度裁剪在某些任务上会额外消耗大量的计算时间，可移步评论区查看详情。</li>
+</ul>
+<h2 id="4、扩展单张图片维度"><a href="#4、扩展单张图片维度" class="headerlink" title="4、扩展单张图片维度"></a>4、扩展单张图片维度</h2><p>因为在训练时的数据维度一般都是 (batch_size, c, h, w)，而在测试时只输入一张图片，所以需要扩展维度，扩展维度有多个方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">image = cv2.imread(img_path)</span><br><span class="line">image = torch.tensor(image)</span><br><span class="line">print(image.size())</span><br><span class="line"></span><br><span class="line">img = image.view(<span class="number">1</span>, *image.size())</span><br><span class="line">print(img.size())</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># torch.Size([h, w, c])</span></span><br><span class="line"><span class="comment"># torch.Size([1, h, w, c])</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">image = cv2.imread(img_path)</span><br><span class="line">print(image.shape)</span><br><span class="line">img = image[np.newaxis, :, :, :]</span><br><span class="line">print(img.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># (h, w, c)</span></span><br><span class="line"><span class="comment"># (1, h, w, c)</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">image = cv2.imread(img_path)</span><br><span class="line">image = torch.tensor(image)</span><br><span class="line">print(image.size())</span><br><span class="line"></span><br><span class="line">img = image.unsqueeze(dim=<span class="number">0</span>)  </span><br><span class="line">print(img.size())</span><br><span class="line"></span><br><span class="line">img = img.squeeze(dim=<span class="number">0</span>)</span><br><span class="line">print(img.size())</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line"><span class="comment"># torch.Size([(h, w, c)])</span></span><br><span class="line"><span class="comment"># torch.Size([1, h, w, c])</span></span><br><span class="line"><span class="comment"># torch.Size([h, w, c])</span></span><br></pre></td></tr></table></figure></p>
+<p>tensor.unsqueeze(dim)：扩展维度，dim指定扩展哪个维度。</p>
+<p>tensor.squeeze(dim)：去除dim指定的且size为1的维度，维度大于1时，squeeze()不起作用，不指定dim时，去除所有size为1的维度。</p>
+<h2 id="5-独热编码"><a href="#5-独热编码" class="headerlink" title="5.独热编码"></a>5.独热编码</h2><p>在PyTorch中使用交叉熵损失函数的时候会自动把label转化成onehot，所以不用手动转化，而使用MSE需要手动转化成onehot编码。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">class_num = <span class="number">8</span></span><br><span class="line">batch_size = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">one_hot</span><span class="params">(label)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    将一维列表转换为独热编码</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    label = label.resize_(batch_size, <span class="number">1</span>)</span><br><span class="line">    m_zeros = torch.zeros(batch_size, class_num)</span><br><span class="line">    <span class="comment"># 从 value 中取值，然后根据 dim 和 index 给相应位置赋值</span></span><br><span class="line">    onehot = m_zeros.scatter_(<span class="number">1</span>, label, <span class="number">1</span>)  <span class="comment"># (dim,index,value)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> onehot.numpy()  <span class="comment"># Tensor -&gt; Numpy</span></span><br><span class="line"></span><br><span class="line">label = torch.LongTensor(batch_size).random_() % class_num  <span class="comment"># 对随机数取余</span></span><br><span class="line">print(one_hot(label))</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:</span></span><br><span class="line">[[<span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line"> [<span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line"> [<span class="number">0.</span> <span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span>]</span><br><span class="line"> [<span class="number">0.</span> <span class="number">1.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span> <span class="number">0.</span>]]</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-防止验证模型时爆显存"><a href="#6-防止验证模型时爆显存" class="headerlink" title="6. 防止验证模型时爆显存"></a>6. 防止验证模型时爆显存</h2><p> 验证模型时不需要求导，即不需要梯度计算，关闭autograd，可以提高速度，节约内存。如果不关闭可能会爆显存。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    <span class="comment"># 使用model进行预测的代码</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>感谢知乎用户zhaz 的提醒，我把 torch.cuda.empty_cache() 的使用原因更新一下。</p>
+<p>这是原回答：</p>
+<p>Pytorch 训练时无用的临时变量可能会越来越多，导致 out of memory ，可以使用下面语句来清理这些不需要的变量。</p>
+<p>官网 上的解释为：</p>
+<p>Releases all unoccupied cached memory currently held by the caching allocator so that those can be used in other GPU application and visible innvidia-smi.torch.cuda.empty_cache()</p>
+<p>意思就是PyTorch的缓存分配器会事先分配一些固定的显存，即使实际上tensors并没有使用完这些显存，这些显存也不能被其他应用使用。这个分配过程由第一次CUDA内存访问触发的。</p>
+<p>而 torch.cuda.empty_cache() 的作用就是释放缓存分配器当前持有的且未占用的缓存显存，以便这些显存可以被其他GPU应用程序中使用，并且通过 nvidia-smi命令可见。注意使用此命令不会释放tensors占用的显存。</p>
+<p>对于不用的数据变量，Pytorch 可以自动进行回收从而释放相应的显存。</p>
+<h2 id="7-学习率衰减"><a href="#7-学习率衰减" class="headerlink" title="7. 学习率衰减"></a>7. 学习率衰减</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torch.optim <span class="keyword">import</span> lr_scheduler</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练前的初始化</span></span><br><span class="line">optimizer = optim.Adam(net.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line">scheduler = lr_scheduler.StepLR(optimizer, <span class="number">10</span>, <span class="number">0.1</span>)  <span class="comment"># # 每过10个epoch，学习率乘以0.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练过程中</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> n_epoch:</span><br><span class="line">    scheduler.step()</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h2 id="8-冻结某些层的参数"><a href="#8-冻结某些层的参数" class="headerlink" title="8. 冻结某些层的参数"></a>8. 冻结某些层的参数</h2><p>在加载预训练模型的时候，我们有时想冻结前面几层，使其参数在训练过程中不发生变化。</p>
+<p>我们需要先知道每一层的名字，通过如下代码打印：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net = Network()  <span class="comment"># 获取自定义网络结构</span></span><br><span class="line"><span class="keyword">for</span> name, value <span class="keyword">in</span> net.named_parameters():</span><br><span class="line">    print(<span class="string">'name: &#123;0&#125;,	 grad: &#123;1&#125;'</span>.format(name, value.requires_grad))</span><br></pre></td></tr></table></figure></p>
+<p>假设前几层信息如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name: cnn.VGG_16.convolution1_1.weight, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution1_1.bias, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution1_2.weight, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution1_2.bias, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution2_1.weight, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution2_1.bias, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution2_2.weight, grad: <span class="literal">True</span></span><br><span class="line">name: cnn.VGG_16.convolution2_2.bias, grad: <span class="literal">True</span></span><br></pre></td></tr></table></figure></p>
+<p>后面的True表示该层的参数可训练，然后我们定义一个要冻结的层的列表：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">no_grad = [</span><br><span class="line">    <span class="string">'cnn.VGG_16.convolution1_1.weight'</span>,</span><br><span class="line">    <span class="string">'cnn.VGG_16.convolution1_1.bias'</span>,</span><br><span class="line">    <span class="string">'cnn.VGG_16.convolution1_2.weight'</span>,</span><br><span class="line">    <span class="string">'cnn.VGG_16.convolution1_2.bias'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>冻结方法如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">net = Net.CTPN()  <span class="comment"># 获取网络结构</span></span><br><span class="line"><span class="keyword">for</span> name, value <span class="keyword">in</span> net.named_parameters():</span><br><span class="line">    <span class="keyword">if</span> name <span class="keyword">in</span> no_grad:</span><br><span class="line">        value.requires_grad = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value.requires_grad = <span class="literal">True</span></span><br></pre></td></tr></table></figure></p>
+<p>冻结后我们再打印每层的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name: cnn.VGG_16.convolution1_1.weight, grad: False</span><br><span class="line">name: cnn.VGG_16.convolution1_1.bias, grad: False</span><br><span class="line">name: cnn.VGG_16.convolution1_2.weight, grad: False</span><br><span class="line">name: cnn.VGG_16.convolution1_2.bias, grad: False</span><br><span class="line">name: cnn.VGG_16.convolution2_1.weight, grad: True</span><br><span class="line">name: cnn.VGG_16.convolution2_1.bias, grad: True</span><br><span class="line">name: cnn.VGG_16.convolution2_2.weight, grad: True</span><br><span class="line">name: cnn.VGG_16.convolution2_2.bias, grad: True</span><br></pre></td></tr></table></figure></p>
+<p>可以看到前两层的weight和bias的requires_grad都为False，表示它们不可训练。<br>最后在定义优化器时，只对requires_grad为True的层的参数进行更新。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = optim.Adam(filter(<span class="keyword">lambda</span> p: p.requires_grad, net.parameters()), lr=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="9-对不同层使用不同学习率"><a href="#9-对不同层使用不同学习率" class="headerlink" title="9. 对不同层使用不同学习率"></a>9. 对不同层使用不同学习率</h2><p>我们对模型的不同层使用不同的学习率。</p>
+<p>还是使用这个模型作为例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">net = Network()  <span class="comment"># 获取自定义网络结构</span></span><br><span class="line"><span class="keyword">for</span> name, value <span class="keyword">in</span> net.named_parameters():</span><br><span class="line">    print(<span class="string">'name: &#123;&#125;'</span>.format(name))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution1_1.weight</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution1_1.bias</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution1_2.weight</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution1_2.bias</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution2_1.weight</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution2_1.bias</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution2_2.weight</span></span><br><span class="line"><span class="comment"># name: cnn.VGG_16.convolution2_2.bias</span></span><br></pre></td></tr></table></figure></p>
+<p>对 convolution1 和 convolution2 设置不同的学习率，首先将它们分开，即放到不同的列表里：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">conv1_params = []</span><br><span class="line">conv2_params = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name, parms <span class="keyword">in</span> net.named_parameters():</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"convolution1"</span> <span class="keyword">in</span> name:</span><br><span class="line">        conv1_params += [parms]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        conv2_params += [parms]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在优化器中进行如下操作：</span></span><br><span class="line">optimizer = optim.Adam(</span><br><span class="line">    [</span><br><span class="line">        &#123;<span class="string">"params"</span>: conv1_params, <span class="string">'lr'</span>: <span class="number">0.01</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"params"</span>: conv2_params, <span class="string">'lr'</span>: <span class="number">0.001</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">    weight_decay=<span class="number">1e-3</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>我们将模型划分为两部分，存放到一个列表里，每部分就对应上面的一个字典，在字典里设置不同的学习率。当这两部分有相同的其他参数时，就将该参数放到列表外面作为全局参数，如上面的<code>weight_decay</code>。</p>
+<p>也可以在列表外设置一个全局学习率，当各部分字典里设置了局部学习率时，就使用该学习率，否则就使用列表外的全局学习率。</p>
+<h2 id="显示训练时间"><a href="#显示训练时间" class="headerlink" title="显示训练时间"></a>显示训练时间</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(start_epoch, config.epochs):</span><br><span class="line">            start = time.time()</span><br><span class="line">            train_loss, lr = train_epoch(model, optimizer, scheduler, train_loader, device, criterion, epoch, all_step,</span><br><span class="line">                                         writer, logger)</span><br><span class="line">            logger.info(<span class="string">'[&#123;&#125;/&#123;&#125;], train_loss: &#123;:.4f&#125;, time: &#123;:.4f&#125;, lr: &#123;&#125;'</span>.format(</span><br><span class="line">                epoch, config.epochs, train_loss, time.time() - start, lr))</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://mp.weixin.qq.com/s?__biz=MzU3NjE4NjQ4MA==&amp;mid=2247485953&amp;idx=2&amp;sn=3ae788b7d643541254ba311f7a7faced&amp;chksm=fd16fb1eca61720870bc58c1a465a346cf2c6a7e8bea39e4b3d582474b595021f3a5b635086d&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1566885137387&amp;sharer_shareid=285785c5623899db73795495779fe8be#rd" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzU3NjE4NjQ4MA==&amp;mid=2247485953&amp;idx=2&amp;sn=3ae788b7d643541254ba311f7a7faced&amp;chksm=fd16fb1eca61720870bc58c1a465a346cf2c6a7e8bea39e4b3d582474b595021f3a5b635086d&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1566885137387&amp;sharer_shareid=285785c5623899db73795495779fe8be#rd</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/Pytorch手册/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2285,206 +2515,11 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/BFS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/28/BFS/" class="post-title-link" itemprop="url">广度/宽度优先搜索(BFS)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-28 08:46:58 / 修改时间：17:03:04" itemprop="dateCreated datePublished" datetime="2019-08-28T08:46:58+08:00">2019-08-28</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>广度优先搜索 是最简单的图搜索算法之一， 也是许多重要的图算法的原型。Prime的最小生成树算法和Dijkstra的单源最短路径算法都使用了类似广度优先搜索的思想。<br>给定图G=(V,E) 和一个可以识别的<strong>源</strong>节点 s，广度优先搜索对图G中的边进行系统性的探索来发现可以从源节点，到达所有的节点。该算法能够计算从源结点s到每个可到达的节点的距离(最小的边数)，同时生成一棵“广度优先搜索树”。该树以源结点s为根节点，包括所有可以从s到达的结点。对于每个从源结点s可以到达的结点v，在广度优先搜索树里从结点s到结点v的简单路径所对应的的就是图G中从结点s到结点v的“最短路径”，即包含最少边数的路径，该算法既可以用于有向图也可以用于无向图。<br>广度优先算法之所以如此得名是因为该算法始终是将已经发现的结点和未发现结点之间的边界，沿其广度方向向外扩展。也就是说，算法需要在发现所有距离源结点s为k的所有结点之后，才会发现距离源结点s为k+1的 其他结点。</p>
-<h2 id="图的概念"><a href="#图的概念" class="headerlink" title="图的概念"></a>图的概念</h2><ul>
-<li>图(graph) 是一种$\textcolor{Blue}{网状数据} $结构， 图是由非空的顶点集合和一个描述顶点之间的关系的集合组成。</li>
-<li>图由顶点和边组成，顶点表示对象，边表示对象之间的连接关系。</li>
-<li>边也可以带权值，称为带权值图。<h3 id="无向图术语"><a href="#无向图术语" class="headerlink" title="无向图术语"></a>无向图术语</h3></li>
-<li>两个顶点之间如果有边连接，视为两个顶点相邻</li>
-<li>相邻顶点间的序列称为路径</li>
-<li>起点和终点重合的路径称为圈</li>
-<li>顶点连接的边数叫做这个顶点的度</li>
-</ul>
-<hr>
-<ul>
-<li>没有圈的连通图，就是树</li>
-<li>没有圈的非连通图，就是森林</li>
-<li>一棵树的边数等于顶点数-1</li>
-<li>边数等于顶点数-1 的连通图，就是树</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">BFS(G,s) \\</span><br><span class="line">for each vertex u \in G.V -&#123;s&#125;\\</span><br><span class="line">	u.color = WHITE\\</span><br><span class="line">	u.d = \infty\\</span><br><span class="line">	u.\pi = NIL\\</span><br><span class="line">s.color = GRAY\\</span><br><span class="line">s.d = 0\\</span><br><span class="line">s.\pi = NIL\\</span><br><span class="line">Q = \emptyset\\</span><br><span class="line">ENQUEUE(Q,s)\\</span><br><span class="line">while Q\neq = \emptyset\\</span><br><span class="line">	u = DEQUEUE(Q)\\</span><br><span class="line">	for each v \in G.Adj[u]\\</span><br><span class="line">		if v.color == WHITE\\</span><br><span class="line">			v.color = GRAY\\</span><br><span class="line">			v.d = u.d+1\\</span><br><span class="line">			v.\pi = u\\</span><br><span class="line">			ENQUEUE(Q,v)\\</span><br><span class="line">	u.color = BLACK\\</span><br></pre></td></tr></table></figure>
-<p>广度优先搜索的流程图<br><img src="/2019/08/28/BFS/bfs.png" title="bfs"></p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>POJ3984《迷宫问题》<br>定义一个二维数组：<br>int maze[5][5] = {<br>    0, 1, 0, 0, 0,<br>    0, 1, 0, 1, 0,<br>    0, 0, 0, 0, 0,<br>    0, 1, 1, 1, 0,<br>    0, 0, 0, 1, 0,<br>};<br>它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。 </p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>队列是先进后出，后进先出。</p>
-<hr>
-<p>对应于题目的输入数组：<br>0, 1, 0, 0, 0,<br>0, 1, 0, 1, 0,<br>0, 0, 0, 0, 0,<br>0, 1, 1, 1, 0,<br>0, 0, 0, 1, 0,<br>把节点定义为(x,y)，(x,y)表示数组maze的项maze[x][y]。<br>于是起点就是(0,0)，终点是(4,4)。按照刚刚的思路，手工梳理一遍：<br>初始条件：<br>起点Vs为(0,0)<br>终点Vd为(4,4)<br>灰色节点集合Q={}<br>初始化所有节点为白色节点<br>下面开始广度优先搜索：<br>1.起始节点Vs变成灰色，加入队列Q，Q={(0,0)}<br>2.取出队列Q的头一个节点Vn，Vn={0,0}，Q={}<br>3.把Vn={0,0}染成黑色，取出Vn所有相邻的白色节点{(1,0)}<br>4.不包含终点(4,4)，染成灰色，加入队列Q，Q={(1,0)}<br>5.取出队列Q的头一个节点Vn，Vn={1,0}，Q={}<br>6.把Vn={1,0}染成黑色，取出Vn所有相邻的白色节点{(2,0)}<br>7.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,0)}<br>8.取出队列Q的头一个节点Vn，Vn={2,0}，Q={}<br>9.把Vn={2,0}染成黑色，取出Vn所有相邻的白色节点{(2,1), (3,0)}<br>10.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,1), (3,0)}<br>11.取出队列Q的头一个节点Vn，Vn={2,1}，Q={(3,0)}<br>12.把Vn={2,1}染成黑色，取出Vn所有相邻的白色节点{(2,2)}<br>13.不包含终点(4,4)，染成灰色，加入队列Q，Q={(3,0), (2,2)}<br>14.持续下去，知道Vn的所有相邻的白色节点中包含了(4,4)……<br>15.此时获得了答案<br><img src="/2019/08/28/BFS/mgbfs.png" title="mgbfs"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BFS.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">5</span>][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//相邻四个节点</span></span><br><span class="line"><span class="keyword">int</span> borderUponX[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> borderUponY[<span class="number">4</span>] = &#123; <span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> front = <span class="number">0</span>, rear = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> pre;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line">&#125; path[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;<span class="comment">//当前节点</span></span><br><span class="line">	<span class="keyword">if</span> (path[i].pre != <span class="number">-1</span>) &#123;<span class="comment">//找到前面那个节点</span></span><br><span class="line">		print(path[i].pre);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; path[i].x &lt;&lt; <span class="string">","</span> &lt;&lt; path[i].y &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;<span class="comment">//最前面的那个节点</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; path[i].x &lt;&lt; <span class="string">","</span> &lt;&lt; path[i].y &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfsSearch</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//开始节点（出发），前面没有节点了</span></span><br><span class="line">	path[front].x = x;</span><br><span class="line">	path[front].y = y;</span><br><span class="line">	path[front].pre = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//当front == rear的时候说明已经走完了所以“相邻”节点</span></span><br><span class="line">	<span class="comment">//且都不通</span></span><br><span class="line">	<span class="keyword">while</span> (front &lt; rear) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//相邻节点坐标</span></span><br><span class="line">			<span class="keyword">int</span> pathX = path[front].x + borderUponX[i];</span><br><span class="line">			<span class="keyword">int</span> pathY = path[front].y + borderUponY[i];</span><br><span class="line"></span><br><span class="line">			<span class="comment">//不符合的节点（遇到边界或已经走过了）</span></span><br><span class="line">			<span class="keyword">if</span> (pathY &lt; <span class="number">0</span> || pathX &lt; <span class="number">0</span> || pathX &gt; <span class="number">4</span> || pathY &gt; <span class="number">4</span> || <span class="built_in">map</span>[pathX][pathY])</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> &#123;<span class="comment">//将front的相邻的可以过去的并且是还没有走过的节点加到路径里面</span></span><br><span class="line">				<span class="built_in">map</span>[pathX][pathY] = <span class="number">1</span>;</span><br><span class="line">				path[rear].x = pathX;</span><br><span class="line">				path[rear].y = pathY;</span><br><span class="line">				path[rear].pre = front;</span><br><span class="line">				rear++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (pathX == <span class="number">4</span> &amp;&amp; pathY == <span class="number">4</span>) &#123;</span><br><span class="line">				<span class="comment">//找到了一条路径，又是第一次找到</span></span><br><span class="line">				<span class="comment">//那么就是最短路径了</span></span><br><span class="line">				print(rear - <span class="number">1</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		front++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++)</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; <span class="built_in">map</span>[i][j];</span><br><span class="line"></span><br><span class="line">	bfsSearch(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2529,7 +2564,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2580,7 +2615,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">17</span>
+          
+        
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-05T07:44:09.747Z</updated>
+  <updated>2019-09-05T08:32:41.585Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Terminal 手册</title>
+    <link href="https://caius-lu.github.io/2019/09/05/cmd%E6%89%8B%E5%86%8C/"/>
+    <id>https://caius-lu.github.io/2019/09/05/cmd手册/</id>
+    <published>2019-09-05T07:59:25.000Z</published>
+    <updated>2019-09-05T08:32:41.585Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;查看磁盘空间&quot;&gt;&lt;a href=&quot;#查看磁盘空间&quot; class=&quot;headerlink&quot; title=&quot;查看磁盘空间&quot;&gt;&lt;/a&gt;查看磁盘空间&lt;/h2&gt;&lt;p&gt;df -hl 查看磁盘剩余空间&lt;br&gt;df -h 查看每个根路径的分区大小&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="其他" scheme="https://caius-lu.github.io/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>跳台阶</title>
@@ -567,34 +592,6 @@
     
     
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>广度/宽度优先搜索(BFS)</title>
-    <link href="https://caius-lu.github.io/2019/08/28/BFS/"/>
-    <id>https://caius-lu.github.io/2019/08/28/BFS/</id>
-    <published>2019-08-28T00:46:58.000Z</published>
-    <updated>2019-08-28T09:03:04.026Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;广度优先搜索 是最简单的图搜索算法之一，
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
     
   </entry>
   

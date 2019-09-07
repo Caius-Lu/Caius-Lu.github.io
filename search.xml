@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[xml生成]]></title>
+    <url>%2F2019%2F09%2F07%2Fxml%E7%94%9F%E6%88%90%2F</url>
+    <content type="text"><![CDATA[先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件创建 XML 类型的数据文件1234567891011121314151617import xml.etree.ElementTree as ETdef subElement(root, tag, text): ele = ET.SubElement(root, tag) ele.text = text ele.tail = '\n'root = ET.Element("note")to = root.makeelement("to", &#123;&#125;)to.text = "peter"to.tail = '\n'root.append(to)subElement(root, "from", "marry")subElement(root, "heading", "Reminder")subElement(root, "body", "Don't forget the meeting!")tree = ET.ElementTree(root)tree.write("note.xml", encoding="utf-8", xml_declaration=True) 1234567&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;note&gt;&lt;to&gt;peter&lt;/to&gt;&lt;from&gt;marry&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget the meeting!&lt;/body&gt;&lt;/note&gt;]]></content>
+      <categories>
+        <category>programs</category>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[xml解析]]></title>
     <url>%2F2019%2F09%2F07%2Fxml%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[1234567891011121314151617181920212223&lt;annotation&gt; &lt;folder&gt;ILSVRC2015_VID_train_0002/ILSVRC2015_train_00555002&lt;/folder&gt; &lt;filename&gt;000000&lt;/filename&gt; &lt;source&gt; &lt;database&gt;ILSVRC_2015&lt;/database&gt; &lt;/source&gt; &lt;size&gt; &lt;width&gt;1280&lt;/width&gt; &lt;height&gt;720&lt;/height&gt; &lt;/size&gt; &lt;object&gt; &lt;trackid&gt;0&lt;/trackid&gt; &lt;name&gt;n02691156&lt;/name&gt; &lt;bndbox&gt; &lt;xmax&gt;659&lt;/xmax&gt; &lt;xmin&gt;592&lt;/xmin&gt; &lt;ymax&gt;375&lt;/ymax&gt; &lt;ymin&gt;334&lt;/ymin&gt; &lt;/bndbox&gt; &lt;occluded&gt;0&lt;/occluded&gt; &lt;generated&gt;0&lt;/generated&gt; &lt;/object&gt;&lt;/annotation&gt; ElementTree生来就是为了处理XML, 它在Python标准库中有两种实现：一种是纯Python实现的, 如xml.etree.ElementTree, 另一种是速度快一点的xml.etree.cElementTree. 注意：尽量使用C语言实现的那种, 因为它速度更快, 而且消耗的内存更少. a. 遍历根节点的下一层 b. 下标访问各个标签、属性、文本 c. 查找root下的指定标签 d. 遍历XML文件 e. 修改XML文件12345import os, systry: import xml.etree.cElementTree as ETexcept: import xml.etree.ElementTree as ET 解析xml文件12345678xmlFilePath = os.path.abspath('000000.xml')try: tree = ET.parse(xmlFilePath) # 或者 tree = ET.ElementTree(xmlFilePath) root = tree.getroot() # 获取根节点except Exception as e: print('parse xml failed!') sys.exit() 逐层遍历123print(root.tag, root.attrib, root.text)for child in root: print(child.tag, child.attrib, child.text) 递归遍历全部:1234567def traverseXml(element): if len(element) &gt; 0: # 叶节点的len为0 for child in element: print(child.tag, child.attrib) traverseXml(child)traverseXml(root) 根据签名查找需要的标签12345item_lists = root.findall('item') # 只能找到儿子, 不能找到孙子, 返回的是儿子们组成的列表item = root.find('item') # 返回的是单个的儿子print(root)print(item_lists)print(item) 获取叶子节点的值当访问到叶子节点时, 就可以利用 text 来得到相应的标签了1234567891011obj_bbox_set =[]objects = root.findall('object')for obj in objects: obj_name = obj.find('name').text bbox = obj.find('bndbox') x1 = int(bbox.find('xmin').text) y1 = int(bbox.find('ymin').text) x2 = int(bbox.find('xmax').text) y2 = int(bbox.find('ymax').text) obj_bbox_set.append([x1, x2, y1, y2, obj_name])print(obj_bbox_set)]]></content>
@@ -530,17 +542,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[c++中级教程 STL stack]]></title>
-    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
-    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
-      <categories>
-        <category>programs</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[firstblog]]></title>
     <url>%2F2019%2F07%2F25%2Ffirstblog%2F</url>
     <content type="text"><![CDATA[以上是摘要 Hello World]]></content>
@@ -549,6 +550,17 @@
       </categories>
       <tags>
         <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[c++中级教程 STL stack]]></title>
+    <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
+    <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
+      <categories>
+        <category>programs</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
 </search>

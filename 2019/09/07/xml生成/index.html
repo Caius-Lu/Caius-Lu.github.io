@@ -103,16 +103,18 @@
   };
 </script>
 
-  <meta name="description" content="hello,every body!~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一只程序猿的小小博客">
-<meta property="og:url" content="https://caius-lu.github.io/archives/2019/08/index.html">
+  <meta name="description" content="先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件创建 XML 类型的数据文件1234567891011121314151617import xml.etree.ElementTree as ETdef subElement(root, tag, t">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xml生成">
+<meta property="og:url" content="https://caius-lu.github.io/2019/09/07/xml生成/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="hello,every body!~">
+<meta property="og:description" content="先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件创建 XML 类型的数据文件1234567891011121314151617import xml.etree.ElementTree as ETdef subElement(root, tag, t">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-07T03:08:06.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一只程序猿的小小博客">
-<meta name="twitter:description" content="hello,every body!~">
+<meta name="twitter:title" content="xml生成">
+<meta name="twitter:description" content="先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件创建 XML 类型的数据文件1234567891011121314151617import xml.etree.ElementTree as ETdef subElement(root, tag, t">
 
 
 
@@ -122,7 +124,7 @@
 
   
   
-  <link rel="canonical" href="https://caius-lu.github.io/archives/2019/08/">
+  <link rel="canonical" href="https://caius-lu.github.io/2019/09/07/xml生成/">
 
 
 
@@ -133,7 +135,7 @@
 </script>
 
   
-  <title>归档 | 一只程序猿的小小博客</title>
+  <title>xml生成 | 一只程序猿的小小博客</title>
   
 
 
@@ -181,7 +183,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/Caius-Lu" class="github-corner" aria-label="View source on GitHub">
 <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; 
@@ -245,7 +247,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -261,7 +263,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -343,419 +345,218 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/07/xml生成/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xml生成
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-07 10:59:36 / 修改时间：11:08:06" itemprop="dateCreated datePublished" datetime="2019-09-07T10:59:36+08:00">2019-09-07</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        还行! 目前共计 47 篇日志。 继续努力。
-      </span>
       
 
       
+        <h2 id="先创建-root-Element-然后创建-SubElement-最后将-root-传入-ElementTree-element-创建-tree-调用-tree-write-方法写入文件"><a href="#先创建-root-Element-然后创建-SubElement-最后将-root-传入-ElementTree-element-创建-tree-调用-tree-write-方法写入文件" class="headerlink" title="先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件"></a>先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件</h2><h2 id="创建-XML-类型的数据文件"><a href="#创建-XML-类型的数据文件" class="headerlink" title="创建 XML 类型的数据文件"></a>创建 XML 类型的数据文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subElement</span><span class="params">(root, tag, text)</span>:</span></span><br><span class="line">    ele = ET.SubElement(root, tag)</span><br><span class="line">    ele.text = text</span><br><span class="line">    ele.tail = <span class="string">'\n'</span></span><br><span class="line"></span><br><span class="line">root = ET.Element(<span class="string">"note"</span>)</span><br><span class="line">to = root.makeelement(<span class="string">"to"</span>, &#123;&#125;)</span><br><span class="line">to.text = <span class="string">"peter"</span></span><br><span class="line">to.tail = <span class="string">'\n'</span></span><br><span class="line">root.append(to)</span><br><span class="line">subElement(root, <span class="string">"from"</span>, <span class="string">"marry"</span>)</span><br><span class="line">subElement(root, <span class="string">"heading"</span>, <span class="string">"Reminder"</span>)</span><br><span class="line">subElement(root, <span class="string">"body"</span>, <span class="string">"Don't forget the meeting!"</span>)</span><br><span class="line"></span><br><span class="line">tree = ET.ElementTree(root)</span><br><span class="line">tree.write(<span class="string">"note.xml"</span>, encoding=<span class="string">"utf-8"</span>, xml_declaration=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' encoding='utf-8'?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>peter<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">from</span>&gt;</span>marry<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">heading</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">heading</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>Don't forget the meeting!<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-        
-        
-        
+      
+    </div>
 
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
         
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+        
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"> <i class="fa fa-tag"></i>python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/07/xml解析/" rel="next" title="xml解析">
+                <i class="fa fa-chevron-left"></i> xml解析
+              </a>
+            
           </div>
-        
-        
 
-        
+          <span class="post-nav-divider"></span>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/29/从尾到头打印链表/" itemprop="url">
+          <div class="post-nav-prev post-nav-item">
             
-              <span itemprop="name">从尾到头打印链表</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-29T10:53:29+08:00" content="2019-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/29/透视变换/" itemprop="url">
-            
-              <span itemprop="name">透视变换</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-29T08:21:16+08:00" content="2019-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/29/替换空格/" itemprop="url">
-            
-              <span itemprop="name">替换空格</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-29T08:13:20+08:00" content="2019-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/从上往下打印二叉树/" itemprop="url">
-            
-              <span itemprop="name">从上往下打印二叉树</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T20:27:10+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/Pytorch-trick/" itemprop="url">
-            
-              <span itemprop="name">Pytorch trick</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T19:21:48+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/Pytorch手册/" itemprop="url">
-            
-              <span itemprop="name">Pytorch手册</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T17:39:31+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/numpy实现神经网络/" itemprop="url">
-            
-              <span itemprop="name">numpy实现神经网络</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T16:44:57+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/glob模块/" itemprop="url">
-            
-              <span itemprop="name">glob模块</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T16:13:37+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/logging模块/" itemprop="url">
-            
-              <span itemprop="name">logging模块</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T16:03:24+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/28/shutil模块/" itemprop="url">
-            
-              <span itemprop="name">shutil模块</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T15:56:46+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/08/page/2/">2</a><a class="page-number" href="/archives/2019/08/page/3/">3</a><a class="extend next" rel="next" href="/archives/2019/08/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTU1Ni8yMjA2Nw=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -775,8 +576,17 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -919,6 +729,23 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先创建-root-Element-然后创建-SubElement-最后将-root-传入-ElementTree-element-创建-tree-调用-tree-write-方法写入文件"><span class="nav-text">先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-XML-类型的数据文件"><span class="nav-text">创建 XML 类型的数据文件</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -1054,6 +881,10 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -1081,6 +912,26 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
 
+
+  
+    
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/09/07/xml生成/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
 

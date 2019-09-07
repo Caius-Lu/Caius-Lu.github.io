@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-07T02:57:34.885Z</updated>
+  <updated>2019-09-07T03:08:06.432Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xml生成</title>
+    <link href="https://caius-lu.github.io/2019/09/07/xml%E7%94%9F%E6%88%90/"/>
+    <id>https://caius-lu.github.io/2019/09/07/xml生成/</id>
+    <published>2019-09-07T02:59:36.000Z</published>
+    <updated>2019-09-07T03:08:06.432Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;先创建-root-Element-然后创建-SubElement-最后将-root-传入-ElementTree-element-创建-tree-调用-tree-write-方法写入文件&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/programs/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>xml解析</title>
@@ -570,38 +598,6 @@
     
     
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>logging模块</title>
-    <link href="https://caius-lu.github.io/2019/08/28/logging%E6%A8%A1%E5%9D%97/"/>
-    <id>https://caius-lu.github.io/2019/08/28/logging模块/</id>
-    <published>2019-08-28T08:03:24.000Z</published>
-    <updated>2019-08-28T08:05:41.197Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;简单使用&quot;&gt;&lt;a href=&quot;#简单使用&quot; class=&quot;headerlink&quot; title=&quot;简单使用&quot;&gt;&lt;/a&gt;简单使用&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
     
   </entry>
   

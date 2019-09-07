@@ -103,19 +103,19 @@
   };
 </script>
 
-  <meta name="description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans 计算步骤 1.随机选取K个聚类中心，这里">
+  <meta name="description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans算法的最大弱点：只能处理球形的簇（理论）k">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kmeans算法">
 <meta property="og:url" content="https://caius-lu.github.io/2019/09/07/kmeans算法/index.html">
 <meta property="og:site_name" content="一只程序猿的小小博客">
-<meta property="og:description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans 计算步骤 1.随机选取K个聚类中心，这里">
+<meta property="og:description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans算法的最大弱点：只能处理球形的簇（理论）k">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://caius-lu.github.io/2019/09/07/kmeans算法/myplot.png">
-<meta property="og:updated_time" content="2019-09-07T09:20:20.607Z">
+<meta property="og:updated_time" content="2019-09-07T09:54:24.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kmeans算法">
-<meta name="twitter:description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans 计算步骤 1.随机选取K个聚类中心，这里">
+<meta name="twitter:description" content="K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。 kmeans算法的最大弱点：只能处理球形的簇（理论）k">
 <meta name="twitter:image" content="https://caius-lu.github.io/2019/09/07/kmeans算法/myplot.png">
 
 
@@ -410,7 +410,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
                 
               
 
-              <time title="创建时间：2019-09-07 17:10:42 / 修改时间：17:20:20" itemprop="dateCreated datePublished" datetime="2019-09-07T17:10:42+08:00">2019-09-07</time>
+              <time title="创建时间：2019-09-07 17:10:42 / 修改时间：17:54:24" itemprop="dateCreated datePublished" datetime="2019-09-07T17:10:42+08:00">2019-09-07</time>
             </span>
           
 
@@ -478,7 +478,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       
         <hr>
 <p>K-Means的思想十分简单，首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过EM算法的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E。</p>
-<h2 id="kmeans-计算步骤"><a href="#kmeans-计算步骤" class="headerlink" title="kmeans 计算步骤"></a>kmeans 计算步骤</h2><ul>
+<h2 id="kmeans算法的最大弱点：只能处理球形的簇（理论）"><a href="#kmeans算法的最大弱点：只能处理球形的簇（理论）" class="headerlink" title="kmeans算法的最大弱点：只能处理球形的簇（理论）"></a>kmeans算法的最大弱点：只能处理球形的簇（理论）</h2><h2 id="kmeans-计算步骤"><a href="#kmeans-计算步骤" class="headerlink" title="kmeans 计算步骤"></a>kmeans 计算步骤</h2><ul>
 <li>1.随机选取K个聚类中心，这里的k值可以自己设定</li>
 <li>2.先设置一个聚类标志，用来保存当前的 样本与第几个聚类中心最近</li>
 <li>3.计算每个样例与每个聚类中心的距离，保存最小距离的k以及距离</li>
@@ -754,7 +754,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans-计算步骤"><span class="nav-text">kmeans 计算步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans算法的最大弱点：只能处理球形的簇（理论）"><span class="nav-text">kmeans算法的最大弱点：只能处理球形的簇（理论）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans-计算步骤"><span class="nav-text">kmeans 计算步骤</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-07T00:45:34.284Z</updated>
+  <updated>2019-09-07T02:57:34.885Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xml解析</title>
+    <link href="https://caius-lu.github.io/2019/09/07/xml%E8%A7%A3%E6%9E%90/"/>
+    <id>https://caius-lu.github.io/2019/09/07/xml解析/</id>
+    <published>2019-09-07T02:53:36.000Z</published>
+    <updated>2019-09-07T02:57:34.885Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/programs/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>矩形覆盖</title>
@@ -574,34 +602,6 @@
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
       <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shutil模块</title>
-    <link href="https://caius-lu.github.io/2019/08/28/shutil%E6%A8%A1%E5%9D%97/"/>
-    <id>https://caius-lu.github.io/2019/08/28/shutil模块/</id>
-    <published>2019-08-28T07:56:46.000Z</published>
-    <updated>2019-08-28T08:46:49.308Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
   </entry>
   

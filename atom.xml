@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-08T05:34:15.400Z</updated>
+  <updated>2019-09-08T08:38:36.506Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>支持向量机</title>
+    <link href="https://caius-lu.github.io/2019/09/08/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/"/>
+    <id>https://caius-lu.github.io/2019/09/08/支持向量机/</id>
+    <published>2019-09-08T08:24:05.000Z</published>
+    <updated>2019-09-08T08:38:36.506Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;SVM的本质：寻找最大的间隔&lt;br&gt;支持向量：距离超平面最近的那些点&lt;br&gt;&lt;strong&gt;SMO算法的原理：&lt;/strong&gt;每次循环中选择两个alpha进行优化处理。一旦找到一对合适的alpha，那么就增大其中一个同时减小另一个。合适：条件一，两个alpha要在间隔边界
+        
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="https://caius-lu.github.io/categories/Machine-Learning/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/Machine-Learning/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>从csv中读取数据</title>
@@ -555,37 +583,6 @@
         
         
           &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：1142927&lt;br&gt;本题知识点： 字符串&lt;/p&gt;
-&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从上往下打印二叉树</title>
-    <link href="https://caius-lu.github.io/2019/08/28/%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>https://caius-lu.github.io/2019/08/28/从上往下打印二叉树/</id>
-    <published>2019-08-28T12:27:10.000Z</published>
-    <updated>2019-08-28T12:29:49.110Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：420679&lt;br&gt;本题知识点： 队列 树&lt;/p&gt;
 &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
         
       

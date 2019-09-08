@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-07T13:18:21.886Z</updated>
+  <updated>2019-09-08T02:44:02.784Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>二进制中1的个数</title>
+    <link href="https://caius-lu.github.io/2019/09/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
+    <id>https://caius-lu.github.io/2019/09/08/二进制中1的个数/</id>
+    <published>2019-09-08T02:40:58.000Z</published>
+    <updated>2019-09-08T02:44:02.784Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：489798&lt;br&gt;本题知识点： 进制转化 补码 反码 原码&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
+    
+    
+      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>PCA降维</title>
@@ -49,7 +80,7 @@
     <link href="https://caius-lu.github.io/2019/09/07/kmeans%E7%AE%97%E6%B3%95/"/>
     <id>https://caius-lu.github.io/2019/09/07/kmeans算法/</id>
     <published>2019-09-07T09:10:42.000Z</published>
-    <updated>2019-09-07T09:58:40.417Z</updated>
+    <updated>2019-09-07T13:19:55.899Z</updated>
     
     <summary type="html">
     
@@ -558,38 +589,6 @@
         
         
           &lt;p&gt;目录：
-        
-      
-    
-    </summary>
-    
-      <category term="pytorch" scheme="https://caius-lu.github.io/categories/pytorch/"/>
-    
-    
-      <category term="pytorch" scheme="https://caius-lu.github.io/tags/pytorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pytorch手册</title>
-    <link href="https://caius-lu.github.io/2019/08/28/Pytorch%E6%89%8B%E5%86%8C/"/>
-    <id>https://caius-lu.github.io/2019/08/28/Pytorch手册/</id>
-    <published>2019-08-28T09:39:31.000Z</published>
-    <updated>2019-08-28T11:13:06.345Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;PyTorch 主要提供以下两大特色：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;支持强力GPU加速的Tensor计算能力&lt;/li&gt;
-&lt;li&gt;基于tape的具有自动微分求导能力的深度神经网络框架&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;PyTorch 主要包含以下组成要素:&lt;/p&gt;
-&lt;div
         
       
     

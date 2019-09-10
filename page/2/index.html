@@ -364,6 +364,190 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/06/docker使用笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/06/docker使用笔记/" class="post-title-link" itemprop="url">docker使用笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-06 12:25:33 / 修改时间：12:29:28" itemprop="dateCreated datePublished" datetime="2019-09-06T12:25:33+08:00">2019-09-06</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/其他/" itemprop="url" rel="index"><span itemprop="name">其他</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/其他/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0-查看需要的Docker列表"><a href="#0-查看需要的Docker列表" class="headerlink" title="0. 查看需要的Docker列表"></a>0. 查看需要的Docker列表</h2><p><a href="https://hub.docker.com/r/nvidia/cuda/" target="_blank" rel="noopener">https://hub.docker.com/r/nvidia/cuda/</a><br>列出已经存在的镜像列表</p>
+<h2 id="1-创建容器"><a href="#1-创建容器" class="headerlink" title="1. 创建容器"></a>1. 创建容器</h2><p>(没有镜像, 会自动下载)docker run -it -v /media/data2/dh:/media/data2/dh —name=cloud —runtime=nvidia nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04 /bin/bash<br>(已有镜像)docker run -it -v /media/data2/dh:/media/data2/dh —name=cloud —runtime=nvidia afc5ab1e9a0d /bin/bash</p>
+<h2 id="2-启动容器"><a href="#2-启动容器" class="headerlink" title="2. 启动容器"></a>2. 启动容器</h2><p>dockerstart cloud（容器名）</p>
+<h2 id="3-进入容器"><a href="#3-进入容器" class="headerlink" title="3. 进入容器"></a>3. 进入容器</h2><p>docker exec -it cloud /bin/bash</p>
+<h2 id="4-离开容器"><a href="#4-离开容器" class="headerlink" title="4. 离开容器"></a>4. 离开容器</h2><p>exit</p>
+<h2 id="5-删除容器"><a href="#5-删除容器" class="headerlink" title="5. 删除容器"></a>5. 删除容器</h2><pre><code>A. 停止容器docker stop CONTAINER_ID
+B. 删除容器docker rm CONTAINER_ID
+</code></pre><p>启动  systemctl start docker</p>
+<p>守护进程重启 sudo  systemctl daemon-reload</p>
+<p>重启docker服务  systemctl restart docker</p>
+<p>重启docker服务  sudo service  docker restart </p>
+<p>关闭docker      service docker stop</p>
+<p>关闭docker       systemctl stop  docker  </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/06/变态跳台阶/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1993,187 +2177,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/29/替换空格/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/29/替换空格/" class="post-title-link" itemprop="url">替换空格</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-29 08:13:20 / 修改时间：08:17:41" itemprop="dateCreated datePublished" datetime="2019-08-29T08:13:20+08:00">2019-08-29</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/剑指offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>时间限制：1秒 空间限制：32768K 热度指数：1142927<br>本题知识点： 字符串</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">replaceSpace</span><span class="params">(<span class="keyword">char</span> *str,<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(str==<span class="literal">NULL</span>)</span><br><span class="line">             <span class="keyword">return</span> ;</span><br><span class="line">         <span class="keyword">int</span> CountOfBlanks=<span class="number">0</span>;</span><br><span class="line">         <span class="keyword">int</span> Originallength=<span class="number">0</span>;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;str[i]!=<span class="string">'\0'</span>;i++)</span><br><span class="line">             &#123;</span><br><span class="line">             Originallength++;</span><br><span class="line">             <span class="keyword">if</span>(str[i]==<span class="string">' '</span>)</span><br><span class="line">                 ++CountOfBlanks;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">int</span> len =Originallength+<span class="number">2</span>*CountOfBlanks;</span><br><span class="line">         <span class="keyword">if</span>(len+<span class="number">1</span>&gt;length)</span><br><span class="line">             <span class="keyword">return</span> ;</span><br><span class="line">          <span class="comment">/*   int pOrignallength=orignallength;</span></span><br><span class="line"><span class="comment">               int pNewlength=newlength;</span></span><br><span class="line"><span class="comment">            while(pOrignallength&gt;=0 &amp;&amp; pNewlength&gt;pOrignallength)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            if(str[pOrignallength]==' ')</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                str[pNewlength--]='0';</span></span><br><span class="line"><span class="comment">                str[pNewlength--]='2';</span></span><br><span class="line"><span class="comment">                str[pNewlength--]='%';</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            else</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                str[pNewlength--]=str[pOrignallength];</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            pOrignallength--;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">          */</span></span><br><span class="line">         <span class="keyword">char</span>*pStr1=str+Originallength;<span class="comment">//复制结束符‘\0’</span></span><br><span class="line">         <span class="keyword">char</span>*pStr2=str+len;</span><br><span class="line">        <span class="keyword">while</span>(pStr1&lt;pStr2)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">if</span>(*pStr1==<span class="string">' '</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                *pStr2--=<span class="string">'0'</span>;</span><br><span class="line">                *pStr2--=<span class="string">'2'</span>;</span><br><span class="line">                *pStr2--=<span class="string">'%'</span>;    </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">             &#123;</span><br><span class="line">                 *pStr2--=*pStr1;</span><br><span class="line">            &#125;</span><br><span class="line">            --pStr1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2223,7 +2226,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

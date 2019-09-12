@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-09-12T06:33:57.401Z</updated>
+  <updated>2019-09-12T11:29:09.493Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>四边形按照顺时针排序</title>
+    <link href="https://caius-lu.github.io/2019/09/12/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E6%8C%89%E7%85%A7%E9%A1%BA%E6%97%B6%E9%92%88%E6%8E%92%E5%BA%8F/"/>
+    <id>https://caius-lu.github.io/2019/09/12/四边形按照顺时针排序/</id>
+    <published>2019-09-12T11:26:54.000Z</published>
+    <updated>2019-09-12T11:29:09.493Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;做图像检测的时候处理数据经常遇到给出矩形的四个坐标点，要求找出左上角坐标并对乱序的坐标按顺时针或者逆时针进行排序&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="tools" scheme="https://caius-lu.github.io/categories/tools/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/tools/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>反转链表</title>
@@ -559,37 +587,6 @@
         
         
           &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：499320&lt;br&gt;本题知识点： 队列 栈&lt;/p&gt;
-&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
-    
-      <category term="剑指offer" scheme="https://caius-lu.github.io/categories/programs/algorithm/%E5%89%91%E6%8C%87offer/"/>
-    
-    
-      <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从尾到头打印链表</title>
-    <link href="https://caius-lu.github.io/2019/08/29/%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
-    <id>https://caius-lu.github.io/2019/08/29/从尾到头打印链表/</id>
-    <published>2019-08-29T02:53:29.000Z</published>
-    <updated>2019-08-29T02:54:51.794Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;时间限制：1秒 空间限制：32768K 热度指数：1022710&lt;br&gt;本题知识点： 链表&lt;/p&gt;
 &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot;
         
       

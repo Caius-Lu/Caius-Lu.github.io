@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-10-14T07:08:06.733Z</updated>
+  <updated>2019-10-18T01:43:51.304Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tensorflow自定义网络模型</title>
+    <link href="https://caius-lu.github.io/2019/10/17/tensorflow%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://caius-lu.github.io/2019/10/17/tensorflow自定义网络模型/</id>
+    <published>2019-10-17T05:30:47.000Z</published>
+    <updated>2019-10-18T01:43:51.304Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Slim&quot;&gt;&lt;a href=&quot;#Slim&quot; class=&quot;headerlink&quot; title=&quot;Slim&quot;&gt;&lt;/a&gt;Slim&lt;/h2&gt;&lt;p&gt;TF-Slim 模块是 TensorFlow 中最好用的 API 之一。尤其是里面引入的
+        
+      
+    
+    </summary>
+    
+      <category term="tensorflow" scheme="https://caius-lu.github.io/categories/tensorflow/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/tensorflow/python/"/>
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/categories/tensorflow/python/Deep-Learning/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+      <category term="tensorflow" scheme="https://caius-lu.github.io/tags/tensorflow/"/>
+    
+  </entry>
   
   <entry>
     <title>图像增强常用函数</title>
@@ -544,34 +576,6 @@
       <category term="Machine Learning" scheme="https://caius-lu.github.io/categories/Machine-Learning/"/>
     
       <category term="python" scheme="https://caius-lu.github.io/categories/Machine-Learning/python/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>xml生成</title>
-    <link href="https://caius-lu.github.io/2019/09/07/xml%E7%94%9F%E6%88%90/"/>
-    <id>https://caius-lu.github.io/2019/09/07/xml生成/</id>
-    <published>2019-09-07T02:59:36.000Z</published>
-    <updated>2019-09-07T03:14:36.565Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;先创建 root Element, 然后创建 SubElement, 最后将 root 传入 ElementTree(element), 创建 tree, 调用 tree.write() 方法写入文件,创建 XML 类型的数据文件&lt;br&gt;&lt;figure
-        
-      
-    
-    </summary>
-    
-      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/programs/python/"/>
     
     
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>

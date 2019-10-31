@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-10-31T13:35:58.915Z</updated>
+  <updated>2019-10-31T13:44:38.972Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://caius-lu.github.io/2019/10/31/pytorchchch%E2%80%94%E2%80%94-xmind/"/>
     <id>https://caius-lu.github.io/2019/10/31/pytorchchch——-xmind/</id>
     <published>2019-10-31T13:29:41.000Z</published>
-    <updated>2019-10-31T13:35:58.915Z</updated>
+    <updated>2019-10-31T13:44:38.972Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,8 @@
     </summary>
     
       <category term="pytorch" scheme="https://caius-lu.github.io/categories/pytorch/"/>
+    
+      <category term="xmind" scheme="https://caius-lu.github.io/categories/pytorch/xmind/"/>
     
     
       <category term="pytorch" scheme="https://caius-lu.github.io/tags/pytorch/"/>

@@ -364,6 +364,374 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/14/mosse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/14/mosse/" class="post-title-link" itemprop="url">mosse</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-14 10:20:18 / 修改时间：11:39:39" itemprop="dateCreated datePublished" datetime="2019-09-14T10:20:18+08:00">2019-09-14</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Object-Tracking/" itemprop="url" rel="index"><span itemprop="name">Object-Tracking</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MOSSE"><a href="#MOSSE" class="headerlink" title="MOSSE"></a>MOSSE</h2><p>MOSSE(Minimum Output Sum of Squared Error) 是2010年 的CVPR，它的全名叫做Visual Object Tracking using Adaptive Correlation Filters。 MOSSE 是第一篇将correlation filter(CF) 引入object tracking 的论文，它也是CSK和KCF/DCF等算法的基础。</p>
+<h3 id="CF-相关滤波"><a href="#CF-相关滤波" class="headerlink" title="CF(相关滤波)"></a>CF(相关滤波)</h3><p>相关一般分为自相关和互相关，这里我们一般指的是互相关，假设我们有两个信号f和g</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}{(f \otimes g)(\tau) \stackrel{\text {def}}{=} \int_{-\infty}^{\infty} f^{*}(t) g(t+\tau) d t} \\ {(f \otimes g)(n) \stackrel{\text {def}}{=} \sum_{-\infty}^{\infty} f^{*}[m] g(m+n)}\end{array}</script><p>f∗表示f的共轭，互相关的直接解释就是衡量两个信号在某个时刻τ时的相似程度。<br>假设f和g的形状一样，那么一定是f和g对齐的时候二者的相似程度最大，此时达到最大的输出响应，如下图所示：<br><img src="/2019/09/14/mosse/mosse1.png" title="mosse1.png"><br>卷积计算和相关计算的关系</p>
+<ul>
+<li>Two-dimensional correlation is equivalent to two-dimensional convolution with the filter matrix rotated 180 degrees.</li>
+</ul>
+<h2 id="论文解读"><a href="#论文解读" class="headerlink" title="论文解读"></a>论文解读</h2><hr>
+<p>将CF应用在tracking方面最基本的思想就是，设计一个滤波模板，使得该模板与跟踪目标的ROI做卷积运算，得到最大的输出响应。</p>
+<hr>
+<script type="math/tex; mode=display">
+g=f \otimes h</script><ul>
+<li>g表示输出响应</li>
+<li>f表示输入原始图片的灰度图像</li>
+<li>h表示滤波模板<br>为了简化计算，将时域的卷积转化为频域的点乘积。<br>时域公式表示：<script type="math/tex; mode=display">
+g=f^{*} h</script>频域公式表示：<script type="math/tex; mode=display">
+G=F \bullet H^{*}</script>所以目标H的计算为：<script type="math/tex; mode=display">
+H^{*}=\frac{G}{F}</script>在跟踪的光照等其他因素的影响下，为了提高滤波模板的鲁棒性，在文章中作者对GroundTruth进行随机仿射变换得到一系列的训练样本fi，gi是由高斯函数产生的并且其峰值位置是在fi的中心,我们同时考虑m帧作为参考，这就是MOSSE模型的思想，最终该模型的目标函数表示为：<script type="math/tex; mode=display">
+\min _{H^{*}} \sum_{i}\left|F_{i} \odot H^{*}-G_{i}\right|^{2}</script>将目标函数最小化，对上式在频域进行求导（复数域不同于实数域），得到：<script type="math/tex; mode=display">
+H=\frac{\sum_{i=1}^{m} F_{i} \odot G_{i}^{*}}{\sum_{i=1}^{m} F_{i} \odot F_{i}^{*}}</script>在跟踪过程中，我们只需要将以上模板与当前帧与滤波模板做相关操作，在输出响应中找到最大值的位置，该位置就是目标在当前帧中的位置。本文的参数更新的策略为：<script type="math/tex; mode=display">
+H_{t}=\frac{A_{t}}{B_{t}}</script><script type="math/tex; mode=display">
+\begin{array}{l}{A_{t}=\eta F_{t} \cdot G_{t}^{*}+(1-\eta) A_{t-1}} \\ {B_{t}=\eta F_{t} \cdot F_{t}^{*}+(1-\eta) B_{t-1}}\end{array}</script>其中，η是一个超参数，为经验值。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>输入的特征为单通道灰度图像，特征表达能力有限</li>
+<li>没有尺度更新，对于尺度变化的跟踪目标不敏感</li>
+</ul>
+<img src="/2019/09/14/mosse/surfer.gif" title="surfer.gif">
+<h2 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h2><p>这里面主要做的就是 ，初始帧的输入与输出来求出Ai与Bi，从而求出初始的模板Hi，下面将初始的Hi与当前帧所在的上个位置进行卷积，频域也就是进行相乘。然后找到最大值的位置也就是当前目标的中心，由于宽高不变，所以在此基础上更新宽高就可以了，实现目标跟踪。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> linear_mapping, pre_process, random_warp</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">This module implements the basic correlation filter based tracking algorithm -- MOSSE</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Date: 2018-05-28</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mosse</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, args, img_path)</span>:</span></span><br><span class="line">        <span class="comment"># get arguments..</span></span><br><span class="line">        self.args = args</span><br><span class="line">        self.img_path = img_path</span><br><span class="line">        <span class="comment"># get the img lists...</span></span><br><span class="line">        self.frame_lists = self._get_img_lists(self.img_path)</span><br><span class="line">        self.frame_lists.sort()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># start to do the object tracking...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_tracking</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># get the image of the first frame... (read as gray scale image...)</span></span><br><span class="line">        init_img = cv2.imread(self.frame_lists[<span class="number">0</span>])</span><br><span class="line">        init_frame = cv2.cvtColor(init_img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">        init_frame = init_frame.astype(np.float32)</span><br><span class="line">        <span class="comment"># get the init ground truth.. [x, y, width, height]</span></span><br><span class="line">        init_gt = cv2.selectROI(<span class="string">'demo'</span>, init_img, <span class="literal">False</span>, <span class="literal">False</span>)</span><br><span class="line">        init_gt = np.array(init_gt).astype(np.int64)</span><br><span class="line">        <span class="comment"># start to draw the gaussian response...</span></span><br><span class="line">        response_map = self._get_gauss_response(init_frame, init_gt)</span><br><span class="line">        <span class="comment"># start to create the training set ...</span></span><br><span class="line">        <span class="comment"># get the goal..</span></span><br><span class="line">        print(init_gt)</span><br><span class="line">        g = response_map[init_gt[<span class="number">1</span>]:init_gt[<span class="number">1</span>]+init_gt[<span class="number">3</span>], init_gt[<span class="number">0</span>]:init_gt[<span class="number">0</span>]+init_gt[<span class="number">2</span>]]</span><br><span class="line">        print(g)</span><br><span class="line">        fi = init_frame[init_gt[<span class="number">1</span>]:init_gt[<span class="number">1</span>]+init_gt[<span class="number">3</span>], init_gt[<span class="number">0</span>]:init_gt[<span class="number">0</span>]+init_gt[<span class="number">2</span>]]</span><br><span class="line">        G = np.fft.fft2(g)</span><br><span class="line">        <span class="comment"># start to do the pre-training...</span></span><br><span class="line">        Ai, Bi = self._pre_training(fi, G)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># start the tracking...</span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> range(len(self.frame_lists)):</span><br><span class="line">            current_frame = cv2.imread(self.frame_lists[idx])</span><br><span class="line">            frame_gray = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)</span><br><span class="line">            frame_gray = frame_gray.astype(np.float32)</span><br><span class="line">            <span class="keyword">if</span> idx == <span class="number">0</span>:</span><br><span class="line">                Ai = self.args.lr * Ai</span><br><span class="line">                Bi = self.args.lr * Bi</span><br><span class="line">                pos = init_gt.copy()</span><br><span class="line">                clip_pos = np.array([pos[<span class="number">0</span>], pos[<span class="number">1</span>], pos[<span class="number">0</span>]+pos[<span class="number">2</span>], pos[<span class="number">1</span>]+pos[<span class="number">3</span>]]).astype(np.int64)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                Hi = Ai / Bi</span><br><span class="line">                fi = frame_gray[clip_pos[<span class="number">1</span>]:clip_pos[<span class="number">3</span>], clip_pos[<span class="number">0</span>]:clip_pos[<span class="number">2</span>]]</span><br><span class="line">                fi = pre_process(cv2.resize(fi, (init_gt[<span class="number">2</span>], init_gt[<span class="number">3</span>])))</span><br><span class="line">                Gi = Hi * np.fft.fft2(fi)</span><br><span class="line">                gi = linear_mapping(np.fft.ifft2(Gi))</span><br><span class="line">                <span class="comment"># find the max pos...</span></span><br><span class="line">                max_value = np.max(gi)</span><br><span class="line">                max_pos = np.where(gi == max_value)</span><br><span class="line">                dy = int(np.mean(max_pos[<span class="number">0</span>]) - gi.shape[<span class="number">0</span>] / <span class="number">2</span>)</span><br><span class="line">                dx = int(np.mean(max_pos[<span class="number">1</span>]) - gi.shape[<span class="number">1</span>] / <span class="number">2</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># update the position...</span></span><br><span class="line">                pos[<span class="number">0</span>] = pos[<span class="number">0</span>] + dx</span><br><span class="line">                pos[<span class="number">1</span>] = pos[<span class="number">1</span>] + dy</span><br><span class="line"></span><br><span class="line">                <span class="comment"># trying to get the clipped position [xmin, ymin, xmax, ymax]</span></span><br><span class="line">                clip_pos[<span class="number">0</span>] = np.clip(pos[<span class="number">0</span>], <span class="number">0</span>, current_frame.shape[<span class="number">1</span>])</span><br><span class="line">                clip_pos[<span class="number">1</span>] = np.clip(pos[<span class="number">1</span>], <span class="number">0</span>, current_frame.shape[<span class="number">0</span>])</span><br><span class="line">                clip_pos[<span class="number">2</span>] = np.clip(pos[<span class="number">0</span>]+pos[<span class="number">2</span>], <span class="number">0</span>, current_frame.shape[<span class="number">1</span>])</span><br><span class="line">                clip_pos[<span class="number">3</span>] = np.clip(pos[<span class="number">1</span>]+pos[<span class="number">3</span>], <span class="number">0</span>, current_frame.shape[<span class="number">0</span>])</span><br><span class="line">                clip_pos = clip_pos.astype(np.int64)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># get the current fi..</span></span><br><span class="line">                fi = frame_gray[clip_pos[<span class="number">1</span>]:clip_pos[<span class="number">3</span>], clip_pos[<span class="number">0</span>]:clip_pos[<span class="number">2</span>]]</span><br><span class="line">                fi = pre_process(cv2.resize(fi, (init_gt[<span class="number">2</span>], init_gt[<span class="number">3</span>])))</span><br><span class="line">                <span class="comment"># online update...</span></span><br><span class="line">                Ai = self.args.lr * (G * np.conjugate(np.fft.fft2(fi))) + (<span class="number">1</span> - self.args.lr) * Ai</span><br><span class="line">                Bi = self.args.lr * (np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))) + (<span class="number">1</span> - self.args.lr) * Bi</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># visualize the tracking process...</span></span><br><span class="line">            cv2.rectangle(current_frame, (pos[<span class="number">0</span>], pos[<span class="number">1</span>]), (pos[<span class="number">0</span>]+pos[<span class="number">2</span>], pos[<span class="number">1</span>]+pos[<span class="number">3</span>]), (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line">            cv2.imshow(<span class="string">'demo'</span>, current_frame)</span><br><span class="line">            cv2.waitKey(<span class="number">100</span>)</span><br><span class="line">            <span class="comment"># if record... save the frames..</span></span><br><span class="line">            <span class="keyword">if</span> self.args.record:</span><br><span class="line">                frame_path = <span class="string">'record_frames/'</span> + self.img_path.split(<span class="string">'/'</span>)[<span class="number">1</span>] + <span class="string">'/'</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(frame_path):</span><br><span class="line">                    os.mkdir(frame_path)</span><br><span class="line">                cv2.imwrite(frame_path + str(idx).zfill(<span class="number">5</span>) + <span class="string">'.png'</span>, current_frame)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># pre train the filter on the first frame...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_pre_training</span><span class="params">(self, init_frame, G)</span>:</span></span><br><span class="line">        height, width = G.shape</span><br><span class="line">        fi = cv2.resize(init_frame, (width, height))</span><br><span class="line">        <span class="comment"># pre-process img..</span></span><br><span class="line">        fi = pre_process(fi)</span><br><span class="line">        Ai = G * np.conjugate(np.fft.fft2(fi))</span><br><span class="line">        Bi = np.fft.fft2(init_frame) * np.conjugate(np.fft.fft2(init_frame))</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.args.num_pretrain):</span><br><span class="line">            <span class="keyword">if</span> self.args.rotate:</span><br><span class="line">                fi = pre_process(random_warp(init_frame))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                fi = pre_process(init_frame)</span><br><span class="line">            Ai = Ai + G * np.conjugate(np.fft.fft2(fi))</span><br><span class="line">            Bi = Bi + np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> Ai, Bi</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get the ground-truth gaussian reponse...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_gauss_response</span><span class="params">(self, img, gt)</span>:</span></span><br><span class="line">        <span class="comment"># get the shape of the image..</span></span><br><span class="line">        height, width = img.shape</span><br><span class="line">        <span class="comment"># get the mesh grid...</span></span><br><span class="line">        xx, yy = np.meshgrid(np.arange(width), np.arange(height))</span><br><span class="line">        <span class="comment"># get the center of the object...</span></span><br><span class="line">        center_x = gt[<span class="number">0</span>] + <span class="number">0.5</span> * gt[<span class="number">2</span>]</span><br><span class="line">        center_y = gt[<span class="number">1</span>] + <span class="number">0.5</span> * gt[<span class="number">3</span>]</span><br><span class="line">        <span class="comment"># cal the distance...</span></span><br><span class="line">        dist = (np.square(xx - center_x) + np.square(yy - center_y)) / (<span class="number">2</span> * self.args.sigma)</span><br><span class="line">        <span class="comment"># get the response map...</span></span><br><span class="line">        response = np.exp(-dist)</span><br><span class="line">        <span class="comment"># normalize...</span></span><br><span class="line">        response = linear_mapping(response)</span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    <span class="comment"># it will extract the image list </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_img_lists</span><span class="params">(self, img_path)</span>:</span></span><br><span class="line">        frame_list = []</span><br><span class="line">        <span class="keyword">for</span> frame <span class="keyword">in</span> os.listdir(img_path):</span><br><span class="line">            <span class="keyword">if</span> os.path.splitext(frame)[<span class="number">1</span>] == <span class="string">'.jpg'</span>:</span><br><span class="line">                frame_list.append(os.path.join(img_path, frame)) </span><br><span class="line">        <span class="keyword">return</span> frame_list</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># it will get the first ground truth of the video..</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_init_ground_truth</span><span class="params">(self, img_path)</span>:</span></span><br><span class="line">        gt_path = os.path.join(img_path, <span class="string">'groundtruth.txt'</span>)</span><br><span class="line">        <span class="keyword">with</span> open(gt_path, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="comment"># just read the first frame...</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">            gt_pos = line.split(<span class="string">','</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> [float(element) <span class="keyword">for</span> element <span class="keyword">in</span> gt_pos]</span><br></pre></td></tr></table></figure></p>
+<p>参考链接：<br><a href="http://simtalk.cn/2017/07/03/Object-Tracking/" target="_blank" rel="noopener">http://simtalk.cn/2017/07/03/Object-Tracking/</a><br><a href="https://github.com/TianhongDai/mosse-object-tracking" target="_blank" rel="noopener">https://github.com/TianhongDai/mosse-object-tracking</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/12/四边形按照顺时针排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/12/四边形按照顺时针排序/" class="post-title-link" itemprop="url">四边形按照顺时针排序</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-12 19:26:54 / 修改时间：19:31:46" itemprop="dateCreated datePublished" datetime="2019-09-12T19:26:54+08:00">2019-09-12</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tools/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>做图像检测的时候处理数据经常遇到给出矩形的四个坐标点，要求找出左上角坐标并对乱序的坐标按顺时针或者逆时针进行排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial <span class="keyword">import</span> distance <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cos_dist</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(a) != len(b):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    part_up = <span class="number">0.0</span></span><br><span class="line">    a_sq = <span class="number">0.0</span></span><br><span class="line">    b_sq = <span class="number">0.0</span></span><br><span class="line">    print(a, b)</span><br><span class="line">    print(zip(a, b)) </span><br><span class="line">    <span class="keyword">for</span> a1, b1 <span class="keyword">in</span> zip(a, b):</span><br><span class="line">        part_up += a1*b1</span><br><span class="line">        a_sq += a1**<span class="number">2</span></span><br><span class="line">        b_sq += b1**<span class="number">2</span></span><br><span class="line">    part_down = math.sqrt(a_sq*b_sq)</span><br><span class="line">    <span class="keyword">if</span> part_down == <span class="number">0.0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> part_up / part_down</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># this function is confined to rectangle</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order_points</span><span class="params">(pts)</span>:</span></span><br><span class="line">    <span class="comment"># sort the points based on their x-coordinates</span></span><br><span class="line">    xSorted = pts[np.argsort(pts[:, <span class="number">0</span>]), :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># grab the left-most and right-most points from the sorted</span></span><br><span class="line">    <span class="comment"># x-roodinate points</span></span><br><span class="line">    leftMost = xSorted[:<span class="number">2</span>, :]</span><br><span class="line">    rightMost = xSorted[<span class="number">2</span>:, :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># now, sort the left-most coordinates according to their</span></span><br><span class="line">    <span class="comment"># y-coordinates so we can grab the top-left and bottom-left</span></span><br><span class="line">    <span class="comment"># points, respectively</span></span><br><span class="line">    leftMost = leftMost[np.argsort(leftMost[:, <span class="number">1</span>]), :]</span><br><span class="line">    (tl, bl) = leftMost</span><br><span class="line"></span><br><span class="line">    <span class="comment"># now that we have the top-left coordinate, use it as an</span></span><br><span class="line">    <span class="comment"># anchor to calculate the Euclidean distance between the</span></span><br><span class="line">    <span class="comment"># top-left and right-most points; by the Pythagorean</span></span><br><span class="line">    <span class="comment"># theorem, the point with the largest distance will be</span></span><br><span class="line">    <span class="comment"># our bottom-right point</span></span><br><span class="line">    D = dist.cdist(tl[np.newaxis], rightMost, <span class="string">"euclidean"</span>)[<span class="number">0</span>]</span><br><span class="line">    (br, tr) = rightMost[np.argsort(D)[::<span class="number">-1</span>], :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return the coordinates in top-left, top-right,</span></span><br><span class="line">    <span class="comment"># bottom-right, and bottom-left order</span></span><br><span class="line">    <span class="keyword">return</span> np.array([tl, tr, br, bl], dtype=<span class="string">"float32"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order_points_quadrangle</span><span class="params">(pts)</span>:</span></span><br><span class="line">    <span class="comment"># sort the points based on their x-coordinates</span></span><br><span class="line">    xSorted = pts[np.argsort(pts[:, <span class="number">0</span>]), :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># grab the left-most and right-most points from the sorted</span></span><br><span class="line">    <span class="comment"># x-roodinate points</span></span><br><span class="line">    leftMost = xSorted[:<span class="number">2</span>, :]</span><br><span class="line">    rightMost = xSorted[<span class="number">2</span>:, :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># now, sort the left-most coordinates according to their</span></span><br><span class="line">    <span class="comment"># y-coordinates so we can grab the top-left and bottom-left</span></span><br><span class="line">    <span class="comment"># points, respectively</span></span><br><span class="line">    leftMost = leftMost[np.argsort(leftMost[:, <span class="number">1</span>]), :]</span><br><span class="line">    (tl, bl) = leftMost</span><br><span class="line"></span><br><span class="line">    <span class="comment"># now that we have the top-left and bottom-left coordinate, use it as an</span></span><br><span class="line">    <span class="comment"># base vector to calculate the angles between the other two vectors</span></span><br><span class="line"></span><br><span class="line">    vector_0 = np.array(bl-tl)</span><br><span class="line">    vector_1 = np.array(rightMost[<span class="number">0</span>]-tl)</span><br><span class="line">    vector_2 = np.array(rightMost[<span class="number">1</span>]-tl)</span><br><span class="line"></span><br><span class="line">    angle = [np.arccos(cos_dist(vector_0, vector_1)), np.arccos(cos_dist(vector_0, vector_2))]</span><br><span class="line">    (br, tr) = rightMost[np.argsort(angle), :]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return the coordinates in top-left, top-right,</span></span><br><span class="line">    <span class="comment"># bottom-right, and bottom-left order</span></span><br><span class="line">    <span class="keyword">return</span> np.array([tl, tr, br, bl], dtype=<span class="string">"float32"</span>)</span><br><span class="line">testdata =[<span class="number">1074</span>,<span class="number">439</span>,<span class="number">1078</span>,<span class="number">424</span>,<span class="number">991</span>,<span class="number">427</span>,<span class="number">991</span>,<span class="number">411</span>]</span><br><span class="line">points = numpy.array(array).reshape(<span class="number">4</span>,<span class="number">2</span>)</span><br><span class="line">poit = order_points_quadrangle(points)</span><br><span class="line"></span><br><span class="line">poit</span><br><span class="line"></span><br><span class="line">array([[ <span class="number">991.</span>,  <span class="number">411.</span>],</span><br><span class="line">       [<span class="number">1078.</span>,  <span class="number">424.</span>],</span><br><span class="line">       [<span class="number">1074.</span>,  <span class="number">439.</span>],</span><br><span class="line">       [ <span class="number">991.</span>,  <span class="number">427.</span>]], dtype=float32)</span><br></pre></td></tr></table></figure></p>
+<p>参考链接：<br><a href="http://www.bnee.net/article/821708.html" target="_blank" rel="noopener">http://www.bnee.net/article/821708.html</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/12/反转链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1780,374 +2148,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/07/xml解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/07/xml解析/" class="post-title-link" itemprop="url">xml解析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-07 10:53:36 / 修改时间：11:14:31" itemprop="dateCreated datePublished" datetime="2019-09-07T10:53:36+08:00">2019-09-07</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">annotation</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">folder</span>&gt;</span>ILSVRC2015_VID_train_0002/ILSVRC2015_train_00555002<span class="tag">&lt;/<span class="name">folder</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filename</span>&gt;</span>000000<span class="tag">&lt;/<span class="name">filename</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">source</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">database</span>&gt;</span>ILSVRC_2015<span class="tag">&lt;/<span class="name">database</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">size</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">width</span>&gt;</span>1280<span class="tag">&lt;/<span class="name">width</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">height</span>&gt;</span>720<span class="tag">&lt;/<span class="name">height</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">size</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">object</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">trackid</span>&gt;</span>0<span class="tag">&lt;/<span class="name">trackid</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>n02691156<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">bndbox</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">xmax</span>&gt;</span>659<span class="tag">&lt;/<span class="name">xmax</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">xmin</span>&gt;</span>592<span class="tag">&lt;/<span class="name">xmin</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ymax</span>&gt;</span>375<span class="tag">&lt;/<span class="name">ymax</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ymin</span>&gt;</span>334<span class="tag">&lt;/<span class="name">ymin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">bndbox</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">occluded</span>&gt;</span>0<span class="tag">&lt;/<span class="name">occluded</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">generated</span>&gt;</span>0<span class="tag">&lt;/<span class="name">generated</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">object</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">annotation</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>ElementTree生来就是为了处理XML, 它在Python标准库中有两种实现：一种是纯Python实现的, 如xml.etree.ElementTree, 另一种是速度快一点的xml.etree.cElementTree. 注意：尽量使用C语言实现的那种, 因为它速度更快, 而且消耗的内存更少.</p>
-<ul>
-<li>a. 遍历根节点的下一层　　　</li>
-<li>b. 下标访问各个标签、属性、文本</li>
-<li>c. 查找root下的指定标签</li>
-<li>d. 遍历XML文件</li>
-<li>e. 修改XML文件<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os, sys</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> xml.etree.cElementTree <span class="keyword">as</span> ET</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="解析xml文件"><a href="#解析xml文件" class="headerlink" title="解析xml文件"></a>解析xml文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlFilePath = os.path.abspath(<span class="string">'000000.xml'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    tree = ET.parse(xmlFilePath) <span class="comment"># 或者 tree = ET.ElementTree(xmlFilePath)</span></span><br><span class="line">    root = tree.getroot() <span class="comment"># 获取根节点</span></span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">'parse xml failed!'</span>)</span><br><span class="line">    sys.exit()</span><br></pre></td></tr></table></figure>
-<h2 id="逐层遍历"><a href="#逐层遍历" class="headerlink" title="逐层遍历"></a>逐层遍历</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(root.tag, root.attrib, root.text)</span><br><span class="line"><span class="keyword">for</span> child <span class="keyword">in</span> root:</span><br><span class="line">    print(child.tag, child.attrib, child.text)</span><br></pre></td></tr></table></figure>
-<h2 id="递归遍历全部"><a href="#递归遍历全部" class="headerlink" title="递归遍历全部:"></a>递归遍历全部:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">traverseXml</span><span class="params">(element)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(element) &gt; <span class="number">0</span>: <span class="comment"># 叶节点的len为0</span></span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> element:</span><br><span class="line">            print(child.tag, child.attrib)</span><br><span class="line">            traverseXml(child)</span><br><span class="line"></span><br><span class="line">traverseXml(root)</span><br></pre></td></tr></table></figure>
-<h2 id="根据签名查找需要的标签"><a href="#根据签名查找需要的标签" class="headerlink" title="根据签名查找需要的标签"></a>根据签名查找需要的标签</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">item_lists = root.findall(<span class="string">'item'</span>) <span class="comment"># 只能找到儿子, 不能找到孙子, 返回的是儿子们组成的列表</span></span><br><span class="line">item = root.find(<span class="string">'item'</span>) <span class="comment"># 返回的是单个的儿子</span></span><br><span class="line">print(root)</span><br><span class="line">print(item_lists)</span><br><span class="line">print(item)</span><br></pre></td></tr></table></figure>
-<h2 id="获取叶子节点的值"><a href="#获取叶子节点的值" class="headerlink" title="获取叶子节点的值"></a>获取叶子节点的值</h2><h2 id="当访问到叶子节点时-就可以利用-text-来得到相应的标签了"><a href="#当访问到叶子节点时-就可以利用-text-来得到相应的标签了" class="headerlink" title="当访问到叶子节点时, 就可以利用 text 来得到相应的标签了"></a>当访问到叶子节点时, 就可以利用 text 来得到相应的标签了</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">obj_bbox_set =[]</span><br><span class="line">objects = root.findall(<span class="string">'object'</span>)</span><br><span class="line"><span class="keyword">for</span> obj <span class="keyword">in</span> objects:</span><br><span class="line">    obj_name = obj.find(<span class="string">'name'</span>).text</span><br><span class="line">    bbox = obj.find(<span class="string">'bndbox'</span>)</span><br><span class="line">    x1 = int(bbox.find(<span class="string">'xmin'</span>).text)</span><br><span class="line">    y1 = int(bbox.find(<span class="string">'ymin'</span>).text)</span><br><span class="line">    x2 = int(bbox.find(<span class="string">'xmax'</span>).text)</span><br><span class="line">    y2 = int(bbox.find(<span class="string">'ymax'</span>).text)</span><br><span class="line">    obj_bbox_set.append([x1, x2, y1, y2, obj_name])</span><br><span class="line">print(obj_bbox_set)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/09/07/矩形覆盖/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/07/矩形覆盖/" class="post-title-link" itemprop="url">矩形覆盖</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-07 08:43:48 / 修改时间：11:16:18" itemprop="dateCreated datePublished" datetime="2019-09-07T08:43:48+08:00">2019-09-07</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/剑指offer/" itemprop="url" rel="index"><span itemprop="name">剑指offer</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>时间限制：1秒 空间限制：32768K 热度指数：363840<br>本题知识点： 递归</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rectCover</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(number &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(number == <span class="number">1</span> || number == <span class="number">2</span>) <span class="keyword">return</span> number;</span><br><span class="line">    <span class="keyword">return</span> rectCover(number - <span class="number">1</span>) + rectCover(number - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>运行时间：538ms<br>占用内存：484k</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2197,7 +2197,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2286,7 +2286,11 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">36</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -2331,7 +2335,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">14</span>
+          
+        
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

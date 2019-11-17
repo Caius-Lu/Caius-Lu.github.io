@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-07-29T02:02:07.048Z</updated>
+  <updated>2019-11-17T08:38:39.348Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Duplicate</title>
+    <link href="https://caius-lu.github.io/2019/11/17/Duplicate/"/>
+    <id>https://caius-lu.github.io/2019/11/17/Duplicate/</id>
+    <published>2019-11-17T08:37:16.000Z</published>
+    <updated>2019-11-17T08:38:39.348Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;是否存在相同元素，python3用字典的方式解决&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="programs" scheme="https://caius-lu.github.io/categories/programs/"/>
+    
+      <category term="algorithm" scheme="https://caius-lu.github.io/categories/programs/algorithm/"/>
+    
+      <category term="leetcode" scheme="https://caius-lu.github.io/categories/programs/algorithm/leetcode/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rnn</title>
+    <link href="https://caius-lu.github.io/2019/11/17/rnn/"/>
+    <id>https://caius-lu.github.io/2019/11/17/rnn/</id>
+    <published>2019-11-17T08:32:23.000Z</published>
+    <updated>2019-11-17T08:36:42.832Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;RNN及RNN的几个变体&quot;&gt;&lt;a href=&quot;#RNN及RNN的几个变体&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rnn" scheme="https://caius-lu.github.io/categories/rnn/"/>
+    
+    
+      <category term="RNN" scheme="https://caius-lu.github.io/tags/RNN/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -505,60 +561,6 @@
     
     
       <category term="c++" scheme="https://caius-lu.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mosse</title>
-    <link href="https://caius-lu.github.io/2019/09/14/mosse/"/>
-    <id>https://caius-lu.github.io/2019/09/14/mosse/</id>
-    <published>2019-09-14T02:20:18.000Z</published>
-    <updated>2019-09-14T03:39:39.876Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;MOSSE&quot;&gt;&lt;a href=&quot;#MOSSE&quot; class=&quot;headerlink&quot; title=&quot;MOSSE&quot;&gt;&lt;/a&gt;MOSSE&lt;/h2&gt;&lt;p&gt;MOSSE(Minimum Output Sum of Squared Error) 是2010年
-        
-      
-    
-    </summary>
-    
-      <category term="Object-Tracking" scheme="https://caius-lu.github.io/categories/Object-Tracking/"/>
-    
-    
-      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>四边形按照顺时针排序</title>
-    <link href="https://caius-lu.github.io/2019/09/12/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E6%8C%89%E7%85%A7%E9%A1%BA%E6%97%B6%E9%92%88%E6%8E%92%E5%BA%8F/"/>
-    <id>https://caius-lu.github.io/2019/09/12/四边形按照顺时针排序/</id>
-    <published>2019-09-12T11:26:54.000Z</published>
-    <updated>2019-09-12T11:31:46.154Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;做图像检测的时候处理数据经常遇到给出矩形的四个坐标点，要求找出左上角坐标并对乱序的坐标按顺时针或者逆时针进行排序&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="tools" scheme="https://caius-lu.github.io/categories/tools/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/tools/python/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
   </entry>
   

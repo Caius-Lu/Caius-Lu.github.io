@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DFS_BFS]]></title>
+    <url>%2F2019%2F11%2F17%2FDFS-BFS%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#!/usr/bin/env python# -*- coding: utf-8 -*-# @Time : 2019/11/17 10:28# @Author : caius# @Site : # @File : BFS.py# @Software: PyCharmgraph = &#123; "A":&#123;"B", "C"&#125;, "B":&#123;"A","C","D"&#125;, "C":&#123;"A","B","D","E"&#125;, "D":&#123;"B","C","E","F"&#125;, "E":&#123;"C","D"&#125;, "F":&#123;"D"&#125;&#125;# 字典的基本用法# keys: A B C D E F# graph["E"&#125; "c". "D"def BFS(graph, s): # 队列先进先出 queue=[] queue.append(s) seen = set()# 代表这个东西是个set seen.add(s) parrent =&#123;&#125; parrent=&#123;s:None&#125; while(len(queue)&gt;0): vertex = queue.pop(0) nodes = graph[vertex] for w in nodes: if w not in seen: queue.append(w) seen.add(w) parrent[w] = vertex print(vertex) return parrentdef DFS(graph, s): # 队列先进先出 stack=[] stack.append(s) seen = set()# 代表这个东西是个set seen.add(s) while(len(stack)&gt;0): vertex = stack.pop() nodes = graph[vertex] for w in nodes: if w not in seen: stack.append(w) seen.add(w) print(vertex)DFS(graph,"E")parrent = BFS(graph,'E')for key in parrent: print(key,parrent[key])v = "B"count=-1while v!= None: print(v) v = parrent[v] count+=1print("count: &#123;&#125; 次".format(count))]]></content>
+      <categories>
+        <category>programs</category>
+        <category>algorithm</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[dynamic planning]]></title>
+    <url>%2F2019%2F11%2F17%2Fdynamic%2F</url>
+    <content type="text"><![CDATA[12345678910111213arr= [1,2,4,1,7,8,3]def rec_opt(arr,i): if i == 0: return arr[0] elif i == 1: return max(arr[0],arr[1]) else: A = rec_opt(arr,i-2)+arr[i] B = rec_opt(arr,i-1) return max(A,B) print(rec_opt(arr,6)) 递归会产生很多的重叠的子问题，运算规模2^n123456789101112131415#非递归的方法import numpy as npdef dp_opt(arr): opt = np.zeros(len(arr)) opt[0] = arr[0] opt[1] = max(arr[0], arr[1]) for i in range(2, len(arr)): A = opt[i-2] +arr[i] B = opt[i-1] opt[i] = max(A,B) return opt[len(arr)-1]dp_opt(arr) 123456789101112131415arr = [3,34,4,12,5,2]def rec_subset(arr, i,s): if s == 0: return True elif i == 0: return arr[0] == s elif arr[i]&gt;s: return rec_subset(arr,i-1,s) else: A= rec_subset(arr,i-1, s-arr[i]) B = rec_subset(arr, i-1,s) return A or Brec_subset(arr, len(arr)-1,9)~ 123456789101112131415161718# 非递归的方法，用二维数组来保存def dp_subset(arr,s): subset = np.zeros((len(arr),s+1),dtype=bool) subset[:,0] = True subset[0,:] = Fasle subset[0,arr[0]] = True for i in range(1,len(arr)): for ss in range(1,s+1): if arr[i]&gt; ss: subset[i,ss] = subset[i-1,ss] else: A= subset(i-1, s-arr[i]) B = subset(i-1,s) subset[i,s] = A or B r ,c =subset.shape return subset[r-1,c-1]rec_subset(arr, len(arr)-1,9)]]></content>
+      <categories>
+        <category>programs</category>
+        <category>algorithm</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Duplicate]]></title>
     <url>%2F2019%2F11%2F17%2FDuplicate%2F</url>
     <content type="text"><![CDATA[是否存在相同元素，python3用字典的方式解决12345678910111213class Solution(object): def containsDuplicate(self, nums): """ :type nums: List[int] :rtype: bool """ # 方法3：数字存字典 dic = &#123;&#125; for i in nums: dic[i] = dic.get(i, 0) + 1 if dic[i] &gt; 1: return True return False 最长回文子串1234567891011121314151617181920212223242526272829class Solution: def longestPalindrome(self, s: str) -&gt; str: # 两种判断条件 # DP 动态规划 # CABAC # B # ABA # CABAC palindrome = '' for i in range(len(s)): aa1 = self.getlongestpalindrome(s,i,i) len1 = len(aa1) if len1&gt;len(palindrome): palindrome = aa1 aa2 = self.getlongestpalindrome(s,i,i+1) len2 = len(aa2) if len2&gt;len(palindrome): palindrome = aa2 return palindrome def getlongestpalindrome(self, s, l, r): while l &gt;= 0 and r&lt;len(s) and s[l]==s[r]: l -= 1 r += 1 return s[l+1:r]~ 123456789101112131415class Solution: def containsNearbyDuplicate(self, nums: List[int], k: int) -&gt; bool: # 用dictionary来做比较容易一点 lookup = &#123;&#125; for i , num in enumerate(nums): if num not in lookup: lookup[num] = i # 将num存到dic里面 else: if i-lookup[num]&lt;=k: return True lookup[num] = i return False ~]]></content>
@@ -858,17 +884,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[firstblog]]></title>
-    <url>%2F2019%2F07%2F25%2Ffirstblog%2F</url>
-    <content type="text"><![CDATA[以上是摘要 Hello World]]></content>
-      <categories>
-        <category>dailylife</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[c++中级教程 STL stack]]></title>
     <url>%2F2019%2F07%2F25%2FSTL-stack%2F</url>
     <content type="text"><![CDATA[STL stack (堆) 栈： LIFO 后进先出 自适应容器（容器适配器） 栈适配器 STL stack1234567stack&lt;int, deque&lt;int&gt;&gt; s;stack&lt;int, vector&lt;int&gt;&gt; s;stack&lt;int, list&lt;int&gt;&gt; s;s.empty()s.size()s.pop()s.push(item) 123456789101112131415161718192021222324252627282930313233343536373839404142434445// stack1.cpp : 定义控制台应用程序的入口点。//#include "stdafx.h"#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;list&gt;#include &lt;stack&gt;using namespace std;int main()&#123; stack&lt;int, deque&lt;int&gt;&gt; a; stack&lt;int, vector&lt;int&gt;&gt; b; stack&lt;int, list&lt;int&gt;&gt; c; stack&lt;int&gt; d; //默认用deque //什么是堆栈？ 先进后出，后进先出 d.push(25); d.push(10); d.push(1); d.push(5); int x = 0; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; while (d.empty() == false) &#123; x = d.top(); //查看数据并且返回 d.pop();//删除，不返回 cout &lt;&lt; x &lt;&lt; endl; &#125; //x = d.top(); //查看数据并且返回 //d.pop();//删除，不返回 //cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; "现在栈里一共有：" &lt;&lt; d.size() &lt;&lt; "个数据。" &lt;&lt; endl; system("pause"); return 0;&#125;现在栈里一共有：4个数据。511025现在栈里一共有：0个数据。请按任意键继续. . .]]></content>
@@ -888,6 +903,17 @@
       </categories>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[firstblog]]></title>
+    <url>%2F2019%2F07%2F25%2Ffirstblog%2F</url>
+    <content type="text"><![CDATA[以上是摘要 Hello World]]></content>
+      <categories>
+        <category>dailylife</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
       </tags>
   </entry>
 </search>

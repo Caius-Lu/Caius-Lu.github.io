@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-11-26T14:32:20.716Z</updated>
+  <updated>2019-11-26T14:37:13.587Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -21,9 +21,17 @@
     <link href="https://caius-lu.github.io/2019/11/26/GAN/"/>
     <id>https://caius-lu.github.io/2019/11/26/GAN/</id>
     <published>2019-11-26T14:30:15.000Z</published>
-    <updated>2019-11-26T14:32:20.716Z</updated>
+    <updated>2019-11-26T14:37:13.587Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;对抗生成网络-GAN-Generative-Adversarial-Nets&quot;&gt;&lt;a href=&quot;#对抗生成网络-GAN-Generative-Adversarial-Nets&quot; class=&quot;headerlink&quot; title=&quot;对抗生成网络
+        
+      
     
     </summary>
     
@@ -31,12 +39,12 @@
     
       <category term="python" scheme="https://caius-lu.github.io/categories/tensorflow/python/"/>
     
-      <category term="Deep Learning" scheme="https://caius-lu.github.io/categories/tensorflow/python/Deep-Learning/"/>
+      <category term="GAN" scheme="https://caius-lu.github.io/categories/tensorflow/python/GAN/"/>
     
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
       <category term="tensorflow" scheme="https://caius-lu.github.io/tags/tensorflow/"/>
+    
+      <category term="GAN" scheme="https://caius-lu.github.io/tags/GAN/"/>
     
   </entry>
   

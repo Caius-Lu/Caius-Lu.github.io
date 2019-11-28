@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-11-26T14:41:03.087Z</updated>
+  <updated>2019-11-28T13:10:47.626Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>隐马尔可夫HMM</title>
+    <link href="https://caius-lu.github.io/2019/11/28/HMM/"/>
+    <id>https://caius-lu.github.io/2019/11/28/HMM/</id>
+    <published>2019-11-28T08:13:34.000Z</published>
+    <updated>2019-11-28T13:10:47.626Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;马尔科夫模型&quot;&gt;&lt;a href=&quot;#马尔科夫模型&quot; class=&quot;headerlink&quot; title=&quot;马尔科夫模型&quot;&gt;&lt;/a&gt;马尔科夫模型&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;状态之间可以发生转换，昨天和今天转换的情况：&lt;script type=&quot;math/tex;
+        
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="https://caius-lu.github.io/categories/Machine-Learning/"/>
+    
+      <category term="python" scheme="https://caius-lu.github.io/categories/Machine-Learning/python/"/>
+    
+    
+      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>GAN</title>
@@ -570,29 +599,6 @@
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
     
       <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zhongjie</title>
-    <link href="https://caius-lu.github.io/2019/09/30/zhongjie/"/>
-    <id>https://caius-lu.github.io/2019/09/30/zhongjie/</id>
-    <published>2019-09-30T06:05:21.000Z</published>
-    <updated>2019-09-30T06:39:24.797Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;一切终止于今天吧！&lt;/p&gt;
-
-        
-      
-    
-    </summary>
-    
     
   </entry>
   

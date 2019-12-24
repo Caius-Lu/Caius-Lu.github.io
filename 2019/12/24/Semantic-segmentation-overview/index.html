@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script>
+(function(){
+    if(''){
+        if (prompt('请输入文章密码') !== ''){
+            alert('密码错误！');
+            history.back();
+        }
+    }
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="语义分割是近年来出现的基本问题之一，因此成为计算机视觉和机器学习领域的热门话题。 通用语义分割图像集 PASCAL Visual Object Classes (VOC) Common Objects in Context (COCO)With 200K labelled images, 1.5 million object instances, and 80object categories O">
+<meta name="keywords" content="Deep Learning,论文阅读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Semantic_segmentation_overview">
+<meta property="og:url" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/index.html">
+<meta property="og:site_name" content="一只程序猿的小小博客">
+<meta property="og:description" content="语义分割是近年来出现的基本问题之一，因此成为计算机视觉和机器学习领域的热门话题。 通用语义分割图像集 PASCAL Visual Object Classes (VOC) Common Objects in Context (COCO)With 200K labelled images, 1.5 million object instances, and 80object categories O">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/1.png">
+<meta property="og:image" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/ed.png">
+<meta property="og:image" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/spp.png">
+<meta property="og:image" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/dc.png">
+<meta property="og:updated_time" content="2019-12-24T13:07:47.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Semantic_segmentation_overview">
+<meta name="twitter:description" content="语义分割是近年来出现的基本问题之一，因此成为计算机视觉和机器学习领域的热门话题。 通用语义分割图像集 PASCAL Visual Object Classes (VOC) Common Objects in Context (COCO)With 200K labelled images, 1.5 million object instances, and 80object categories O">
+<meta name="twitter:image" content="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一只程序猿的小小博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Semantic_segmentation_overview | 一只程序猿的小小博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Caius-Lu" class="github-corner" aria-label="View source on GitHub">
+<svg width="80" height="80" viewbox="0 0 250 250" style="fill:#64CEAA; 
+color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z">
+</path>
+<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px)
+{.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一只程序猿的小小博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">努力热爱生活</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Semantic_segmentation_overview
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-24 14:34:27 / 修改时间：21:07:47" itemprop="dateCreated datePublished" datetime="2019-12-24T14:34:27+08:00">2019-12-24</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语义分割/" itemprop="url" rel="index"><span itemprop="name">语义分割</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>语义分割是近年来出现的基本问题之一，因此成为计算机视觉和机器学习领域的热门话题。</p>
+<h4 id="通用语义分割图像集"><a href="#通用语义分割图像集" class="headerlink" title="通用语义分割图像集"></a>通用语义分割图像集</h4><ul>
+<li>PASCAL Visual Object Classes (VOC)</li>
+<li>Common Objects in Context (COCO)<br>With 200K labelled images, 1.5 million object instances, and 80<br>object categories</li>
+<li>Other General Purpose Semantic Segmentation Image Sets</li>
+<li>YouTube-Objects</li>
+<li>SIFT-flow<h4 id="Urban-Street-Semantic-Segmentation-Image-Sets"><a href="#Urban-Street-Semantic-Segmentation-Image-Sets" class="headerlink" title="Urban Street Semantic Segmentation Image Sets"></a>Urban Street Semantic Segmentation Image Sets</h4></li>
+<li>Cityscapes</li>
+<li>CamVid</li>
+<li>KITTI</li>
+<li>SYNTHIA<h2 id="Before-Fully-Convolutional-Networks"><a href="#Before-Fully-Convolutional-Networks" class="headerlink" title="Before Fully Convolutional Networks"></a>Before Fully Convolutional Networks</h2><h3 id="Pre-Deep-Learning-Approaches"><a href="#Pre-Deep-Learning-Approaches" class="headerlink" title="Pre-Deep Learning Approaches"></a>Pre-Deep Learning Approaches</h3>传统图像分割与语义分割的区别在于语义特征在图像分割过程中的应用。传统的图像分割方法，如阈值、聚类和区域增长等(有关传统图像分割技术的调查，请参阅[29])使用手工制作的低级特征(即在图像中定位物体的边界。因此，在需要图像语义信息进行像素级分割的情况下，例如在相似物体相互遮挡的情况下，这些方法是必要的。<br>关于深度CNNs流行之前的语义分割工作，有多种方法[30,31，<br>32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]使用的图形模型，如马尔可夫随机域(MRF)，条件<br>随机场(CRF)或基于森林(有时被称为“整体”)的方法，以便在像素级找到场景标签。其主要思想是通过观察相邻像素之间的依赖关系来找到一个推论。换句话说，这些方法将图像的语义建模为相邻像素之间的一种“先验”信息。<br>另一组研究，有时被称为“分层模型”[44,45,46]，使用一个预先训练的和独立的对象探测器的组合，以便从图像中提取语义信息。由于单个的对象检测器未能正确地对区域进行分类，或者由于这些方法受到“手工选择”的检测器库所提供的对象类的有限数量的限制，因此与当今最先进的方法相比，它们的性能相对较低。<br>虽然上述的前深度学习时代的方法不再是首选的分割方法，一些图形模型，特别是CRFs，目前正在使用的最先进的方法作为后处理(细化)层，目的是提高语义分割的性能，具体细节将在下一节中讨论<h3 id="Refinement-Methods"><a href="#Refinement-Methods" class="headerlink" title="Refinement Methods"></a>Refinement Methods</h3>深度神经网络具有很强的局部特征提取能力。然而，它们缺乏利用全局上下文信息的能力，因此无法对相邻像素预测之间的交互进行建模。另一方面，前深度学习时代流行的分割方法，图形模型，非常适合这类任务。这就是为什么它们目前被用作许多深度基于cnn的语义分割架构的细化层。<br>正如在前一节中提到的，使用图形模型进行分割背后的思想是通过观察相邻像素之间的低层次关系来寻找一个推论。在图2中，可以看到使用基于图形模型的细分对分割结果的影响。分类器(见图2.b)不能正确分割不同类标签相邻的像素。在本例中，我们使用基于crf的细分[42]来改进像素级的分割结果。基于crf的方法被广泛用于深度语义分割方法的细化<br>CRFs[50]是一种有区别的无向概率图形模型。它们被用来对观测之间已知的关系进行编码，并构建一致的解释。它们用作细化层的原因是，与不考虑相邻像素相似性的离散分类器不同，CRF可以利用这些信息。与其他图形化模型(如隐马尔科夫模型)相比，CRFs的主要优点是它们的条件性质和避免标签偏差[50]问题的能力。尽管有相当数量的方法(见表1)使用CRFs进行细化，但这些模型在相对较新的方法中开始变得不受欢迎，因为它们的速度非常慢，而且非常难以优化。<h2 id="Early-Deep-Learning-Approaches"><a href="#Early-Deep-Learning-Approaches" class="headerlink" title="Early Deep Learning Approaches"></a>Early Deep Learning Approaches</h2>FCN在2014年出现，使用tanh 相较于proposal of a ReLU layer 很难去区分，因此，训练这样的系统被认为是不适合计算的，甚至对大规模数据是不可行的。然而，第一个成熟的方法只是简单地尝试转换分类网络，如AlexNet和VGG通过微调全连接层来细分网络。他们在训练阶段遭受了过度拟合和完全连接层的时间限制。此外，使用的CNNs不够深，无法创建抽象的特征，这与图像的语义有关。在一些早期的深度学习研究中，研究人员拒绝使用完全连接的层来进行决策，而是使用不同的结构，如周期性的架构[57]或使用来自一个单独计算的分段家族的标记。通过提出全连接层FCN这样的结构的必要性的第一个迹象，不出所料，它们被FCN取代。<br>由于他们的分割结果被认为是不令人满意的，这些研究通常使用一个细化的过程，要么作为一个后处理层[52,53,54,56]，或作为一个替代架构，以完全连接的决策层<br>Refinement methods varied such as Markov random fields，nearest neighbour-based approach，使用校准层[54]，使用超级像素[55,56]，或普通CNNs的递归网络。细化层仍然被后fcn方法所使用，其目的是提高类交叉区域的像素级标记性能。<br>tips: 4FCN [11] ] was officially published in 2017. However the same group first shared the idea online as pre-printed literature in 014 [51].</li>
+</ul>
+<h2 id="Fully-Convolutional-Networks-for-Semantic-Segmentation"><a href="#Fully-Convolutional-Networks-for-Semantic-Segmentation" class="headerlink" title="Fully Convolutional Networks for Semantic Segmentation"></a>Fully Convolutional Networks for Semantic Segmentation</h2><p><img src="//caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/1.png" alt="1"><br>FCN(2017) 提出了从CNNs (DCNN)中拆除全连通层的设想.‘FCN-32s’, ‘FCN16s’, and ‘FCN8s’  all transfer-learnt using the VGG architecture<br>FCN架构在很多方面都被认为是革命性的,</p>
+<ol>
+<li>FCN不包括全连接层</li>
+<li>该结构允许为任何分辨率的图像生成分割图。使用反卷积层，可以将粗深卷积层输出提升到任意分辨率的稠密像素。</li>
+<li>提出了DCNNs的skip架构。跳过架构(或连接)在DCNNs中提供不相邻层之间的链接。仅仅通过对未连接层的输出进行求和或连接，这些连接就可以使信息流动，否则，由于体系结构的选择(如最大池化层或辍学)，这些信息就会丢失。最常见的做法是在max-pooling层之前使用skip连接，它通过选择特定区域的最大值对层输出进行采样。池化层有助于架构创建特性层次，但也会导致局部信息的丢失，而这些局部信息对于语义分割是有价值的，特别是在对象边界。跳过连接通过绕过池化层来保存这些信息并将其转发到更深层。实际上，在[11]中使用跳转连接被认为是相当原始的。“FCN-8s”和“FCN-16s”网络在不同的层包含这些跳过连接。对于相同的架构，即“FCN-4s”和“更密集的跳过连接”。“FCN-2s”也被用于各种应用[61,62]。这一思想最终演变为用于语义分割的编码器-解码器结构[63,27]，下文将对此进行介绍。<h2 id="Post-FCN-Approaches"><a href="#Post-FCN-Approaches" class="headerlink" title="Post-FCN Approaches"></a>Post-FCN Approaches</h2>drawbacks of FCNs： 特性层次结构中标签本地化的低效丢失、无法处理全局上下文知识以及缺乏多尺度处理机制。我们还讨论了语义分割上下文中的尺度不变性，最后讨论了基于对象检测的方法，这是一种新的解决方案，旨在解决同时检测对象实例的语义分割问题。<h3 id="Techniques-for-Fine-grained-Localisation"><a href="#Techniques-for-Fine-grained-Localisation" class="headerlink" title="Techniques for Fine-grained Localisation"></a>Techniques for Fine-grained Localisation</h3>根据定义，语义分割是一个密集的过程，因此它需要在像素级对类标签进行细粒度的本地化。例如，在机器人手术中，语义分割中的像素错误可能会导致生存或死亡的情况。层次特性创建的池(即。，最大池)层可以部分失去本地化。此外，由于他们FCNs完全是卷积性质的，它本身并不具备在图像中对全局上下文信息建模的能力，这在类标签本地化方面也非常有效。因此，这两个问题在本质上和本质上是相互交织的下面我们将讨论旨在克服这些问题和提供更好的本地化的不同方法类的标签。<h4 id="Encoder-Decoder-Architecture"><a href="#Encoder-Decoder-Architecture" class="headerlink" title="Encoder-Decoder Architecture"></a>Encoder-Decoder Architecture</h4><img src="//caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/ed.png" alt="ed"><br>编译码器， 类似U-net，具有开创新的研究。编码器使用池化层逐渐缩减输入数据的空间维度，而解码器通过反卷积层等网络层逐步恢复目标的细节和相应的空间维度。从编码器到解码器之间，通常存在直接的信息连接，来帮助解码器更好地恢复目标细节。<br>U-Net，Seg-Net 都是非常出名的网络。在这种结构中，由编码器部分相邻的低分辨率特征映射提供的强相关语义信息必须经过额外的中间层才能到达相同的译码层。这通常会导致一定程度的信息衰减。<br>然而，U-Net架构已经被证明对于不同应用的分割非常有用，例如卫星图像。<h4 id="Spatial-Pyramid-Pooling-空间金字塔池化"><a href="#Spatial-Pyramid-Pooling-空间金字塔池化" class="headerlink" title="Spatial Pyramid Pooling(空间金字塔池化)"></a>Spatial Pyramid Pooling(空间金字塔池化)</h4><img src="//caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/spp.png" alt="spp"><br>Beyond bags of features: Spatial pyramid matching for recognizing natural scene categories. 在2006年首次被提出， 为的是解决单词袋系统失去了特征之间的空间关系。首次应用在深度学习是2015年的SPPNet这篇文章。无论输入大小如何，都可以在空间金字塔汇聚网络中创建深度特征的空间金字塔表示。SPP-Net最重要的贡献是它允许输入不同大小的数据。不同大小的图像输入到卷积层中，不可避免地会产生不同大小的特征图。然而,如果池化层刚好在决策层之前，具有与输入大小成比例的步长值，则创建特征映射这一层将被固定。CNN中的SPP层构建了不同层次特征之间的关系。因此，它与ED结构中的跳过连接非常相似，后者也允许特性层次结构之间的信息流。：SPP层用于语义分割最常见的用法是在[67]中提出的，比如SPP层被附加到最后一个卷积层，并反馈给像素级分类器。<h4 id="Feature-Concatenation-特征连接"><a href="#Feature-Concatenation-特征连接" class="headerlink" title="Feature Concatenation(特征连接)"></a>Feature Concatenation(特征连接)</h4>这个想法是基于融合从不同来源提取的特征。<h4 id="Dilated-Convolution-扩张卷积，空洞卷积"><a href="#Dilated-Convolution-扩张卷积，空洞卷积" class="headerlink" title="Dilated Convolution(扩张卷积，空洞卷积)"></a>Dilated Convolution(扩张卷积，空洞卷积)</h4><img src="//caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/dc.png" alt="dc"><br>扩展卷积的思想实际上很简单:使用连续的卷积滤波器，一个有效的接收域只能随层线性增长;然而，如果使用在滤波器中有间隙的膨胀卷积(见图4.c)，有效接受域将增长得更快[70]。因此，在没有池或子采样的情况下，创建了卷积层的矩形棱镜。扩张卷积是一种非常有效和强大的方法来详细保存特征图分辨率。缺点在于对GPU存储和计算的要求更高，因为特征图分辨率不会在特征层次结构中缩小。<h4 id="Conditional-Random-Fields-条件随机场"><a href="#Conditional-Random-Fields-条件随机场" class="headerlink" title="Conditional Random Fields(条件随机场)"></a>Conditional Random Fields(条件随机场)</h4>cnn自然缺乏特别的‘关注’类交叉区域的机制。在这些区域周围，通过观察CNN层的相邻feature maps之间的低层关系，使用图形化模型进行推理。因此，图形模型(主要是crf)被用作深度语义分割架构的细化层。与在[72]中一样，CRFs将低级交互与来自多类交互的输出连接起来，并以这种方式构建全局上下文知识。<br>CRFs作为一种细化层，目前存在多种利用CRFs对CNNs进行深度处理的方法，如卷积CRFs[47]、稠密CRF[42]、CRN-as-RNN等[73]。尽管CRFs有助于构建上下文知识，从而在类标签中更好地本地化，表1显示了在“CRF模型”选项卡下分类的CRFs，以便将它们与实际的CNN架构扩展区分开。<h4 id="Recurrent-Approaches"><a href="#Recurrent-Approaches" class="headerlink" title="Recurrent Approaches"></a>Recurrent Approaches</h4>递归神经网络处理时间信息的能力有助于提高分割精度。例如，[74]使用ConvLSTM层来改进图像序列中的语义分割结果。<br>然而，也有一些方法在静态图像上使用循环结构。在[13]中，研究人员利用LSTMchains来缠绕多个尺度，从而得到像素级的分割改进。也有将CNNs和RNNs融合的混合方法。这方面的一个很好的例子是所谓的ReSeg模型[75]，其中，输入图像被馈送到一个类似于vgg的CNN编码器，然后通过递归层(即ReNet架构)进行处理，以便更好地定位像素标签。据我们所知，语义分割不存在单纯的递归结构，这主要是因为语义分割需要一个初步的基于cnn的特征编码方案。<br>目前，有一种特定类型的RNN，即“注意模块”，有增长的趋势。在这些模块中，RNN在技术上融合了注意力[76]，在预测输出序列的某个部分时，将注意力集中在输入的某个区域。因此，它们也被用于语义分割[77,78,79]。</li>
+</ol>
+<h3 id="Scale-Invariance-尺度变化"><a href="#Scale-Invariance-尺度变化" class="headerlink" title="Scale-Invariance(尺度变化)"></a>Scale-Invariance(尺度变化)</h3><p>根据定义，尺度不变性是指一个方法处理输入时不依赖于相对尺度的能力。或图像分辨率。尽管它对于某些应用程序来说是极其重要的，但是这种能力通常被忽视，或者与方法包含多尺度信息的能力相混淆。一种方法可以使用多尺度信息来提高其像素级分割能力，但仍然依赖于尺度或分辨率。</p>
+<p>文献： A SURVEY ON DEEP LEARNING-BASED ARCHITECTURES FOR SEMANTIC SEGMENTATION ON 2D IMAGES</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"> <i class="fa fa-tag"></i>Deep Learning</a>
+          
+            <a href="/tags/论文阅读/" rel="tag"> <i class="fa fa-tag"></i>论文阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/19/二叉树打印/" rel="next" title="二叉树打印">
+                <i class="fa fa-chevron-left"></i> 二叉树打印
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NTU1Ni8yMjA2Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/touxiang.jpg" alt="Chao Lu">
+  
+  <p class="site-author-name" itemprop="name">Chao Lu</p>
+  <div class="site-description motion-element" itemprop="description">hello,every body!~</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/archives/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用语义分割图像集"><span class="nav-text">通用语义分割图像集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Urban-Street-Semantic-Segmentation-Image-Sets"><span class="nav-text">Urban Street Semantic Segmentation Image Sets</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-Fully-Convolutional-Networks"><span class="nav-text">Before Fully Convolutional Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-Deep-Learning-Approaches"><span class="nav-text">Pre-Deep Learning Approaches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refinement-Methods"><span class="nav-text">Refinement Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Early-Deep-Learning-Approaches"><span class="nav-text">Early Deep Learning Approaches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fully-Convolutional-Networks-for-Semantic-Segmentation"><span class="nav-text">Fully Convolutional Networks for Semantic Segmentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Post-FCN-Approaches"><span class="nav-text">Post-FCN Approaches</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Techniques-for-Fine-grained-Localisation"><span class="nav-text">Techniques for Fine-grained Localisation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Encoder-Decoder-Architecture"><span class="nav-text">Encoder-Decoder Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spatial-Pyramid-Pooling-空间金字塔池化"><span class="nav-text">Spatial Pyramid Pooling(空间金字塔池化)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Feature-Concatenation-特征连接"><span class="nav-text">Feature Concatenation(特征连接)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dilated-Convolution-扩张卷积，空洞卷积"><span class="nav-text">Dilated Convolution(扩张卷积，空洞卷积)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Conditional-Random-Fields-条件随机场"><span class="nav-text">Conditional Random Fields(条件随机场)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Recurrent-Approaches"><span class="nav-text">Recurrent Approaches</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scale-Invariance-尺度变化"><span class="nav-text">Scale-Invariance(尺度变化)</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chao Lu</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">
+   由 caius creat
+  </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+   eilot
+  </div> 
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/12/24/Semantic-segmentation-overview/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+
+
+
+
+
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

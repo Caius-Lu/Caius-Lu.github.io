@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-11-28T13:10:47.626Z</updated>
+  <updated>2019-12-24T13:07:47.490Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Semantic_segmentation_overview</title>
+    <link href="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/"/>
+    <id>https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/</id>
+    <published>2019-12-24T06:34:27.000Z</published>
+    <updated>2019-12-24T13:07:47.490Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;语义分割是近年来出现的基本问题之一，因此成为计算机视觉和机器学习领域的热门话题。&lt;/p&gt;
+&lt;h4 id=&quot;通用语义分割图像集&quot;&gt;&lt;a href=&quot;#通用语义分割图像集&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="语义分割" scheme="https://caius-lu.github.io/categories/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/"/>
+    
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
+    
+      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉树打印</title>
+    <link href="https://caius-lu.github.io/2019/12/19/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%93%E5%8D%B0/"/>
+    <id>https://caius-lu.github.io/2019/12/19/二叉树打印/</id>
+    <published>2019-12-19T02:44:47.000Z</published>
+    <updated>2019-12-19T02:54:38.414Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;二叉树按层遍历&quot;&gt;&lt;a href=&quot;#二叉树按层遍历&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>隐马尔可夫HMM</title>
     <link href="https://caius-lu.github.io/2019/11/28/HMM/"/>
     <id>https://caius-lu.github.io/2019/11/28/HMM/</id>
     <published>2019-11-28T08:13:34.000Z</published>
-    <updated>2019-11-28T13:10:47.626Z</updated>
+    <updated>2019-11-28T14:22:25.803Z</updated>
     
     <summary type="html">
     
@@ -520,70 +571,6 @@
         
         
           &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>park停车场项目实战</title>
-    <link href="https://caius-lu.github.io/2019/10/13/park%E5%81%9C%E8%BD%A6%E5%9C%BA%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
-    <id>https://caius-lu.github.io/2019/10/13/park停车场项目实战/</id>
-    <published>2019-10-13T14:09:46.000Z</published>
-    <updated>2019-10-13T14:18:23.324Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;park-类对象&quot;&gt;&lt;a href=&quot;#park-类对象&quot; class=&quot;headerlink&quot; title=&quot;park 类对象&quot;&gt;&lt;/a&gt;park 类对象&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图像处理-1</title>
-    <link href="https://caius-lu.github.io/2019/10/13/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-1/"/>
-    <id>https://caius-lu.github.io/2019/10/13/图像处理-1/</id>
-    <published>2019-10-13T13:50:14.000Z</published>
-    <updated>2019-10-13T14:20:45.340Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;灰度图&quot;&gt;&lt;a href=&quot;#灰度图&quot; class=&quot;headerlink&quot; title=&quot;灰度图&quot;&gt;&lt;/a&gt;灰度图&lt;/h2&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     

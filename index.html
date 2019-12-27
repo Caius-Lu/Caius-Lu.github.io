@@ -364,6 +364,634 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/27/SENet-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/27/SENet-code/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-27 21:44:15 / 修改时间：21:52:45" itemprop="dateCreated datePublished" datetime="2019-12-27T21:44:15+08:00">2019-12-27</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: SENet_code<br>date: 2019-12-27 21:44:15<br>tags: [python]<br>categories:  </p>
+<ul>
+<li>python</li>
+<li>attention</li>
+</ul>
+<p>这里使用 global average pooling 作为 Squeeze 操作。用两个 Fully Connected 层组成一个 Bottleneck 结构去建模通道间的相关性，并输出和输入特征同样数目的权重。将特征维度降低到输入的 1/16，然后经过 ReLu 激活后再通过一个 Fully Connected 层升回到原来的维度。这样做好处在于：1）具有更多的非线性，可以更好地拟合通道间复杂的相关性；2）极大地减少了参数量和计算量。然后通过一个 Sigmoid 的门获得 0~1 之间归一化的权重，最后通过一个 Scale 的操作来将归一化后的权重加权到每个通道的特征上。<br><img src="//caius-lu.github.io/2019/12/27/SENet-code/senet.png" alt="senet"><br> 代码如下：<br> SEnet 模块<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SELayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, channel, reduction=<span class="number">16</span>)</span>:</span></span><br><span class="line">        super(SELayer, self).__init__()</span><br><span class="line">        self.avg_pool = nn.AdaptiveAvgPool2d(<span class="number">1</span>)</span><br><span class="line">        self.fc = nn.Sequential(</span><br><span class="line">            nn.Linear(channel, channel // reduction, bias=<span class="literal">False</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(channel // reduction, channel, bias=<span class="literal">False</span>),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        b, c, _, _ = x.size()</span><br><span class="line">        y = self.avg_pool(x).view(b, c)</span><br><span class="line">        y = self.fc(y).view(b, c, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> x * y. (x)</span><br></pre></td></tr></table></figure></p>
+<p> reset中的block插入senet模块<br> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">CifarSEBasicBlock</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, inplanes, planes, stride=<span class="number">1</span>, reduction=<span class="number">16</span>)</span>:</span></span><br><span class="line">        super(CifarSEBasicBlock, self).__init__()</span><br><span class="line">        self.conv1 = conv3x3(inplanes, planes, stride)</span><br><span class="line">        self.bn1 = nn.BatchNorm2d(planes)</span><br><span class="line">        self.relu = nn.ReLU(inplace=<span class="literal">True</span>)</span><br><span class="line">        self.conv2 = conv3x3(planes, planes)</span><br><span class="line">        self.bn2 = nn.BatchNorm2d(planes)</span><br><span class="line">        self.se = SELayer(planes, reduction)</span><br><span class="line">        <span class="keyword">if</span> inplanes != planes:</span><br><span class="line">            self.downsample = nn.Sequential(nn.Conv2d(inplanes, planes, kernel_size=<span class="number">1</span>, stride=stride, bias=<span class="literal">False</span>),</span><br><span class="line">                                            nn.BatchNorm2d(planes))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.downsample = <span class="keyword">lambda</span> x: x</span><br><span class="line">        self.stride = stride</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        residual = self.downsample(x)</span><br><span class="line">        out = self.conv1(x)</span><br><span class="line">        out = self.bn1(out)</span><br><span class="line">        out = self.relu(out)</span><br><span class="line"></span><br><span class="line">        out = self.conv2(out)</span><br><span class="line">        out = self.bn2(out)</span><br><span class="line">        out = self.se(out)</span><br><span class="line"></span><br><span class="line">        out += residual</span><br><span class="line">        out = self.relu(out)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="comment"># 正常的resent的BasicBlock</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BasicBlock</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, inplanes, planes, stride=<span class="number">1</span>)</span>:</span></span><br><span class="line">        super(BasicBlock, self).__init__()</span><br><span class="line">        self.conv1 = conv3x3(inplanes, planes, stride)</span><br><span class="line">        self.bn1 = nn.BatchNorm2d(planes)</span><br><span class="line">        self.relu = nn.ReLU(inplace=<span class="literal">True</span>)</span><br><span class="line">        self.conv2 = conv3x3(planes, planes)</span><br><span class="line">        self.bn2 = nn.BatchNorm2d(planes)</span><br><span class="line">        <span class="keyword">if</span> inplanes != planes:</span><br><span class="line">            self.downsample = nn.Sequential(nn.Conv2d(inplanes, planes, kernel_size=<span class="number">1</span>, stride=stride, bias=<span class="literal">False</span>),</span><br><span class="line">                                            nn.BatchNorm2d(planes))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.downsample = <span class="keyword">lambda</span> x: x</span><br><span class="line">        self.stride = stride</span><br></pre></td></tr></table></figure></p>
+<p>参考链接：<br><a href="https://github.com/moskomule/senet.pytorch" target="_blank" rel="noopener">https://github.com/moskomule/senet.pytorch</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/27/SpatialSense/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/27/SpatialSense/" class="post-title-link" itemprop="url">SpatialSense</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-27 14:11:38 / 修改时间：14:22:25" itemprop="dateCreated datePublished" datetime="2019-12-27T14:11:38+08:00">2019-12-27</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpatialSense/" itemprop="url" rel="index"><span itemprop="name">SpatialSense</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>理解图像中物体之间的空间关系是一项具有惊人挑战性的任务(图1)。椅子可能“在”一个人的“后面”，即使它出现在人的左边(取决于人面对的方向)。如果有第三个学生在他们之间，那么两个看起来很近的学生实际上可能并不“挨着”。<br>我们介绍了spatial alsense，这是一个专门研究空间关系识别的数据集，它捕捉了广泛的此类挑战，允许对计算机视觉技术进行适当的基准测试。空间感知是通过对抗性的众包来构建的，在众包中，人类注释者的任务是发现空间关系，这些关系很难用简单的线索来预测，比如二维空间结构或语言先验。与现有的数据集相比，对抗性众包大大减少了数据集的偏倚，并在长尾抽取了更有趣的关系样本。在空间感方面，最先进的识别模型与简单的基线相比，表现得更为出色，这表明它们依赖于直接的线索，而不是对这个复杂的任务进行充分的推理。空间感觉基准测试为提高计算机视觉系统的空间推理能力提供了一条途径。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/26/ADVERSARIALAL-AUTOAUGMENT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/26/ADVERSARIALAL-AUTOAUGMENT/" class="post-title-link" itemprop="url">ADVERSARIALAL_AUTOAUGMENT</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-26 15:13:16" itemprop="dateCreated datePublished" datetime="2019-12-26T15:13:16+08:00">2019-12-26</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-27 14:11:59" itemprop="dateModified" datetime="2019-12-27T14:11:59+08:00">2019-12-27</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据增广（DA，data augmentation）已被广泛用于改善训练深度神经网络的泛化性。最近，人为设计的数据增广已逐渐被自动学习的增广策略所取代。通过在精心设计的数据增广搜索空间中找到最佳策略，AutoAugment可以显著提高图像分类任务的验证准确性。但是，这种方法在大规模问题上在计算上并不实用。在本文中，我们开发了一种对抗方法，以得出一种计算上可行的解决方案，称为Adversarial AutoAugment（对抗自动增广），可以同时优化目标相关对象和增广策略搜索损失。增广策略网络试图通过生成对抗性增广策略来增加目标网络的训练损失，而目标网络可以从较难的示例中学习更强大的功能，以提高通用性。与先前的工作相反，我们在目标网络训练中重新使用计算以进行策略评估，而无需对目标网络进行再训练。与AutoAugment相比，这使ImageNet的计算成本降低了约12倍，时间开销缩短了11倍。我们在ImageNet上显示了我们在CIFAR-10 / CIFAR-100上的方法的实验结果，并展示了相对于最新技术的显著性能改进。在CIFAR-10上，我们实现了top-1测试误差为1.36％，这是目前表现最佳的单一模型。在ImageNet上，在没有额外数据的情况下，我们在ResNet-50上达到了top-1精度的领先性能，在ResNet-50-D上达到了80.00％。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/25/Scene-Text-Detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/25/Scene-Text-Detection/" class="post-title-link" itemprop="url">Scene_Text_Detection</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-25 12:05:53" itemprop="dateCreated datePublished" datetime="2019-12-25T12:05:53+08:00">2019-12-25</time>
+            </span>
+          
+
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/12/24/Semantic-segmentation-overview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1500,736 +2128,6 @@ P(I | \lambda)=\pi_{i_{1}} a_{i_{1} i_{2}} a_{i_{2} i_{3}} \ldots a_{i_{T-1}} i_
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/dynamic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/17/dynamic/" class="post-title-link" itemprop="url">dynamic planning</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-17 16:45:19 / 修改时间：16:47:57" itemprop="dateCreated datePublished" datetime="2019-11-17T16:45:19+08:00">2019-11-17</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/dp/" itemprop="url" rel="index"><span itemprop="name">dp</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arr= [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_opt</span><span class="params">(arr,i)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> max(arr[<span class="number">0</span>],arr[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        A = rec_opt(arr,i<span class="number">-2</span>)+arr[i]</span><br><span class="line">        B = rec_opt(arr,i<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">return</span> max(A,B)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">print(rec_opt(arr,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
-<h3 id="递归会产生很多的重叠的子问题，运算规模2-n"><a href="#递归会产生很多的重叠的子问题，运算规模2-n" class="headerlink" title="递归会产生很多的重叠的子问题，运算规模2^n"></a>递归会产生很多的重叠的子问题，运算规模2^n</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#非递归的方法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_opt</span><span class="params">(arr)</span>:</span></span><br><span class="line">    opt = np.zeros(len(arr))</span><br><span class="line">    opt[<span class="number">0</span>] = arr[<span class="number">0</span>]</span><br><span class="line">    opt[<span class="number">1</span>] = max(arr[<span class="number">0</span>], arr[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(arr)):</span><br><span class="line">        A = opt[i<span class="number">-2</span>] +arr[i]</span><br><span class="line">        B = opt[i<span class="number">-1</span>]</span><br><span class="line">        opt[i] = max(A,B)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> opt[len(arr)<span class="number">-1</span>]</span><br><span class="line">dp_opt(arr)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">3</span>,<span class="number">34</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_subset</span><span class="params">(arr, i,s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> s == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>] == s</span><br><span class="line">    <span class="keyword">elif</span> arr[i]&gt;s:</span><br><span class="line">        <span class="keyword">return</span> rec_subset(arr,i<span class="number">-1</span>,s)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        A= rec_subset(arr,i<span class="number">-1</span>, s-arr[i])</span><br><span class="line">        B = rec_subset(arr, i<span class="number">-1</span>,s)</span><br><span class="line">        <span class="keyword">return</span> A <span class="keyword">or</span> B</span><br><span class="line"></span><br><span class="line">rec_subset(arr, len(arr)<span class="number">-1</span>,<span class="number">9</span>)</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 非递归的方法，用二维数组来保存</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_subset</span><span class="params">(arr,s)</span>:</span></span><br><span class="line">    subset = np.zeros((len(arr),s+<span class="number">1</span>),dtype=bool)</span><br><span class="line">    subset[:,<span class="number">0</span>] = <span class="literal">True</span></span><br><span class="line">    subset[<span class="number">0</span>,:] = Fasle</span><br><span class="line">    subset[<span class="number">0</span>,arr[<span class="number">0</span>]] = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(arr)):</span><br><span class="line">        <span class="keyword">for</span> ss <span class="keyword">in</span> range(<span class="number">1</span>,s+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[i]&gt; ss:</span><br><span class="line">                subset[i,ss] = subset[i<span class="number">-1</span>,ss]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                A= subset(i<span class="number">-1</span>, s-arr[i])</span><br><span class="line">                B = subset(i<span class="number">-1</span>,s)</span><br><span class="line">                subset[i,s] = A <span class="keyword">or</span> B</span><br><span class="line">    r ,c  =subset.shape</span><br><span class="line">    <span class="keyword">return</span> subset[r<span class="number">-1</span>,c<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">rec_subset(arr, len(arr)<span class="number">-1</span>,<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/Duplicate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/17/Duplicate/" class="post-title-link" itemprop="url">Duplicate</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-17 16:37:16 / 修改时间：16:38:39" itemprop="dateCreated datePublished" datetime="2019-11-17T16:37:16+08:00">2019-11-17</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>是否存在相同元素，python3用字典的方式解决<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 方法3：数字存字典</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            dic[i] = dic.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> dic[i] &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></p>
-<p> 最长回文子串<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line">        <span class="comment"># 两种判断条件</span></span><br><span class="line">        <span class="comment"># DP 动态规划</span></span><br><span class="line">        <span class="comment"># CABAC</span></span><br><span class="line">        <span class="comment"># B</span></span><br><span class="line">        <span class="comment"># ABA</span></span><br><span class="line">        <span class="comment"># CABAC</span></span><br><span class="line">        palindrome = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            aa1 = self.getlongestpalindrome(s,i,i)</span><br><span class="line">            len1 = len(aa1)</span><br><span class="line">            <span class="keyword">if</span> len1&gt;len(palindrome):</span><br><span class="line">                palindrome = aa1</span><br><span class="line">            aa2 = self.getlongestpalindrome(s,i,i+<span class="number">1</span>)</span><br><span class="line">            len2 = len(aa2)</span><br><span class="line">            <span class="keyword">if</span> len2&gt;len(palindrome):</span><br><span class="line">                palindrome = aa2</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> palindrome</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getlongestpalindrome</span><span class="params">(self, s, l, r)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> l &gt;= <span class="number">0</span> <span class="keyword">and</span> r&lt;len(s) <span class="keyword">and</span> s[l]==s[r]:</span><br><span class="line">            l -= <span class="number">1</span></span><br><span class="line">            r += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> s[l+<span class="number">1</span>:r]</span><br><span class="line"></span><br><span class="line">~</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="comment"># 用dictionary来做比较容易一点</span></span><br><span class="line">        lookup = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i , num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> lookup:</span><br><span class="line">                lookup[num] = i <span class="comment"># 将num存到dic里面</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> i-lookup[num]&lt;=k:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                lookup[num] = i</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">~</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/rnn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/17/rnn/" class="post-title-link" itemprop="url">rnn</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-17 16:32:23 / 修改时间：16:36:42" itemprop="dateCreated datePublished" datetime="2019-11-17T16:32:23+08:00">2019-11-17</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/rnn/" itemprop="url" rel="index"><span itemprop="name">rnn</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="RNN及RNN的几个变体"><a href="#RNN及RNN的几个变体" class="headerlink" title="RNN及RNN的几个变体"></a>RNN及RNN的几个变体</h3><p>序列形的数据不太好用原始的神经网络处理，为了建模序列问题，RNN引入了隐状态h（hidden）的概念，h可以对序列形的数据提取特征，接着转换为输出。</p>
-<p><img src="//caius-lu.github.io/2019/11/17/rnn/h1.jpg" alt="h1"></p>
-<ul>
-<li><p>圆圈或方块表示的是向量</p>
-</li>
-<li><p>一个箭头就表示对该向量做一次变换。如上图中h0和x1分别有一个箭头连接，就表示对h0和x1各做了一次变换</p>
-</li>
-</ul>
-<p><strong>Tips：U、W、b都是一样的，每个步骤的参数都是共享的，这是RNN的重要特点。</strong></p>
-<p><img src="//caius-lu.github.io/2019/11/17/rnn/h2.jpg" alt="h2"><br>依次计算剩下来的（使用相同的参数U、W、b）：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h3.jpg" alt="h3"><br>输出值的方法就是直接通过h进行计算：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h4.jpg" alt="h4"><br><strong>一个箭头就表示对对应的向量做一次类似于f(Wx+b)的变换，这里的这个箭头就表示对h1进行一次变换，得到输出y1</strong><br><img src="//caius-lu.github.io/2019/11/17/rnn/h5.jpg" alt="h5"><br>输入是x1, x2, …..xn，输出为y1, y2, …yn，也就是说，<strong>输入和输出序列必须要是等长的。</strong><br>一些问题适合用经典的RNN结构建模，如：</p>
-<ul>
-<li>计算视频中每一帧的分类标签。因为要对每一帧进行计算，因此输入和输出序列等长。</li>
-<li>输入为字符，输出为下一个字符的概率。这就是著名的Char RNN（详细介绍请参考：The Unreasonable Effectiveness of Recurrent Neural Networks）。</li>
-</ul>
-<h3 id="N-vs-1-多输入单输出"><a href="#N-vs-1-多输入单输出" class="headerlink" title="N vs 1 多输入单输出"></a>N vs 1 多输入单输出</h3><p><img src="//caius-lu.github.io/2019/11/17/rnn/h6.jpg" alt="h6"><br>这种结构通常用来处理序列分类问题。如输入一段文字判别它所属的类别，输入一个句子判断其情感倾向，输入一段视频并判断它的类别等等。</p>
-<h3 id="1-VS-N-单输入多输出"><a href="#1-VS-N-单输入多输出" class="headerlink" title="1 VS N 单输入多输出"></a>1 VS N 单输入多输出</h3><p>输入不是序列而输出为序列的情况怎么处理？我们可以只在序列开始进行输入计算：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h7.jpg" alt="h7"><br>还有一种结构是把输入x作为每个阶段的输入：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h8.jpg" alt="h8"><br> 这种结构处理的问题：</p>
-<ul>
-<li>从图像生成文字（image caption），此时输入的X就是图像的特征，而输出的y序列就是一段句子</li>
-<li>从类别生成语音或音乐等</li>
-</ul>
-<h3 id="N-vs-M"><a href="#N-vs-M" class="headerlink" title="N vs M"></a>N vs M</h3><p>RNN最重要的一个变种：N vs M。这种结构又叫Encoder-Decoder模型，也可以称之为Seq2Seq模型。<br>为此，Encoder-Decoder结构先将输入数据编码成一个上下文向量c：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h9.jpg" alt="h9"><br>c有多种方式，最简单的方法就是把Encoder的最后一个隐状态赋值给c，还可以对最后的隐状态做一个变换得到c，也可以对所有的隐状态做变换。</p>
-<p>拿到c之后，就用另一个RNN网络对其进行解码，这部分RNN网络被称为Decoder。具体做法就是将c当做之前的初始状态h0输入到Decoder中：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h10.jpg" alt="h10"><br>还有一种做法是将c当做每一步的输入：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h11.jpg" alt="h11"><br>Encoder-Decoder结构不限制输入和输出的序列长度，因此应用的范围非常广泛，比如：</p>
-<ul>
-<li>机器翻译。Encoder-Decoder的最经典应用，事实上这一结构就是在机器翻译领域最先提出的</li>
-<li>文本摘要。输入是一段文本序列，输出是这段文本序列的摘要序列</li>
-<li>阅读理解。将输入的文章和问题分别编码，再对其进行解码得到问题的答案。</li>
-<li>语音识别。输入是语音信号序列，输出是文字序列。</li>
-<li>………</li>
-</ul>
-<h2 id="tensorflow-实现RNN"><a href="#tensorflow-实现RNN" class="headerlink" title="tensorflow 实现RNN"></a>tensorflow 实现RNN</h2><h3 id="RNNCell"><a href="#RNNCell" class="headerlink" title="RNNCell"></a>RNNCell</h3><p>RNNCell 是TensorFlow中实现RNN的基本单元，每个RNNCell都有一个call方法，使用方式是：(output, next_state) = call(input, state)<br>借助图片来说可能更容易理解。假设我们有一个初始状态h0，还有输入x1，调用call(x1, h0)后就可以得到(output1, h1)：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h12.jpg" alt="h12"><br>再调用一次call(x2, h1)就可以得到(output2, h2)：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h13.jpg" alt="h13"><br>也就是说，每调用一次RNNCell的call方法，就相当于在时间上“推进了一步”，这就是RNNCell的基本功能。<br>RNNCell只是一个抽象类，其他的RNNcell都会继承该方法，然后具体实现其中的call()函数。主要有state_size和output_size两个属性，分别代表了隐藏层和输出层的维度。然后就是zero_state()和call()两个函数，分别用于初始化初始状态h0为全零向量和定义实际的RNNCell的操作（比如RNN就是一个激活，GRU的两个门，LSTM的三个门控等，不同的RNN的区别主要体现在这个函数）。</p>
-<h4 id="BasicRNNCell"><a href="#BasicRNNCell" class="headerlink" title="BasicRNNCell"></a>BasicRNNCell</h4><p>把state_size和output_size定义成相同，而且ht和output也是相同的<br>最普通的RNN定义方式。也就是说output = new_state = f(W <em> input + U </em> state + B)</p>
-<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><p>相比BasicRNNCell只改变了call函数部分，增加了重置门和更新门两部分，分别由r和u表示。然后c表示要更新的状态值。其对应的公式如如下所示：</p>
-<p>r = f(W1 <em> input + U1 </em> state + B1)r=f(W1∗input+U1∗state+B1)<br>u = f(W2 <em> input + U2 </em> state + B2)u=f(W2∗input+U2∗state+B2)<br>c = f(W3 <em> input + U3 </em> r <em> state + B3)c=f(W3∗input+U3∗r∗state+B3)<br>h_new = u </em> h + (1 - u) * chn​ew=u∗h+(1−u)∗c</p>
-<h4 id="BasicLSTMCell"><a href="#BasicLSTMCell" class="headerlink" title="BasicLSTMCell"></a>BasicLSTMCell</h4><p>相比GRU，LSTM又多了一个输出门，而且又新增添了一个C表示其内部状态，然后将h和c以tuple的形式返回作为LSTM内部的状态变量。</p>
-<p>我们用的时候都是用的它的两个子类BasicRNNCell和BasicLSTMCell。顾名思义，前者是RNN的基础类，后者是LSTM的基础类。看下RNNCell、BasicRNNCell、BasicLSTMCell这三个类的注释部分，应该就可以理解它们的功能了。<br>除了call方法外，对于RNNCell，还有两个类属性比较重要：</p>
-<ul>
-<li>state_size</li>
-<li>output_size<br>前者是隐层的大小，后者是输出的大小。比如我们通常是将一个batch送入模型计算，设输入数据的形状为(batch_size, input_size)，那么计算时得到的隐层状态就是(batch_size, state_size)，输出就是(batch_size, output_size)。<br><img src="//caius-lu.github.io/2019/11/17/rnn/h14.jpg" alt="h14"></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: cell = tf.nn.rnn_cell.BasicRNNCell(num_units=<span class="number">128</span>) <span class="comment"># state_size = 128                                                                                      </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: print(cell.state_size) <span class="comment"># 128                                                                                                                              </span></span><br><span class="line"><span class="number">128</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: inputs = tf.placeholder(np.float32, shape=(<span class="number">32</span>, <span class="number">100</span>)) <span class="comment"># 32 是 batch_size                                                                                   </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: h0 = cell.zero_state(<span class="number">32</span>, np.float32) <span class="comment"># 通过zero_state得到一个全0的初始状态，形状为(batch_size, state_size)                                                </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: output, h1 = cell.call(inputs, h0) <span class="comment">#调用call函数                                                                                                          </span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">AttributeError                            Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-7</span><span class="number">-378</span>fe3b1c400&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 output, h1 = cell.call(inputs, h0) #调用call函数</span><br><span class="line"></span><br><span class="line">~/anaconda3/envs/tensorflow/lib/python3<span class="number">.6</span>/site-packages/tensorflow/python/ops/rnn_cell_impl.py <span class="keyword">in</span> call(self, inputs, state)</span><br><span class="line">    <span class="number">349</span> </span><br><span class="line">    <span class="number">350</span>     gate_inputs = math_ops.matmul(</span><br><span class="line">--&gt; 351         array_ops.concat([inputs, state], 1), self._kernel)</span><br><span class="line">    <span class="number">352</span>     gate_inputs = nn_ops.bias_add(gate_inputs, self._bias)</span><br><span class="line">    <span class="number">353</span>     output = self._activation(gate_inputs)</span><br><span class="line"></span><br><span class="line">AttributeError: <span class="string">'BasicRNNCell'</span> object has no attribute <span class="string">'_kernel'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: output, h1 = cell.__call__(inputs, h0) <span class="comment">#调用call函数                                                                                                      </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: print(h1.shape) <span class="comment"># (32, 128)                                                                                                                               </span></span><br><span class="line">(<span class="number">32</span>, <span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]:</span><br></pre></td></tr></table></figure>
-<p>BasicLSTMCell</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(num_units=<span class="number">128</span>)                                           </span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: inputs = tf.placeholder(np.float32, shape=(<span class="number">32</span>, <span class="number">100</span>)) <span class="comment"># 32 是 batch_size                           </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: h0 = lstm_cell.zero_state(<span class="number">32</span>, np.float32) <span class="comment"># 通过zero_state得到一个全0的初始状态                   </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: output, h1 = lstm_cell.__call__(inputs, h0)                                                       </span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: print(h1.h)  <span class="comment"># shape=(32, 128)                                                                    </span></span><br><span class="line">Tensor(<span class="string">"basic_lstm_cell/Mul_2:0"</span>, shape=(<span class="number">32</span>, <span class="number">128</span>), dtype=float32)</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: print(h1.c)  <span class="comment"># shape=(32, 128)                                                                    </span></span><br><span class="line">Tensor(<span class="string">"basic_lstm_cell/Add_1:0"</span>, shape=(<span class="number">32</span>, <span class="number">128</span>), dtype=float32)</span><br></pre></td></tr></table></figure>
-<p>参考链接：<br><a href="https://zhuanlan.zhihu.com/p/28054589" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28054589</a><br><a href="https://zhuanlan.zhihu.com/p/28196873" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28196873</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/13/文本检测调研/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/13/文本检测调研/" class="post-title-link" itemprop="url">未命名</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-13 12:40:39" itemprop="dateCreated datePublished" datetime="2019-11-13T12:40:39+08:00">2019-11-13</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-29 10:02:07" itemprop="dateModified" datetime="2019-07-29T10:02:07+08:00">2019-07-29</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。<br>而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。</p>
-<h4 id="通常目标跟踪面临的极大难点："><a href="#通常目标跟踪面临的极大难点：" class="headerlink" title="通常目标跟踪面临的极大难点："></a>通常目标跟踪面临的极大难点：</h4><p>物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主要的三个难题分别是目标背景的变化，物体本身的变化，光照强度的变化。</p>
-<h5 id="光流法"><a href="#光流法" class="headerlink" title="光流法"></a>光流法</h5><h5 id="帧间差分法"><a href="#帧间差分法" class="headerlink" title="帧间差分法"></a>帧间差分法</h5><h5 id="背景差分法"><a href="#背景差分法" class="headerlink" title="背景差分法"></a>背景差分法</h5>
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2279,7 +2177,7 @@ P(I | \lambda)=\pi_{i_{1}} a_{i_{1} i_{2}} a_{i_{2} i_{3}} \ldots a_{i_{T-1}} i_
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2380,7 +2278,9 @@ P(I | \lambda)=\pi_{i_{1}} a_{i_{1} i_{2}} a_{i_{2} i_{3}} \ldots a_{i_{T-1}} i_
         
           
         
-        <span class="site-state-item-count">42</span>
+          
+        
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

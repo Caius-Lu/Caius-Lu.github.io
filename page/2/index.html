@@ -364,6 +364,736 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/dynamic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/17/dynamic/" class="post-title-link" itemprop="url">dynamic planning</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-17 16:45:19 / 修改时间：16:47:57" itemprop="dateCreated datePublished" datetime="2019-11-17T16:45:19+08:00">2019-11-17</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/dp/" itemprop="url" rel="index"><span itemprop="name">dp</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arr= [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_opt</span><span class="params">(arr,i)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> max(arr[<span class="number">0</span>],arr[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        A = rec_opt(arr,i<span class="number">-2</span>)+arr[i]</span><br><span class="line">        B = rec_opt(arr,i<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">return</span> max(A,B)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">print(rec_opt(arr,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="递归会产生很多的重叠的子问题，运算规模2-n"><a href="#递归会产生很多的重叠的子问题，运算规模2-n" class="headerlink" title="递归会产生很多的重叠的子问题，运算规模2^n"></a>递归会产生很多的重叠的子问题，运算规模2^n</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#非递归的方法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_opt</span><span class="params">(arr)</span>:</span></span><br><span class="line">    opt = np.zeros(len(arr))</span><br><span class="line">    opt[<span class="number">0</span>] = arr[<span class="number">0</span>]</span><br><span class="line">    opt[<span class="number">1</span>] = max(arr[<span class="number">0</span>], arr[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(arr)):</span><br><span class="line">        A = opt[i<span class="number">-2</span>] +arr[i]</span><br><span class="line">        B = opt[i<span class="number">-1</span>]</span><br><span class="line">        opt[i] = max(A,B)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> opt[len(arr)<span class="number">-1</span>]</span><br><span class="line">dp_opt(arr)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">3</span>,<span class="number">34</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_subset</span><span class="params">(arr, i,s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> s == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>] == s</span><br><span class="line">    <span class="keyword">elif</span> arr[i]&gt;s:</span><br><span class="line">        <span class="keyword">return</span> rec_subset(arr,i<span class="number">-1</span>,s)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        A= rec_subset(arr,i<span class="number">-1</span>, s-arr[i])</span><br><span class="line">        B = rec_subset(arr, i<span class="number">-1</span>,s)</span><br><span class="line">        <span class="keyword">return</span> A <span class="keyword">or</span> B</span><br><span class="line"></span><br><span class="line">rec_subset(arr, len(arr)<span class="number">-1</span>,<span class="number">9</span>)</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 非递归的方法，用二维数组来保存</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_subset</span><span class="params">(arr,s)</span>:</span></span><br><span class="line">    subset = np.zeros((len(arr),s+<span class="number">1</span>),dtype=bool)</span><br><span class="line">    subset[:,<span class="number">0</span>] = <span class="literal">True</span></span><br><span class="line">    subset[<span class="number">0</span>,:] = Fasle</span><br><span class="line">    subset[<span class="number">0</span>,arr[<span class="number">0</span>]] = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(arr)):</span><br><span class="line">        <span class="keyword">for</span> ss <span class="keyword">in</span> range(<span class="number">1</span>,s+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[i]&gt; ss:</span><br><span class="line">                subset[i,ss] = subset[i<span class="number">-1</span>,ss]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                A= subset(i<span class="number">-1</span>, s-arr[i])</span><br><span class="line">                B = subset(i<span class="number">-1</span>,s)</span><br><span class="line">                subset[i,s] = A <span class="keyword">or</span> B</span><br><span class="line">    r ,c  =subset.shape</span><br><span class="line">    <span class="keyword">return</span> subset[r<span class="number">-1</span>,c<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">rec_subset(arr, len(arr)<span class="number">-1</span>,<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/Duplicate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/17/Duplicate/" class="post-title-link" itemprop="url">Duplicate</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-17 16:37:16 / 修改时间：16:38:39" itemprop="dateCreated datePublished" datetime="2019-11-17T16:37:16+08:00">2019-11-17</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>是否存在相同元素，python3用字典的方式解决<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 方法3：数字存字典</span></span><br><span class="line">        dic = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            dic[i] = dic.get(i, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> dic[i] &gt; <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></p>
+<p> 最长回文子串<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s: str)</span> -&gt; str:</span></span><br><span class="line">        <span class="comment"># 两种判断条件</span></span><br><span class="line">        <span class="comment"># DP 动态规划</span></span><br><span class="line">        <span class="comment"># CABAC</span></span><br><span class="line">        <span class="comment"># B</span></span><br><span class="line">        <span class="comment"># ABA</span></span><br><span class="line">        <span class="comment"># CABAC</span></span><br><span class="line">        palindrome = <span class="string">''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            aa1 = self.getlongestpalindrome(s,i,i)</span><br><span class="line">            len1 = len(aa1)</span><br><span class="line">            <span class="keyword">if</span> len1&gt;len(palindrome):</span><br><span class="line">                palindrome = aa1</span><br><span class="line">            aa2 = self.getlongestpalindrome(s,i,i+<span class="number">1</span>)</span><br><span class="line">            len2 = len(aa2)</span><br><span class="line">            <span class="keyword">if</span> len2&gt;len(palindrome):</span><br><span class="line">                palindrome = aa2</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> palindrome</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getlongestpalindrome</span><span class="params">(self, s, l, r)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> l &gt;= <span class="number">0</span> <span class="keyword">and</span> r&lt;len(s) <span class="keyword">and</span> s[l]==s[r]:</span><br><span class="line">            l -= <span class="number">1</span></span><br><span class="line">            r += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> s[l+<span class="number">1</span>:r]</span><br><span class="line"></span><br><span class="line">~</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsNearbyDuplicate</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="comment"># 用dictionary来做比较容易一点</span></span><br><span class="line">        lookup = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i , num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> lookup:</span><br><span class="line">                lookup[num] = i <span class="comment"># 将num存到dic里面</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> i-lookup[num]&lt;=k:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                lookup[num] = i</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/17/rnn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/17/rnn/" class="post-title-link" itemprop="url">rnn</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-17 16:32:23 / 修改时间：16:36:42" itemprop="dateCreated datePublished" datetime="2019-11-17T16:32:23+08:00">2019-11-17</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/rnn/" itemprop="url" rel="index"><span itemprop="name">rnn</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="RNN及RNN的几个变体"><a href="#RNN及RNN的几个变体" class="headerlink" title="RNN及RNN的几个变体"></a>RNN及RNN的几个变体</h3><p>序列形的数据不太好用原始的神经网络处理，为了建模序列问题，RNN引入了隐状态h（hidden）的概念，h可以对序列形的数据提取特征，接着转换为输出。</p>
+<p><img src="//caius-lu.github.io/2019/11/17/rnn/h1.jpg" alt="h1"></p>
+<ul>
+<li><p>圆圈或方块表示的是向量</p>
+</li>
+<li><p>一个箭头就表示对该向量做一次变换。如上图中h0和x1分别有一个箭头连接，就表示对h0和x1各做了一次变换</p>
+</li>
+</ul>
+<p><strong>Tips：U、W、b都是一样的，每个步骤的参数都是共享的，这是RNN的重要特点。</strong></p>
+<p><img src="//caius-lu.github.io/2019/11/17/rnn/h2.jpg" alt="h2"><br>依次计算剩下来的（使用相同的参数U、W、b）：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h3.jpg" alt="h3"><br>输出值的方法就是直接通过h进行计算：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h4.jpg" alt="h4"><br><strong>一个箭头就表示对对应的向量做一次类似于f(Wx+b)的变换，这里的这个箭头就表示对h1进行一次变换，得到输出y1</strong><br><img src="//caius-lu.github.io/2019/11/17/rnn/h5.jpg" alt="h5"><br>输入是x1, x2, …..xn，输出为y1, y2, …yn，也就是说，<strong>输入和输出序列必须要是等长的。</strong><br>一些问题适合用经典的RNN结构建模，如：</p>
+<ul>
+<li>计算视频中每一帧的分类标签。因为要对每一帧进行计算，因此输入和输出序列等长。</li>
+<li>输入为字符，输出为下一个字符的概率。这就是著名的Char RNN（详细介绍请参考：The Unreasonable Effectiveness of Recurrent Neural Networks）。</li>
+</ul>
+<h3 id="N-vs-1-多输入单输出"><a href="#N-vs-1-多输入单输出" class="headerlink" title="N vs 1 多输入单输出"></a>N vs 1 多输入单输出</h3><p><img src="//caius-lu.github.io/2019/11/17/rnn/h6.jpg" alt="h6"><br>这种结构通常用来处理序列分类问题。如输入一段文字判别它所属的类别，输入一个句子判断其情感倾向，输入一段视频并判断它的类别等等。</p>
+<h3 id="1-VS-N-单输入多输出"><a href="#1-VS-N-单输入多输出" class="headerlink" title="1 VS N 单输入多输出"></a>1 VS N 单输入多输出</h3><p>输入不是序列而输出为序列的情况怎么处理？我们可以只在序列开始进行输入计算：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h7.jpg" alt="h7"><br>还有一种结构是把输入x作为每个阶段的输入：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h8.jpg" alt="h8"><br> 这种结构处理的问题：</p>
+<ul>
+<li>从图像生成文字（image caption），此时输入的X就是图像的特征，而输出的y序列就是一段句子</li>
+<li>从类别生成语音或音乐等</li>
+</ul>
+<h3 id="N-vs-M"><a href="#N-vs-M" class="headerlink" title="N vs M"></a>N vs M</h3><p>RNN最重要的一个变种：N vs M。这种结构又叫Encoder-Decoder模型，也可以称之为Seq2Seq模型。<br>为此，Encoder-Decoder结构先将输入数据编码成一个上下文向量c：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h9.jpg" alt="h9"><br>c有多种方式，最简单的方法就是把Encoder的最后一个隐状态赋值给c，还可以对最后的隐状态做一个变换得到c，也可以对所有的隐状态做变换。</p>
+<p>拿到c之后，就用另一个RNN网络对其进行解码，这部分RNN网络被称为Decoder。具体做法就是将c当做之前的初始状态h0输入到Decoder中：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h10.jpg" alt="h10"><br>还有一种做法是将c当做每一步的输入：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h11.jpg" alt="h11"><br>Encoder-Decoder结构不限制输入和输出的序列长度，因此应用的范围非常广泛，比如：</p>
+<ul>
+<li>机器翻译。Encoder-Decoder的最经典应用，事实上这一结构就是在机器翻译领域最先提出的</li>
+<li>文本摘要。输入是一段文本序列，输出是这段文本序列的摘要序列</li>
+<li>阅读理解。将输入的文章和问题分别编码，再对其进行解码得到问题的答案。</li>
+<li>语音识别。输入是语音信号序列，输出是文字序列。</li>
+<li>………</li>
+</ul>
+<h2 id="tensorflow-实现RNN"><a href="#tensorflow-实现RNN" class="headerlink" title="tensorflow 实现RNN"></a>tensorflow 实现RNN</h2><h3 id="RNNCell"><a href="#RNNCell" class="headerlink" title="RNNCell"></a>RNNCell</h3><p>RNNCell 是TensorFlow中实现RNN的基本单元，每个RNNCell都有一个call方法，使用方式是：(output, next_state) = call(input, state)<br>借助图片来说可能更容易理解。假设我们有一个初始状态h0，还有输入x1，调用call(x1, h0)后就可以得到(output1, h1)：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h12.jpg" alt="h12"><br>再调用一次call(x2, h1)就可以得到(output2, h2)：<br><img src="//caius-lu.github.io/2019/11/17/rnn/h13.jpg" alt="h13"><br>也就是说，每调用一次RNNCell的call方法，就相当于在时间上“推进了一步”，这就是RNNCell的基本功能。<br>RNNCell只是一个抽象类，其他的RNNcell都会继承该方法，然后具体实现其中的call()函数。主要有state_size和output_size两个属性，分别代表了隐藏层和输出层的维度。然后就是zero_state()和call()两个函数，分别用于初始化初始状态h0为全零向量和定义实际的RNNCell的操作（比如RNN就是一个激活，GRU的两个门，LSTM的三个门控等，不同的RNN的区别主要体现在这个函数）。</p>
+<h4 id="BasicRNNCell"><a href="#BasicRNNCell" class="headerlink" title="BasicRNNCell"></a>BasicRNNCell</h4><p>把state_size和output_size定义成相同，而且ht和output也是相同的<br>最普通的RNN定义方式。也就是说output = new_state = f(W <em> input + U </em> state + B)</p>
+<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><p>相比BasicRNNCell只改变了call函数部分，增加了重置门和更新门两部分，分别由r和u表示。然后c表示要更新的状态值。其对应的公式如如下所示：</p>
+<p>r = f(W1 <em> input + U1 </em> state + B1)r=f(W1∗input+U1∗state+B1)<br>u = f(W2 <em> input + U2 </em> state + B2)u=f(W2∗input+U2∗state+B2)<br>c = f(W3 <em> input + U3 </em> r <em> state + B3)c=f(W3∗input+U3∗r∗state+B3)<br>h_new = u </em> h + (1 - u) * chn​ew=u∗h+(1−u)∗c</p>
+<h4 id="BasicLSTMCell"><a href="#BasicLSTMCell" class="headerlink" title="BasicLSTMCell"></a>BasicLSTMCell</h4><p>相比GRU，LSTM又多了一个输出门，而且又新增添了一个C表示其内部状态，然后将h和c以tuple的形式返回作为LSTM内部的状态变量。</p>
+<p>我们用的时候都是用的它的两个子类BasicRNNCell和BasicLSTMCell。顾名思义，前者是RNN的基础类，后者是LSTM的基础类。看下RNNCell、BasicRNNCell、BasicLSTMCell这三个类的注释部分，应该就可以理解它们的功能了。<br>除了call方法外，对于RNNCell，还有两个类属性比较重要：</p>
+<ul>
+<li>state_size</li>
+<li>output_size<br>前者是隐层的大小，后者是输出的大小。比如我们通常是将一个batch送入模型计算，设输入数据的形状为(batch_size, input_size)，那么计算时得到的隐层状态就是(batch_size, state_size)，输出就是(batch_size, output_size)。<br><img src="//caius-lu.github.io/2019/11/17/rnn/h14.jpg" alt="h14"></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np                                                                                                                                        </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: cell = tf.nn.rnn_cell.BasicRNNCell(num_units=<span class="number">128</span>) <span class="comment"># state_size = 128                                                                                      </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: print(cell.state_size) <span class="comment"># 128                                                                                                                              </span></span><br><span class="line"><span class="number">128</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: inputs = tf.placeholder(np.float32, shape=(<span class="number">32</span>, <span class="number">100</span>)) <span class="comment"># 32 是 batch_size                                                                                   </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: h0 = cell.zero_state(<span class="number">32</span>, np.float32) <span class="comment"># 通过zero_state得到一个全0的初始状态，形状为(batch_size, state_size)                                                </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: output, h1 = cell.call(inputs, h0) <span class="comment">#调用call函数                                                                                                          </span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">AttributeError                            Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-7</span><span class="number">-378</span>fe3b1c400&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 output, h1 = cell.call(inputs, h0) #调用call函数</span><br><span class="line"></span><br><span class="line">~/anaconda3/envs/tensorflow/lib/python3<span class="number">.6</span>/site-packages/tensorflow/python/ops/rnn_cell_impl.py <span class="keyword">in</span> call(self, inputs, state)</span><br><span class="line">    <span class="number">349</span> </span><br><span class="line">    <span class="number">350</span>     gate_inputs = math_ops.matmul(</span><br><span class="line">--&gt; 351         array_ops.concat([inputs, state], 1), self._kernel)</span><br><span class="line">    <span class="number">352</span>     gate_inputs = nn_ops.bias_add(gate_inputs, self._bias)</span><br><span class="line">    <span class="number">353</span>     output = self._activation(gate_inputs)</span><br><span class="line"></span><br><span class="line">AttributeError: <span class="string">'BasicRNNCell'</span> object has no attribute <span class="string">'_kernel'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: output, h1 = cell.__call__(inputs, h0) <span class="comment">#调用call函数                                                                                                      </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: print(h1.shape) <span class="comment"># (32, 128)                                                                                                                               </span></span><br><span class="line">(<span class="number">32</span>, <span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]:</span><br></pre></td></tr></table></figure>
+<p>BasicLSTMCell</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(num_units=<span class="number">128</span>)                                           </span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: inputs = tf.placeholder(np.float32, shape=(<span class="number">32</span>, <span class="number">100</span>)) <span class="comment"># 32 是 batch_size                           </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: h0 = lstm_cell.zero_state(<span class="number">32</span>, np.float32) <span class="comment"># 通过zero_state得到一个全0的初始状态                   </span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: output, h1 = lstm_cell.__call__(inputs, h0)                                                       </span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: print(h1.h)  <span class="comment"># shape=(32, 128)                                                                    </span></span><br><span class="line">Tensor(<span class="string">"basic_lstm_cell/Mul_2:0"</span>, shape=(<span class="number">32</span>, <span class="number">128</span>), dtype=float32)</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: print(h1.c)  <span class="comment"># shape=(32, 128)                                                                    </span></span><br><span class="line">Tensor(<span class="string">"basic_lstm_cell/Add_1:0"</span>, shape=(<span class="number">32</span>, <span class="number">128</span>), dtype=float32)</span><br></pre></td></tr></table></figure>
+<p>参考链接：<br><a href="https://zhuanlan.zhihu.com/p/28054589" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28054589</a><br><a href="https://zhuanlan.zhihu.com/p/28196873" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/28196873</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/13/文本检测调研/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/13/文本检测调研/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-13 12:40:39" itemprop="dateCreated datePublished" datetime="2019-11-13T12:40:39+08:00">2019-11-13</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-29 10:02:07" itemprop="dateModified" datetime="2019-07-29T10:02:07+08:00">2019-07-29</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>文本检测问题，广义上来说可以看做是一个目标检测的问题，但是相当于目标检测要简单的多。因为目标检测往往除了背景还有其他的类，而文本检测，只需要检测背景和文本类两个问题。因此可以采用目标检测或者分割的方法来进行文本检测。<br>而视频中的文本检测，也可以看做是视频中的目标检测中的一种，感觉应该也可以用视频中的目标检测+跟踪来做。</p>
+<h4 id="通常目标跟踪面临的极大难点："><a href="#通常目标跟踪面临的极大难点：" class="headerlink" title="通常目标跟踪面临的极大难点："></a>通常目标跟踪面临的极大难点：</h4><p>物体变形、亮度变化、快速移动、背景干扰覆盖。其中最主要的三个难题分别是目标背景的变化，物体本身的变化，光照强度的变化。</p>
+<h5 id="光流法"><a href="#光流法" class="headerlink" title="光流法"></a>光流法</h5><h5 id="帧间差分法"><a href="#帧间差分法" class="headerlink" title="帧间差分法"></a>帧间差分法</h5><h5 id="背景差分法"><a href="#背景差分法" class="headerlink" title="背景差分法"></a>背景差分法</h5>
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/11/04/Python：logging模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1383,778 +2113,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/10/17/tensorflow自定义网络模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/17/tensorflow自定义网络模型/" class="post-title-link" itemprop="url">tensorflow自定义网络模型</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-17 13:30:47" itemprop="dateCreated datePublished" datetime="2019-10-17T13:30:47+08:00">2019-10-17</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-18 09:43:51" itemprop="dateModified" datetime="2019-10-18T09:43:51+08:00">2019-10-18</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tensorflow/" itemprop="url" rel="index"><span itemprop="name">tensorflow</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tensorflow/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tensorflow/python/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Slim"><a href="#Slim" class="headerlink" title="Slim"></a>Slim</h2><p>TF-Slim 模块是 TensorFlow 中最好用的 API 之一。尤其是里面引入的 arg_scope、model_variables、repeat、stack。<br>TF-Slim 是 TensorFlow 中一个用来构建、训练、评估复杂模型的轻量化库。TF-Slim 模块可以和 TensorFlow 中其它API混合使用。</p>
-<h3 id="Slim模块的导入"><a href="#Slim模块的导入" class="headerlink" title="Slim模块的导入"></a>Slim模块的导入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow.contrib.slim <span class="keyword">as</span> slim</span><br></pre></td></tr></table></figure>
-<h3 id="Slim-构建模型"><a href="#Slim-构建模型" class="headerlink" title="Slim 构建模型"></a>Slim 构建模型</h3><p>可以用 slim、variables、layers 和 scopes 来十分简洁地定义模型。下面对各个部分进行了详细描述：</p>
-<h4 id="Slim变量（Variables）"><a href="#Slim变量（Variables）" class="headerlink" title="Slim变量（Variables）"></a>Slim变量（Variables）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">weights = slim.variable(<span class="string">'weights'</span>,</span><br><span class="line">                        shape=[<span class="number">10</span>, <span class="number">10</span>, <span class="number">3</span> , <span class="number">3</span>],</span><br><span class="line">                        initializer=tf.truncated_normal_initializer(stddev=<span class="number">0.1</span>),</span><br><span class="line">                        regularizer=slim.l2_regularizer(<span class="number">0.05</span>),</span><br><span class="line">                        device=<span class="string">'/CPU:0'</span>)</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
-<h4 id="Slim-层（Layers）"><a href="#Slim-层（Layers）" class="headerlink" title="Slim 层（Layers）"></a>Slim 层（Layers）</h4><p>使用基础（plain）的 TensorFlow 代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">input = ...</span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'conv1_1'</span>) <span class="keyword">as</span> scope:</span><br><span class="line">  kernel = tf.Variable(tf.truncated_normal([<span class="number">3</span>, <span class="number">3</span>, <span class="number">64</span>, <span class="number">128</span>], dtype=tf.float32,</span><br><span class="line">                                           stddev=<span class="number">1e-1</span>), name=<span class="string">'weights'</span>)</span><br><span class="line">  conv = tf.nn.conv2d(input, kernel, [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br><span class="line">  biases = tf.Variable(tf.constant(<span class="number">0.0</span>, shape=[<span class="number">128</span>], dtype=tf.float32),</span><br><span class="line">                       trainable=<span class="literal">True</span>, name=<span class="string">'biases'</span>)</span><br><span class="line">  bias = tf.nn.bias_add(conv, biases)</span><br><span class="line">  conv1 = tf.nn.relu(bias, name=scope)</span><br></pre></td></tr></table></figure></p>
-<p>为了避免代码的重复。Slim 提供了很多方便的神经网络 layers 的高层 op。例如：与上面的代码对应的 Slim 版的代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input = ...</span><br><span class="line">net = slim.conv2d(input, <span class="number">128</span>, [<span class="number">3</span>, <span class="number">3</span>], scope=<span class="string">'conv1_1'</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="slim-arg-scope（）-函数的使用"><a href="#slim-arg-scope（）-函数的使用" class="headerlink" title="slim.arg_scope（） 函数的使用"></a>slim.arg_scope（） 函数的使用</h3><p>这个函数的作用是给list_ops中的内容设置默认值。但是每个list_ops中的每个成员需要用@add_arg_scope修饰才行。所以使用slim.arg_scope（）有两个步骤：</p>
-<ul>
-<li>使用@slim.add_arg_scope修饰目标函数</li>
-<li>用 slim.arg_scope（）为目标函数设置默认参数.<br>例如如下代码；首先用@slim.add_arg_scope修饰目标函数fun1（），然后利用slim.arg_scope（）为它设置默认参数。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">slim =tf.contrib.slim</span><br><span class="line"> </span><br><span class="line"><span class="meta">@slim.add_arg_scope</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">(a=<span class="number">0</span>,b=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (a+b)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">with</span> slim.arg_scope([fun1],a=<span class="number">10</span>):</span><br><span class="line">    x=fun1(b=<span class="number">30</span>)</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>运行结果:40<br>参考链接：<br><a href="https://blog.csdn.net/u013921430/article/details/80915696" target="_blank" rel="noopener">https://blog.csdn.net/u013921430/article/details/80915696</a></p>
-<h3 id="其他用法见参考链接"><a href="#其他用法见参考链接" class="headerlink" title="其他用法见参考链接"></a>其他用法见参考链接</h3><p><a href="https://blog.csdn.net/wanttifa/article/details/90208398" target="_blank" rel="noopener">https://blog.csdn.net/wanttifa/article/details/90208398</a></p>
-<h2 id="查看ckpt中变量的几种方法"><a href="#查看ckpt中变量的几种方法" class="headerlink" title="查看ckpt中变量的几种方法"></a>查看ckpt中变量的几种方法</h2><p>查看ckpt中变量的方法有三种：</p>
-<ul>
-<li>在有model的情况下，使用tf.train.Saver进行restore</li>
-<li>使用tf.train.NewCheckpointReader直接读取ckpt文件，这种方法不需要model。</li>
-<li>使用tools里的freeze_graph来读取ckpt<br>Tips:</li>
-<li>如果模型保存为.ckpt的文件，则使用该文件就可以查看.ckpt文件里的变量。ckpt路径为 model.ckpt</li>
-<li>如果模型保存为.ckpt-xxx-data (图结构)、.ckpt-xxx.index (参数名)、.ckpt-xxx-meta (参数值)文件，则需要同时拥有这三个文件才行。并且ckpt的路径为 model.ckpt-xxx<h3 id="1-基于model来读取ckpt文件里的变量"><a href="#1-基于model来读取ckpt文件里的变量" class="headerlink" title="1.基于model来读取ckpt文件里的变量"></a>1.基于model来读取ckpt文件里的变量</h3>1.首先建立起model<br>2.从ckpt中恢复变量<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.Graph().as_default() <span class="keyword">as</span> g: </span><br><span class="line">  <span class="comment">#建立model</span></span><br><span class="line">  images, labels = cifar10.inputs(eval_data=eval_data) </span><br><span class="line">  logits = cifar10.inference(images) </span><br><span class="line">  top_k_op = tf.nn.in_top_k(logits, labels, <span class="number">1</span>) </span><br><span class="line">  <span class="comment">#从ckpt中恢复变量</span></span><br><span class="line">  sess = tf.Session()</span><br><span class="line">  saver = tf.train.Saver() <span class="comment">#saver = tf.train.Saver(...variables...) # 恢复部分变量时，只需要在Saver里指定要恢复的变量</span></span><br><span class="line">  save_path = <span class="string">'ckpt的路径'</span></span><br><span class="line">  saver.restore(sess, save_path) <span class="comment"># 从ckpt中恢复变量</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>注意：基于model来读取ckpt中变量时，model和ckpt必须匹配。</p>
-<h3 id="2-使用tf-train-NewCheckpointReader直接读取ckpt文件里的变量，使用tools-inspect-checkpoint里的print-tensors-in-checkpoint-file函数打印ckpt里的东西"><a href="#2-使用tf-train-NewCheckpointReader直接读取ckpt文件里的变量，使用tools-inspect-checkpoint里的print-tensors-in-checkpoint-file函数打印ckpt里的东西" class="headerlink" title="2.使用tf.train.NewCheckpointReader直接读取ckpt文件里的变量，使用tools.inspect_checkpoint里的print_tensors_in_checkpoint_file函数打印ckpt里的东西"></a>2.使用tf.train.NewCheckpointReader直接读取ckpt文件里的变量，使用tools.inspect_checkpoint里的print_tensors_in_checkpoint_file函数打印ckpt里的东西</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用NewCheckpointReader来读取ckpt里的变量</span></span><br><span class="line"><span class="keyword">from</span> tensorflow.python <span class="keyword">import</span> pywrap_tensorflow</span><br><span class="line">checkpoint_path = os.path.join(model_dir, <span class="string">"model.ckpt"</span>)</span><br><span class="line">reader = pywrap_tensorflow.NewCheckpointReader(checkpoint_path) <span class="comment">#tf.train.NewCheckpointReader</span></span><br><span class="line">var_to_shape_map = reader.get_variable_to_shape_map()</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> var_to_shape_map:</span><br><span class="line">  print(<span class="string">"tensor_name: "</span>, key)</span><br><span class="line">  <span class="comment">#print(reader.get_tensor(key))</span></span><br><span class="line"><span class="comment">#使用print_tensors_in_checkpoint_file打印ckpt里的内容</span></span><br><span class="line"><span class="keyword">from</span> tensorflow.python.tools.inspect_checkpoint <span class="keyword">import</span> print_tensors_in_checkpoint_file</span><br><span class="line"></span><br><span class="line">print_tensors_in_checkpoint_file(file_name, <span class="comment">#ckpt文件名字</span></span><br><span class="line">                 tensor_name, <span class="comment"># 如果为None,则默认为ckpt里的所有变量</span></span><br><span class="line">                 all_tensors, <span class="comment"># bool 是否打印所有的tensor，这里打印出的是tensor的值，一般不推荐这里设置为False</span></span><br><span class="line">                 all_tensor_names) <span class="comment"># bool 是否打印所有的tensor的name</span></span><br><span class="line"><span class="comment">#上面的打印ckpt的内部使用的是pywrap_tensorflow.NewCheckpointReader所以要掌握NewCheckpointReader</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-使用tools里的freeze-graph来读取ckpt"><a href="#3-使用tools里的freeze-graph来读取ckpt" class="headerlink" title="3.使用tools里的freeze_graph来读取ckpt"></a>3.使用tools里的freeze_graph来读取ckpt</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.python.tools <span class="keyword">import</span> freeze_graph</span><br><span class="line"></span><br><span class="line">freeze_graph(input_graph, <span class="comment">#=some_graph_def.pb</span></span><br><span class="line">       input_saver, </span><br><span class="line">       input_binary, </span><br><span class="line">       input_checkpoint, <span class="comment">#=model.ckpt</span></span><br><span class="line">       output_node_names, <span class="comment">#=softmax</span></span><br><span class="line">       restore_op_name, </span><br><span class="line">       filename_tensor_name, </span><br><span class="line">       output_graph, <span class="comment">#='./tmp/frozen_graph.pb'</span></span><br><span class="line">       clear_devices, </span><br><span class="line">       initializer_nodes, </span><br><span class="line">       variable_names_whitelist=<span class="string">''</span>, </span><br><span class="line">       variable_names_blacklist=<span class="string">''</span>, </span><br><span class="line">       input_meta_graph=<span class="literal">None</span>, </span><br><span class="line">       input_saved_model_dir=<span class="literal">None</span>, </span><br><span class="line">       saved_model_tags=<span class="string">'serve'</span>, </span><br><span class="line">       checkpoint_version=<span class="number">2</span>)</span><br><span class="line"><span class="comment">#freeze_graph_test.py讲述了怎么使用freeze_grapg。</span></span><br></pre></td></tr></table></figure>
-<p>参考链接：<br><a href="https://www.jb51.net/article/142183.htm" target="_blank" rel="noopener">https://www.jb51.net/article/142183.htm</a></p>
-<h2 id="control-dependencies"><a href="#control-dependencies" class="headerlink" title="control_dependencies"></a>control_dependencies</h2><p>tf.control_dependencies(control_inputs)<br>Wrapper for Graph.control_dependencies() using the default graph.<br>See Graph.control_dependencies() for more details.<br>此函数指定某些操作执行的依赖关系<br>返回一个控制依赖的上下文管理器，使用 with 关键字可以让在这个上下文环境中的操作都在 control_inputs 执行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">with</span> tf.control_dependencies([a, b]):</span><br><span class="line"><span class="number">2</span>     c = ....</span><br><span class="line"><span class="number">3</span>     d = ...</span><br></pre></td></tr></table></figure></p>
-<p>在执行完 a，b 操作之后，才能执行 c，d 操作。意思就是 c，d 操作依赖 a，b 操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="keyword">with</span> tf.control_dependencies([train_step, variable_averages_op]):</span><br><span class="line"><span class="number">2</span>     train_op = tf.no_op(name=<span class="string">'train'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>tf.no_op()表示执行完 train_step, variable_averages_op 操作之后什么都不做<br>参考链接：<br><a href="http://www.tensorfly.cn/tfdoc/api_docs/python/framework.html#Graph.control_dependencies" target="_blank" rel="noopener">http://www.tensorfly.cn/tfdoc/api_docs/python/framework.html#Graph.control_dependencies</a></p>
-<h2 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h2><h3 id="在TensorBoard中可视化图形"><a href="#在TensorBoard中可视化图形" class="headerlink" title="在TensorBoard中可视化图形"></a>在TensorBoard中可视化图形</h3><p>构建您的网络，创建一个会话(session)，然后创建一个TensorFlow File Writer对象<br>File Writer定义存储TensorBoard文件的路径，以及TensorFlow graph对象sess.graph是第二个参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer = tf.summary.FileWriter(STORE_PATH, sess.graph)</span><br></pre></td></tr></table></figure></p>
-<p>当创建一个TensorFlow网络后，定义并运行File Writer时，就可以启动TensorBoard来可视化图形。要定义File Writer并将图形发送给它，运行以下命令:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start the session</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess: </span><br><span class="line">writer = tf.summary.FileWriter(STORE_PATH, sess.graph)</span><br></pre></td></tr></table></figure></p>
-<h3 id="启动TensorBoard"><a href="#启动TensorBoard" class="headerlink" title="启动TensorBoard"></a>启动TensorBoard</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=STORE_PATH</span><br></pre></td></tr></table></figure>
-<h3 id="名称空间（Namespaces）"><a href="#名称空间（Namespaces）" class="headerlink" title="名称空间（Namespaces）"></a>名称空间（Namespaces）</h3><p>名称空间是一种作用域，可以用它来包围图形组件，以便将它们组合在一起。通过这样的操作，名称空间中的细节将被折叠成TensorBoard计算图形可视化中的单个名称空间节点。要在TensorFlow中创建名称空间，可以使用Python with功能，如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"layer_1"</span>):</span><br><span class="line"><span class="comment"># now declare the weights connecting the input to the hidden  layer</span></span><br><span class="line"> W1 = tf.Variable(tf.random_normal([<span class="number">784</span>, <span class="number">300</span>], stddev=<span class="number">0.01</span>), name=<span class="string">'W'</span>)</span><br><span class="line">         b1 = tf.Variable(tf.random_normal([<span class="number">300</span>]), name=<span class="string">'b'</span>)</span><br><span class="line">         hidden_logits = tf.add(tf.matmul(x_sc, W1), b1)</span><br><span class="line">         hidden_out = tf.nn.sigmoid(hidden_logits)</span><br></pre></td></tr></table></figure></p>
-<p>还可以使用tf.variable_scope()代替tf.name_scope()。变量作用域是TensorFlow中的get_variable()变量共享机制的一部分。</p>
-<h3 id="标量总结（Scalar-summaries）"><a href="#标量总结（Scalar-summaries）" class="headerlink" title="标量总结（Scalar summaries）"></a>标量总结（Scalar summaries）</h3><p>在网络中的任何位置，都可以记录标量(即单个实值)数量，以便在TensorBoard中显示。这对于跟踪诸如训练准确率的提高或损失函数的减少，或研究分布的标准差等方面都很有用。执行起来很容易。例如，下面的代码展示了如何在这个图中记录accuracy标量:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add a summary to store the </span></span><br><span class="line">accuracytf.summary.scalar(<span class="string">'acc_summary'</span>, accuracy)</span><br></pre></td></tr></table></figure></p>
-<p>第一个参数是要在TensorBoard可视化中给出标量的名称，第二个参数是要记录的操作(必须返回一个实值)。scalar()调用的输出是一个操作。在上面的代码中，我没有将这个操作分配给Python中的任何变量，但是如果用户愿意，可以这样做。然而，与TensorFlow中的其他操作一样，这些汇总操作在运行之前不会执行任何操作。根据开发人员想要观察的内容，在任何给定的图中通常都会运行许多可视化函数，因此有一个方便的助手函数merge_all()。这将把图中的所有函数调用合并在一起，这样您只需调用merge操作，它将为您收集所有其他函数操作并记录数据。它是这样的:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">merged = tf.summary.merge_all()</span><br></pre></td></tr></table></figure></p>
-<h3 id="图像可视化"><a href="#图像可视化" class="headerlink" title="图像可视化"></a>图像可视化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add summary</span></span><br><span class="line"><span class="keyword">if</span> reuse_variables <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    tf.summary.image(<span class="string">'input'</span>, images)</span><br><span class="line">    tf.summary.image(<span class="string">'score_map'</span>, score_maps)</span><br><span class="line">    tf.summary.image(<span class="string">'score_map_pred'</span>, f_score * <span class="number">255</span>)</span><br><span class="line">    tf.summary.image(<span class="string">'geo_map_0'</span>, geo_maps[:, :, :, <span class="number">0</span>:<span class="number">1</span>])</span><br><span class="line">    tf.summary.image(<span class="string">'geo_map_0_pred'</span>, f_geometry[:, :, :, <span class="number">0</span>:<span class="number">1</span>])</span><br><span class="line">    tf.summary.image(<span class="string">'training_masks'</span>, training_masks)</span><br><span class="line">    tf.summary.scalar(<span class="string">'model_loss'</span>, model_loss)</span><br><span class="line">    tf.summary.scalar(<span class="string">'total_loss'</span>, total_loss)</span><br></pre></td></tr></table></figure>
-<h2 id="文本检测模型EAST的搭建"><a href="#文本检测模型EAST的搭建" class="headerlink" title="文本检测模型EAST的搭建"></a>文本检测模型EAST的搭建</h2><h3 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_annoataion</span><span class="params">(p)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    load annotation from the text file</span></span><br><span class="line"><span class="string">    :param p:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    text_polys = []</span><br><span class="line">    text_tags = []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(p):</span><br><span class="line">        <span class="keyword">return</span> np.array(text_polys, dtype=np.float32)</span><br><span class="line">    <span class="keyword">with</span> open(p, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        reader = csv.reader(f)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> reader:</span><br><span class="line">            label = line[<span class="number">-1</span>]</span><br><span class="line">            <span class="comment"># strip BOM. \ufeff for python3,  \xef\xbb\bf for python2</span></span><br><span class="line">            line = [i.strip(<span class="string">'\ufeff'</span>).strip(<span class="string">'\xef\xbb\xbf'</span>) <span class="keyword">for</span> i <span class="keyword">in</span> line]</span><br><span class="line"></span><br><span class="line">            x1, y1, x2, y2, x3, y3, x4, y4 = list(map(float, line[:<span class="number">8</span>]))</span><br><span class="line">            text_polys.append([[x1, y1], [x2, y2], [x3, y3], [x4, y4]])</span><br><span class="line">            <span class="keyword">if</span> label == <span class="string">'*'</span> <span class="keyword">or</span> label == <span class="string">'###'</span>:</span><br><span class="line">                text_tags.append(<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                text_tags.append(<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> np.array(text_polys, dtype=np.float32), np.array(text_tags, dtype=np.bool)</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generator</span><span class="params">(input_size=<span class="number">512</span>, batch_size=<span class="number">32</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            background_ratio=<span class="number">3.</span>/<span class="number">8</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            random_scale=np.array<span class="params">([<span class="number">0.5</span>, <span class="number">1</span>, <span class="number">2.0</span>, <span class="number">3.0</span>])</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            vis=False)</span>:</span></span><br><span class="line">    image_list = np.array(get_images())</span><br><span class="line">    print(<span class="string">'&#123;&#125; training images in &#123;&#125;'</span>.format(</span><br><span class="line">        image_list.shape[<span class="number">0</span>], FLAGS.training_data_path))</span><br><span class="line">    index = np.arange(<span class="number">0</span>, image_list.shape[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        np.random.shuffle(index)</span><br><span class="line">        images = []</span><br><span class="line">        image_fns = []</span><br><span class="line">        score_maps = []</span><br><span class="line">        geo_maps = []</span><br><span class="line">        training_masks = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> index:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                im_fn = image_list[i]</span><br><span class="line">                im = cv2.imread(im_fn)</span><br><span class="line">                <span class="comment"># print im_fn</span></span><br><span class="line">                h, w, _ = im.shape</span><br><span class="line">                txt_fn = im_fn.replace(os.path.basename(im_fn).split(<span class="string">'.'</span>)[<span class="number">1</span>], <span class="string">'txt'</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(txt_fn):</span><br><span class="line">                    print(<span class="string">'text file &#123;&#125; does not exists'</span>.format(txt_fn))</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                text_polys, text_tags = load_annoataion(txt_fn)</span><br><span class="line"></span><br><span class="line">                text_polys, text_tags = check_and_validate_polys(text_polys, text_tags, (h, w))</span><br><span class="line">                <span class="comment"># if text_polys.shape[0] == 0:</span></span><br><span class="line">                <span class="comment">#     continue</span></span><br><span class="line">                <span class="comment"># random scale this image</span></span><br><span class="line">                rd_scale = np.random.choice(random_scale)</span><br><span class="line">                im = cv2.resize(im, dsize=<span class="literal">None</span>, fx=rd_scale, fy=rd_scale)</span><br><span class="line">                text_polys *= rd_scale</span><br><span class="line">                <span class="comment"># print rd_scale</span></span><br><span class="line">                <span class="comment"># random crop a area from image</span></span><br><span class="line">                <span class="keyword">if</span> np.random.rand() &lt; background_ratio:</span><br><span class="line">                    <span class="comment"># crop background</span></span><br><span class="line">                    im, text_polys, text_tags = crop_area(im, text_polys, text_tags, crop_background=<span class="literal">True</span>)</span><br><span class="line">                    <span class="keyword">if</span> text_polys.shape[<span class="number">0</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                        <span class="comment"># cannot find background</span></span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="comment"># pad and resize image</span></span><br><span class="line">                    new_h, new_w, _ = im.shape</span><br><span class="line">                    max_h_w_i = np.max([new_h, new_w, input_size])</span><br><span class="line">                    im_padded = np.zeros((max_h_w_i, max_h_w_i, <span class="number">3</span>), dtype=np.uint8)</span><br><span class="line">                    im_padded[:new_h, :new_w, :] = im.copy()</span><br><span class="line">                    im = cv2.resize(im_padded, dsize=(input_size, input_size))</span><br><span class="line">                    score_map = np.zeros((input_size, input_size), dtype=np.uint8)</span><br><span class="line">                    geo_map_channels = <span class="number">5</span> <span class="keyword">if</span> FLAGS.geometry == <span class="string">'RBOX'</span> <span class="keyword">else</span> <span class="number">8</span></span><br><span class="line">                    geo_map = np.zeros((input_size, input_size, geo_map_channels), dtype=np.float32)</span><br><span class="line">                    training_mask = np.ones((input_size, input_size), dtype=np.uint8)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    im, text_polys, text_tags = crop_area(im, text_polys, text_tags, crop_background=<span class="literal">False</span>)</span><br><span class="line">                    <span class="keyword">if</span> text_polys.shape[<span class="number">0</span>] == <span class="number">0</span>:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    h, w, _ = im.shape</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># pad the image to the training input size or the longer side of image</span></span><br><span class="line">                    new_h, new_w, _ = im.shape</span><br><span class="line">                    max_h_w_i = np.max([new_h, new_w, input_size])</span><br><span class="line">                    im_padded = np.zeros((max_h_w_i, max_h_w_i, <span class="number">3</span>), dtype=np.uint8)</span><br><span class="line">                    im_padded[:new_h, :new_w, :] = im.copy()</span><br><span class="line">                    im = im_padded</span><br><span class="line">                    <span class="comment"># resize the image to input size</span></span><br><span class="line">                    new_h, new_w, _ = im.shape</span><br><span class="line">                    resize_h = input_size</span><br><span class="line">                    resize_w = input_size</span><br><span class="line">                    im = cv2.resize(im, dsize=(resize_w, resize_h))</span><br><span class="line">                    resize_ratio_3_x = resize_w/float(new_w)</span><br><span class="line">                    resize_ratio_3_y = resize_h/float(new_h)</span><br><span class="line">                    text_polys[:, :, <span class="number">0</span>] *= resize_ratio_3_x</span><br><span class="line">                    text_polys[:, :, <span class="number">1</span>] *= resize_ratio_3_y</span><br><span class="line">                    new_h, new_w, _ = im.shape</span><br><span class="line">                    score_map, geo_map, training_mask = generate_rbox((new_h, new_w), text_polys, text_tags)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> vis:</span><br><span class="line">                    fig, axs = plt.subplots(<span class="number">3</span>, <span class="number">2</span>, figsize=(<span class="number">20</span>, <span class="number">30</span>))</span><br><span class="line">                    <span class="comment"># axs[0].imshow(im[:, :, ::-1])</span></span><br><span class="line">                    <span class="comment"># axs[0].set_xticks([])</span></span><br><span class="line">                    <span class="comment"># axs[0].set_yticks([])</span></span><br><span class="line">                    <span class="comment"># for poly in text_polys:</span></span><br><span class="line">                    <span class="comment">#     poly_h = min(abs(poly[3, 1] - poly[0, 1]), abs(poly[2, 1] - poly[1, 1]))</span></span><br><span class="line">                    <span class="comment">#     poly_w = min(abs(poly[1, 0] - poly[0, 0]), abs(poly[2, 0] - poly[3, 0]))</span></span><br><span class="line">                    <span class="comment">#     axs[0].add_artist(Patches.Polygon(</span></span><br><span class="line">                    <span class="comment">#         poly * 4, facecolor='none', edgecolor='green', linewidth=2, linestyle='-', fill=True))</span></span><br><span class="line">                    <span class="comment">#     axs[0].text(poly[0, 0] * 4, poly[0, 1] * 4, '&#123;:.0f&#125;-&#123;:.0f&#125;'.format(poly_h * 4, poly_w * 4),</span></span><br><span class="line">                    <span class="comment">#                    color='purple')</span></span><br><span class="line">                    <span class="comment"># axs[1].imshow(score_map)</span></span><br><span class="line">                    <span class="comment"># axs[1].set_xticks([])</span></span><br><span class="line">                    <span class="comment"># axs[1].set_yticks([])</span></span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">0</span>].imshow(im[:, :, ::<span class="number">-1</span>])</span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">0</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">0</span>].set_yticks([])</span><br><span class="line">                    <span class="keyword">for</span> poly <span class="keyword">in</span> text_polys:</span><br><span class="line">                        poly_h = min(abs(poly[<span class="number">3</span>, <span class="number">1</span>] - poly[<span class="number">0</span>, <span class="number">1</span>]), abs(poly[<span class="number">2</span>, <span class="number">1</span>] - poly[<span class="number">1</span>, <span class="number">1</span>]))</span><br><span class="line">                        poly_w = min(abs(poly[<span class="number">1</span>, <span class="number">0</span>] - poly[<span class="number">0</span>, <span class="number">0</span>]), abs(poly[<span class="number">2</span>, <span class="number">0</span>] - poly[<span class="number">3</span>, <span class="number">0</span>]))</span><br><span class="line">                        axs[<span class="number">0</span>, <span class="number">0</span>].add_artist(Patches.Polygon(</span><br><span class="line">                            poly, facecolor=<span class="string">'none'</span>, edgecolor=<span class="string">'green'</span>, linewidth=<span class="number">2</span>, linestyle=<span class="string">'-'</span>, fill=<span class="literal">True</span>))</span><br><span class="line">                        axs[<span class="number">0</span>, <span class="number">0</span>].text(poly[<span class="number">0</span>, <span class="number">0</span>], poly[<span class="number">0</span>, <span class="number">1</span>], <span class="string">'&#123;:.0f&#125;-&#123;:.0f&#125;'</span>.format(poly_h, poly_w), color=<span class="string">'purple'</span>)</span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">1</span>].imshow(score_map[::, ::])</span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">1</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">0</span>, <span class="number">1</span>].set_yticks([])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">0</span>].imshow(geo_map[::, ::, <span class="number">0</span>])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">0</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">0</span>].set_yticks([])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">1</span>].imshow(geo_map[::, ::, <span class="number">1</span>])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">1</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">1</span>, <span class="number">1</span>].set_yticks([])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">0</span>].imshow(geo_map[::, ::, <span class="number">2</span>])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">0</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">0</span>].set_yticks([])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">1</span>].imshow(training_mask[::, ::])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">1</span>].set_xticks([])</span><br><span class="line">                    axs[<span class="number">2</span>, <span class="number">1</span>].set_yticks([])</span><br><span class="line">                    plt.tight_layout()</span><br><span class="line">                    plt.show()</span><br><span class="line">                    plt.close()</span><br><span class="line"></span><br><span class="line">                images.append(im[:, :, ::<span class="number">-1</span>].astype(np.float32))</span><br><span class="line">                image_fns.append(im_fn)</span><br><span class="line">                score_maps.append(score_map[::<span class="number">4</span>, ::<span class="number">4</span>, np.newaxis].astype(np.float32))</span><br><span class="line">                geo_maps.append(geo_map[::<span class="number">4</span>, ::<span class="number">4</span>, :].astype(np.float32))</span><br><span class="line">                training_masks.append(training_mask[::<span class="number">4</span>, ::<span class="number">4</span>, np.newaxis].astype(np.float32))</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> len(images) == batch_size:</span><br><span class="line">                    <span class="keyword">yield</span> images, image_fns, score_maps, geo_maps, training_masks</span><br><span class="line">                    images = []</span><br><span class="line">                    image_fns = []</span><br><span class="line">                    score_maps = []</span><br><span class="line">                    geo_maps = []</span><br><span class="line">                    training_masks = []</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                <span class="keyword">import</span> traceback</span><br><span class="line">                traceback.print_exc()</span><br><span class="line">                <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
-<h3 id="网络模型的搭建"><a href="#网络模型的搭建" class="headerlink" title="网络模型的搭建"></a>网络模型的搭建</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(images, weight_decay=<span class="number">1e-5</span>, is_training=True)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    define the model, we use slim's implemention of resnet</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    images = mean_image_subtraction(images)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> slim.arg_scope(resnet_v1.resnet_arg_scope(weight_decay=weight_decay)):</span><br><span class="line">        logits, end_points = resnet_v1.resnet_v1_50(images, is_training=is_training, scope=<span class="string">'resnet_v1_50'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">'feature_fusion'</span>, values=[end_points.values]):</span><br><span class="line">        batch_norm_params = &#123;</span><br><span class="line">        <span class="string">'decay'</span>: <span class="number">0.997</span>,</span><br><span class="line">        <span class="string">'epsilon'</span>: <span class="number">1e-5</span>,</span><br><span class="line">        <span class="string">'scale'</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">'is_training'</span>: is_training</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">with</span> slim.arg_scope([slim.conv2d],</span><br><span class="line">                            activation_fn=tf.nn.relu,</span><br><span class="line">                            normalizer_fn=slim.batch_norm,</span><br><span class="line">                            normalizer_params=batch_norm_params,</span><br><span class="line">                            weights_regularizer=slim.l2_regularizer(weight_decay)):</span><br><span class="line">            f = [end_points[<span class="string">'pool5'</span>], end_points[<span class="string">'pool4'</span>],</span><br><span class="line">                 end_points[<span class="string">'pool3'</span>], end_points[<span class="string">'pool2'</span>]]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                print(<span class="string">'Shape of f_&#123;&#125; &#123;&#125;'</span>.format(i, f[i].shape))</span><br><span class="line">            g = [<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>]</span><br><span class="line">            h = [<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>]</span><br><span class="line">            num_outputs = [<span class="literal">None</span>, <span class="number">128</span>, <span class="number">64</span>, <span class="number">32</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                    h[i] = f[i]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    c1_1 = slim.conv2d(tf.concat([g[i<span class="number">-1</span>], f[i]], axis=<span class="number">-1</span>), num_outputs[i], <span class="number">1</span>)</span><br><span class="line">                    h[i] = slim.conv2d(c1_1, num_outputs[i], <span class="number">3</span>)</span><br><span class="line">                <span class="keyword">if</span> i &lt;= <span class="number">2</span>:</span><br><span class="line">                    g[i] = unpool(h[i])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    g[i] = slim.conv2d(h[i], num_outputs[i], <span class="number">3</span>)</span><br><span class="line">                print(<span class="string">'Shape of h_&#123;&#125; &#123;&#125;, g_&#123;&#125; &#123;&#125;'</span>.format(i, h[i].shape, i, g[i].shape))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># here we use a slightly different way for regression part,</span></span><br><span class="line">            <span class="comment"># we first use a sigmoid to limit the regression range, and also</span></span><br><span class="line">            <span class="comment"># this is do with the angle map</span></span><br><span class="line">            F_score = slim.conv2d(g[<span class="number">3</span>], <span class="number">1</span>, <span class="number">1</span>, activation_fn=tf.nn.sigmoid, normalizer_fn=<span class="literal">None</span>)</span><br><span class="line">            <span class="comment"># 4 channel of axis aligned bbox and 1 channel rotation angle</span></span><br><span class="line">            geo_map = slim.conv2d(g[<span class="number">3</span>], <span class="number">4</span>, <span class="number">1</span>, activation_fn=tf.nn.sigmoid, normalizer_fn=<span class="literal">None</span>) * FLAGS.text_scale</span><br><span class="line">            angle_map = (slim.conv2d(g[<span class="number">3</span>], <span class="number">1</span>, <span class="number">1</span>, activation_fn=tf.nn.sigmoid, normalizer_fn=<span class="literal">None</span>) - <span class="number">0.5</span>) * np.pi/<span class="number">2</span> <span class="comment"># angle is between [-45, 45]</span></span><br><span class="line">            F_geometry = tf.concat([geo_map, angle_map], axis=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> F_score, F_geometry</span><br></pre></td></tr></table></figure>
-<h3 id="loss函数的设计"><a href="#loss函数的设计" class="headerlink" title="loss函数的设计"></a>loss函数的设计</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loss</span><span class="params">(y_true_cls, y_pred_cls,</span></span></span><br><span class="line"><span class="function"><span class="params">         y_true_geo, y_pred_geo,</span></span></span><br><span class="line"><span class="function"><span class="params">         training_mask)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    define the loss used for training, contraning two part,</span></span><br><span class="line"><span class="string">    the first part we use dice loss instead of weighted logloss,</span></span><br><span class="line"><span class="string">    the second part is the iou loss defined in the paper</span></span><br><span class="line"><span class="string">    :param y_true_cls: ground truth of text</span></span><br><span class="line"><span class="string">    :param y_pred_cls: prediction os text</span></span><br><span class="line"><span class="string">    :param y_true_geo: ground truth of geometry</span></span><br><span class="line"><span class="string">    :param y_pred_geo: prediction of geometry</span></span><br><span class="line"><span class="string">    :param training_mask: mask used in training, to ignore some text annotated by ###</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    classification_loss = dice_coefficient(y_true_cls, y_pred_cls, training_mask)</span><br><span class="line">    <span class="comment"># scale classification loss to match the iou loss part</span></span><br><span class="line">    classification_loss *= <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># d1 -&gt; top, d2-&gt;right, d3-&gt;bottom, d4-&gt;left</span></span><br><span class="line">    d1_gt, d2_gt, d3_gt, d4_gt, theta_gt = tf.split(value=y_true_geo, num_or_size_splits=<span class="number">5</span>, axis=<span class="number">3</span>)</span><br><span class="line">    d1_pred, d2_pred, d3_pred, d4_pred, theta_pred = tf.split(value=y_pred_geo, num_or_size_splits=<span class="number">5</span>, axis=<span class="number">3</span>)</span><br><span class="line">    area_gt = (d1_gt + d3_gt) * (d2_gt + d4_gt)</span><br><span class="line">    area_pred = (d1_pred + d3_pred) * (d2_pred + d4_pred)</span><br><span class="line">    w_union = tf.minimum(d2_gt, d2_pred) + tf.minimum(d4_gt, d4_pred)</span><br><span class="line">    h_union = tf.minimum(d1_gt, d1_pred) + tf.minimum(d3_gt, d3_pred)</span><br><span class="line">    area_intersect = w_union * h_union</span><br><span class="line">    area_union = area_gt + area_pred - area_intersect</span><br><span class="line">    L_AABB = -tf.log((area_intersect + <span class="number">1.0</span>)/(area_union + <span class="number">1.0</span>))</span><br><span class="line">    L_theta = <span class="number">1</span> - tf.cos(theta_pred - theta_gt)</span><br><span class="line">    tf.summary.scalar(<span class="string">'geometry_AABB'</span>, tf.reduce_mean(L_AABB * y_true_cls * training_mask))</span><br><span class="line">    tf.summary.scalar(<span class="string">'geometry_theta'</span>, tf.reduce_mean(L_theta * y_true_cls * training_mask))</span><br><span class="line">    L_g = L_AABB + <span class="number">20</span> * L_theta</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tf.reduce_mean(L_g * y_true_cls * training_mask) + classification_loss</span><br></pre></td></tr></table></figure>
-<h3 id="train"><a href="#train" class="headerlink" title="train"></a>train</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(argv=None)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> os</span><br><span class="line">    os.environ[<span class="string">'CUDA_VISIBLE_DEVICES'</span>] = FLAGS.gpu_list</span><br><span class="line">    config = <span class="literal">None</span></span><br><span class="line">    config.batch_size = FLAGS.batch_size_per_gpu * FLAGS.num_gpus</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> tf.gfile.Exists(FLAGS.checkpoint_path):</span><br><span class="line">        tf.gfile.MkDir(FLAGS.checkpoint_path)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> FLAGS.restore:</span><br><span class="line">            tf.gfile.DeleteRecursively(FLAGS.checkpoint_path)</span><br><span class="line">            tf.gfile.MkDir(FLAGS.checkpoint_path)</span><br><span class="line"></span><br><span class="line">    input_images = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="number">3</span>], name=<span class="string">'input_images'</span>)</span><br><span class="line">    input_score_maps = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>], name=<span class="string">'input_score_maps'</span>)</span><br><span class="line">    <span class="keyword">if</span> FLAGS.geometry == <span class="string">'RBOX'</span>:</span><br><span class="line">        input_geo_maps = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="number">5</span>], name=<span class="string">'input_geo_maps'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        input_geo_maps = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="number">8</span>], name=<span class="string">'input_geo_maps'</span>)</span><br><span class="line">    input_training_masks = tf.placeholder(tf.float32, shape=[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>], name=<span class="string">'input_training_masks'</span>)</span><br><span class="line"></span><br><span class="line">    global_step = tf.get_variable(<span class="string">'global_step'</span>, [], initializer=tf.constant_initializer(<span class="number">0</span>), trainable=<span class="literal">False</span>)</span><br><span class="line">    learning_rate = tf.train.exponential_decay(FLAGS.learning_rate, global_step, decay_steps=<span class="number">10000</span>, decay_rate=<span class="number">0.94</span>, staircase=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># add summary</span></span><br><span class="line">    tf.summary.scalar(<span class="string">'learning_rate'</span>, learning_rate)</span><br><span class="line">    opt = tf.train.AdamOptimizer(learning_rate)</span><br><span class="line">    <span class="comment"># opt = tf.train.MomentumOptimizer(learning_rate, 0.9)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># split</span></span><br><span class="line">    input_images_split = tf.split(input_images, len(gpus))</span><br><span class="line">    input_score_maps_split = tf.split(input_score_maps, len(gpus))</span><br><span class="line">    input_geo_maps_split = tf.split(input_geo_maps, len(gpus))</span><br><span class="line">    input_training_masks_split = tf.split(input_training_masks, len(gpus))</span><br><span class="line"></span><br><span class="line">    tower_grads = []</span><br><span class="line">    reuse_variables = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">for</span> i, gpu_id <span class="keyword">in</span> enumerate(gpus):</span><br><span class="line">        <span class="keyword">with</span> tf.device(<span class="string">'/gpu:%d'</span> % gpu_id):</span><br><span class="line">            <span class="keyword">with</span> tf.name_scope(<span class="string">'model_%d'</span> % gpu_id) <span class="keyword">as</span> scope:</span><br><span class="line">                iis = input_images_split[i]</span><br><span class="line">                isms = input_score_maps_split[i]</span><br><span class="line">                igms = input_geo_maps_split[i]</span><br><span class="line">                itms = input_training_masks_split[i]</span><br><span class="line">                total_loss, model_loss = tower_loss(iis, isms, igms, itms, reuse_variables)</span><br><span class="line">                batch_norm_updates_op = tf.group(*tf.get_collection(tf.GraphKeys.UPDATE_OPS, scope))</span><br><span class="line">                reuse_variables = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">                grads = opt.compute_gradients(total_loss)</span><br><span class="line">                tower_grads.append(grads)</span><br><span class="line"></span><br><span class="line">    grads = average_gradients(tower_grads)</span><br><span class="line">    apply_gradient_op = opt.apply_gradients(grads, global_step=global_step)</span><br><span class="line"></span><br><span class="line">    summary_op = tf.summary.merge_all()</span><br><span class="line">    <span class="comment"># save moving average</span></span><br><span class="line">    variable_averages = tf.train.ExponentialMovingAverage(</span><br><span class="line">        FLAGS.moving_average_decay, global_step)</span><br><span class="line">    variables_averages_op = variable_averages.apply(tf.trainable_variables())</span><br><span class="line">    <span class="comment"># batch norm updates</span></span><br><span class="line">    <span class="keyword">with</span> tf.control_dependencies([variables_averages_op, apply_gradient_op, batch_norm_updates_op]):</span><br><span class="line">        train_op = tf.no_op(name=<span class="string">'train_op'</span>)</span><br><span class="line"></span><br><span class="line">    saver = tf.train.Saver(tf.global_variables())</span><br><span class="line">    summary_writer = tf.summary.FileWriter(FLAGS.checkpoint_path, tf.get_default_graph())</span><br><span class="line"></span><br><span class="line">    init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> FLAGS.pretrained_model_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        variable_restore_op = slim.assign_from_checkpoint_fn(FLAGS.pretrained_model_path, slim.get_trainable_variables(),</span><br><span class="line">                                                            ignore_missing_vars=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">with</span> tf.Session(config=tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>)) <span class="keyword">as</span> sess:</span><br><span class="line">        <span class="keyword">if</span> FLAGS.restore:</span><br><span class="line">            print(<span class="string">'continue training from previous checkpoint'</span>)</span><br><span class="line">            ckpt = tf.train.latest_checkpoint(FLAGS.checkpoint_path)</span><br><span class="line">            saver.restore(sess, ckpt)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sess.run(init)</span><br><span class="line">            <span class="keyword">if</span> FLAGS.pretrained_model_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                variable_restore_op(sess)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># data_generator = icdar.get_batch(num_workers=FLAGS.num_readers,</span></span><br><span class="line">        <span class="comment">#                                 input_size=FLAGS.input_size,</span></span><br><span class="line">        <span class="comment">#                                 batch_size=FLAGS.batch_size_per_gpu * len(gpus))</span></span><br><span class="line">        train_data_generator = icdar_single.get_batch_seq(num_workers=FLAGS.num_readers, config=config, is_training=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line">        <span class="keyword">for</span> step <span class="keyword">in</span> range(FLAGS.max_steps):</span><br><span class="line">            data = next(train_data_generator)</span><br><span class="line">            ml, tl, _ = sess.run([model_loss, total_loss, train_op], feed_dict=&#123;input_images: data[<span class="number">0</span>],</span><br><span class="line">                                                                                input_score_maps: data[<span class="number">2</span>],</span><br><span class="line">                                                                                input_geo_maps: data[<span class="number">3</span>],</span><br><span class="line">                                                                                input_training_masks: data[<span class="number">4</span>]&#125;)</span><br><span class="line">            <span class="keyword">if</span> np.isnan(tl):</span><br><span class="line">                print(<span class="string">'Loss diverged, stop training'</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> step % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">                avg_time_per_step = (time.time() - start)/<span class="number">10</span></span><br><span class="line">                avg_examples_per_second = (<span class="number">10</span> * FLAGS.batch_size_per_gpu * len(gpus))/(time.time() - start)</span><br><span class="line">                start = time.time()</span><br><span class="line">                print(<span class="string">'Step &#123;:06d&#125;, model loss &#123;:.4f&#125;, total loss &#123;:.4f&#125;, &#123;:.2f&#125; seconds/step, &#123;:.2f&#125; examples/second'</span>.format(</span><br><span class="line">                    step, ml, tl, avg_time_per_step, avg_examples_per_second))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> step % FLAGS.save_checkpoint_steps == <span class="number">0</span>:</span><br><span class="line">                saver.save(sess, FLAGS.checkpoint_path + <span class="string">'model.ckpt'</span>, global_step=global_step)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> step % FLAGS.save_summary_steps == <span class="number">0</span>:</span><br><span class="line">                _, tl, summary_str = sess.run([train_op, total_loss, summary_op], feed_dict=&#123;input_images: data[<span class="number">0</span>],</span><br><span class="line">                                                                                            input_score_maps: data[<span class="number">2</span>],</span><br><span class="line">                                                                                            input_geo_maps: data[<span class="number">3</span>],</span><br><span class="line">                                                                                            input_training_masks: data[<span class="number">4</span>]&#125;)</span><br><span class="line">                summary_writer.add_summary(summary_str, global_step=step)</span><br></pre></td></tr></table></figure>
-<p>参考链接：<br><a href="https://github.com/argman/EAST" target="_blank" rel="noopener">https://github.com/argman/EAST</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/10/14/图像增强常用函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/14/图像增强常用函数/" class="post-title-link" itemprop="url">图像增强常用函数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-14 14:57:21 / 修改时间：15:08:06" itemprop="dateCreated datePublished" datetime="2019-10-14T14:57:21+08:00">2019-10-14</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对目标检测一些常用的数据增强函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numbers</span><br><span class="line">import math</span><br><span class="line">import random</span><br><span class="line">import numpy as np</span><br><span class="line">from skimage.util import random_noise</span><br><span class="line"></span><br><span class="line"># 在原图上画出目标框</span><br><span class="line">def show_pic(img, bboxes=None, name=&apos;pic&apos;):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    输入:</span><br><span class="line">        img:图像array</span><br><span class="line">        bboxes:图像的所有boudning box list, 格式为[[x_min, y_min, x_max, y_max]....]</span><br><span class="line">        names:每个box对应的名称</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    show_img = img.copy()</span><br><span class="line">    if not isinstance(bboxes, np.ndarray):</span><br><span class="line">        bboxes = np.array(bboxes)</span><br><span class="line">    for point in bboxes.astype(np.int):</span><br><span class="line">        cv2.line(show_img, tuple(point[0]), tuple(point[1]), (255, 0, 0), 2)  # tuple 是在原有数据上加小括号</span><br><span class="line">        cv2.line(show_img, tuple(point[1]), tuple(point[2]), (255, 0, 0), 2)</span><br><span class="line">        cv2.line(show_img, tuple(point[2]), tuple(point[3]), (255, 0, 0), 2)</span><br><span class="line">        cv2.line(show_img, tuple(point[3]), tuple(point[0]), (255, 0, 0), 2)</span><br><span class="line">    # cv2.namedWindow(name, 0)  # 1表示原图</span><br><span class="line">    # cv2.moveWindow(name, 0, 0)</span><br><span class="line">    # cv2.resizeWindow(name, 1200, 800)  # 可视化的图片大小</span><br><span class="line">    cv2.imshow(name, show_img)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 图像均为cv2读取</span><br><span class="line">class DataAugment():</span><br><span class="line">    def __init__(self):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def add_noise(self, im: np.ndarray):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        对图片加噪声</span><br><span class="line">        :param img: 图像array</span><br><span class="line">        :return: 加噪声后的图像array,由于输出的像素是在[0,1]之间,所以得乘以255</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        return (random_noise(im, mode=&apos;gaussian&apos;, clip=True) * 255).astype(im.dtype)</span><br><span class="line"></span><br><span class="line">    def random_scale(self, im: np.ndarray, text_polys: np.ndarray, scales: np.ndarray or list) -&gt; tuple:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        从scales中随机选择一个尺度，对图片和文本框进行缩放</span><br><span class="line">        :param im: 原图</span><br><span class="line">        :param text_polys: 文本框</span><br><span class="line">        :param scales: 尺度</span><br><span class="line">        :return: 经过缩放的图片和文本</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        tmp_text_polys = text_polys.copy()</span><br><span class="line">        rd_scale = float(np.random.choice(scales))</span><br><span class="line">        im = cv2.resize(im, dsize=None, fx=rd_scale, fy=rd_scale)</span><br><span class="line">        tmp_text_polys *= rd_scale</span><br><span class="line">        return im, tmp_text_polys</span><br><span class="line"></span><br><span class="line">    def random_rotate_img_bbox(self, img, text_polys, degrees: numbers.Number or list or tuple or np.ndarray,</span><br><span class="line">                            same_size=False):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        从给定的角度中选择一个角度，对图片和文本框进行旋转</span><br><span class="line">        :param img: 图片</span><br><span class="line">        :param text_polys: 文本框</span><br><span class="line">        :param degrees: 角度，可以是一个数值或者list</span><br><span class="line">        :param same_size: 是否保持和原图一样大</span><br><span class="line">        :return: 旋转后的图片和角度</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if isinstance(degrees, numbers.Number):</span><br><span class="line">            if degrees &lt; 0:</span><br><span class="line">                raise ValueError(&quot;If degrees is a single number, it must be positive.&quot;)</span><br><span class="line">            degrees = (-degrees, degrees)</span><br><span class="line">        elif isinstance(degrees, list) or isinstance(degrees, tuple) or isinstance(degrees, np.ndarray):</span><br><span class="line">            if len(degrees) != 2:</span><br><span class="line">                raise ValueError(&quot;If degrees is a sequence, it must be of len 2.&quot;)</span><br><span class="line">            degrees = degrees</span><br><span class="line">        else:</span><br><span class="line">            raise Exception(&apos;degrees must in Number or list or tuple or np.ndarray&apos;)</span><br><span class="line">        # ---------------------- 旋转图像 ----------------------</span><br><span class="line">        w = img.shape[1]</span><br><span class="line">        h = img.shape[0]</span><br><span class="line">        angle = np.random.uniform(degrees[0], degrees[1])</span><br><span class="line"></span><br><span class="line">        if same_size:</span><br><span class="line">            nw = w</span><br><span class="line">            nh = h</span><br><span class="line">        else:</span><br><span class="line">            # 角度变弧度</span><br><span class="line">            rangle = np.deg2rad(angle)</span><br><span class="line">            # 计算旋转之后图像的w, h</span><br><span class="line">            nw = (abs(np.sin(rangle) * h) + abs(np.cos(rangle) * w))</span><br><span class="line">            nh = (abs(np.cos(rangle) * h) + abs(np.sin(rangle) * w))</span><br><span class="line">        # 构造仿射矩阵</span><br><span class="line">        rot_mat = cv2.getRotationMatrix2D((nw * 0.5, nh * 0.5), angle, 1)</span><br><span class="line">        # 计算原图中心点到新图中心点的偏移量</span><br><span class="line">        rot_move = np.dot(rot_mat, np.array([(nw - w) * 0.5, (nh - h) * 0.5, 0]))</span><br><span class="line">        # 更新仿射矩阵</span><br><span class="line">        rot_mat[0, 2] += rot_move[0]</span><br><span class="line">        rot_mat[1, 2] += rot_move[1]</span><br><span class="line">        # 仿射变换</span><br><span class="line">        rot_img = cv2.warpAffine(img, rot_mat, (int(math.ceil(nw)), int(math.ceil(nh))), flags=cv2.INTER_LANCZOS4)</span><br><span class="line"></span><br><span class="line">        # ---------------------- 矫正bbox坐标 ----------------------</span><br><span class="line">        # rot_mat是最终的旋转矩阵</span><br><span class="line">        # 获取原始bbox的四个中点，然后将这四个点转换到旋转后的坐标系下</span><br><span class="line">        rot_text_polys = list()</span><br><span class="line">        for bbox in text_polys:</span><br><span class="line">            point1 = np.dot(rot_mat, np.array([bbox[0, 0], bbox[0, 1], 1]))</span><br><span class="line">            point2 = np.dot(rot_mat, np.array([bbox[1, 0], bbox[1, 1], 1]))</span><br><span class="line">            point3 = np.dot(rot_mat, np.array([bbox[2, 0], bbox[2, 1], 1]))</span><br><span class="line">            point4 = np.dot(rot_mat, np.array([bbox[3, 0], bbox[3, 1], 1]))</span><br><span class="line">            rot_text_polys.append([point1, point2, point3, point4])</span><br><span class="line">        return rot_img, np.array(rot_text_polys, dtype=np.float32)</span><br><span class="line"></span><br><span class="line">    def random_crop(self, imgs, img_size):</span><br><span class="line">        h, w = imgs[0].shape[0:2]</span><br><span class="line">        th, tw = img_size</span><br><span class="line">        if w == tw and h == th:</span><br><span class="line">            return imgs</span><br><span class="line"></span><br><span class="line">        # label中存在文本实例，并且按照概率进行裁剪</span><br><span class="line">        if np.max(imgs[1][:, :, -1]) &gt; 0 and random.random() &gt; 3.0 / 8.0:</span><br><span class="line">            # 文本实例的top left点</span><br><span class="line">            tl = np.min(np.where(imgs[1][:, :, -1] &gt; 0), axis=1) - img_size</span><br><span class="line">            tl[tl &lt; 0] = 0</span><br><span class="line">            # 文本实例的 bottom right 点</span><br><span class="line">            br = np.max(np.where(imgs[1][:, :, -1] &gt; 0), axis=1) - img_size</span><br><span class="line">            br[br &lt; 0] = 0</span><br><span class="line">            # 保证选到右下角点是，有足够的距离进行crop</span><br><span class="line">            br[0] = min(br[0], h - th)</span><br><span class="line">            br[1] = min(br[1], w - tw)</span><br><span class="line"></span><br><span class="line">            i = random.randint(tl[0], br[0])</span><br><span class="line">            j = random.randint(tl[1], br[1])</span><br><span class="line">        else:</span><br><span class="line">            i = random.randint(0, h - th)</span><br><span class="line">            j = random.randint(0, w - tw)</span><br><span class="line"></span><br><span class="line">        # return i, j, th, tw</span><br><span class="line">        for idx in range(len(imgs)):</span><br><span class="line">            if len(imgs[idx].shape) == 3:</span><br><span class="line">                imgs[idx] = imgs[idx][i:i + th, j:j + tw, :]</span><br><span class="line">            else:</span><br><span class="line">                imgs[idx] = imgs[idx][i:i + th, j:j + tw]</span><br><span class="line">        return imgs</span><br><span class="line"></span><br><span class="line">    def resize(self, im: np.ndarray, text_polys: np.ndarray,</span><br><span class="line">            input_size: numbers.Number or list or tuple or np.ndarray, keep_ratio: bool = False) -&gt; tuple:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        对图片和文本框进行resize</span><br><span class="line">        :param im: 图片</span><br><span class="line">        :param text_polys: 文本框</span><br><span class="line">        :param input_size: resize尺寸,数字或者list的形式，如果为list形式，就是[w,h]</span><br><span class="line">        :param keep_ratio: 是否保持长宽比</span><br><span class="line">        :return: resize后的图片和文本框</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if isinstance(input_size, numbers.Number):</span><br><span class="line">            if input_size &lt; 0:</span><br><span class="line">                raise ValueError(&quot;If input_size is a single number, it must be positive.&quot;)</span><br><span class="line">            input_size = (input_size, input_size)</span><br><span class="line">        elif isinstance(input_size, list) or isinstance(input_size, tuple) or isinstance(input_size, np.ndarray):</span><br><span class="line">            if len(input_size) != 2:</span><br><span class="line">                raise ValueError(&quot;If input_size is a sequence, it must be of len 2.&quot;)</span><br><span class="line">            input_size = (input_size[0], input_size[1])</span><br><span class="line">        else:</span><br><span class="line">            raise Exception(&apos;input_size must in Number or list or tuple or np.ndarray&apos;)</span><br><span class="line">        if keep_ratio:</span><br><span class="line">            # 将图片短边pad到和长边一样</span><br><span class="line">            h, w, c = im.shape</span><br><span class="line">            max_h = max(h, input_size[0])</span><br><span class="line">            max_w = max(w, input_size[1])</span><br><span class="line">            im_padded = np.zeros((max_h, max_w, c), dtype=np.uint8)</span><br><span class="line">            im_padded[:h, :w] = im.copy()</span><br><span class="line">            im = im_padded</span><br><span class="line">        text_polys = text_polys.astype(np.float32)</span><br><span class="line">        h, w, _ = im.shape</span><br><span class="line">        im = cv2.resize(im, input_size)</span><br><span class="line">        w_scale = input_size[0] / float(w)</span><br><span class="line">        h_scale = input_size[1] / float(h)</span><br><span class="line">        text_polys[:, :, 0] *= w_scale</span><br><span class="line">        text_polys[:, :, 1] *= h_scale</span><br><span class="line">        return im, text_polys</span><br><span class="line"></span><br><span class="line">    def horizontal_flip(self, im: np.ndarray, text_polys: np.ndarray) -&gt; tuple:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        对图片和文本框进行水平翻转</span><br><span class="line">        :param im: 图片</span><br><span class="line">        :param text_polys: 文本框</span><br><span class="line">        :return: 水平翻转之后的图片和文本框</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        flip_text_polys = text_polys.copy()</span><br><span class="line">        flip_im = cv2.flip(im, 1)</span><br><span class="line">        h, w, _ = flip_im.shape</span><br><span class="line">        flip_text_polys[:, :, 0] = w - flip_text_polys[:, :, 0]</span><br><span class="line">        return flip_im, flip_text_polys</span><br><span class="line"></span><br><span class="line">    def vertical_flip(self, im: np.ndarray, text_polys: np.ndarray) -&gt; tuple:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        对图片和文本框进行竖直翻转</span><br><span class="line">        :param im: 图片</span><br><span class="line">        :param text_polys: 文本框</span><br><span class="line">        :return: 竖直翻转之后的图片和文本框</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        flip_text_polys = text_polys.copy()</span><br><span class="line">        flip_im = cv2.flip(im, 0)</span><br><span class="line">        h, w, _ = flip_im.shape</span><br><span class="line">        flip_text_polys[:, :, 1] = h - flip_text_polys[:, :, 1]</span><br><span class="line">        return flip_im, flip_text_polys</span><br><span class="line"></span><br><span class="line">    def test(self, im: np.ndarray, text_polys: np.ndarray):</span><br><span class="line">        print(&apos;随机尺度缩放&apos;)</span><br><span class="line">        t_im, t_text_polys = self.random_scale(im, text_polys, [0.5, 1, 2, 3])</span><br><span class="line">        print(t_im.shape, t_text_polys.dtype)</span><br><span class="line">        show_pic(t_im, t_text_polys, &apos;random_scale&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;随机旋转&apos;)</span><br><span class="line">        t_im, t_text_polys = self.random_rotate_img_bbox(im, text_polys, 10)</span><br><span class="line">        print(t_im.shape, t_text_polys.dtype)</span><br><span class="line">        show_pic(t_im, t_text_polys, &apos;random_rotate_img_bbox&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;随机裁剪&apos;)</span><br><span class="line">        t_im, t_text_polys = self.random_crop_img_bboxes(im, text_polys)</span><br><span class="line">        print(t_im.shape, t_text_polys.dtype)</span><br><span class="line">        show_pic(t_im, t_text_polys, &apos;random_crop_img_bboxes&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;水平翻转&apos;)</span><br><span class="line">        t_im, t_text_polys = self.horizontal_flip(im, text_polys)</span><br><span class="line">        print(t_im.shape, t_text_polys.dtype)</span><br><span class="line">        show_pic(t_im, t_text_polys, &apos;horizontal_flip&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;竖直翻转&apos;)</span><br><span class="line">        t_im, t_text_polys = self.vertical_flip(im, text_polys)</span><br><span class="line">        print(t_im.shape, t_text_polys.dtype)</span><br><span class="line">        show_pic(t_im, t_text_polys, &apos;vertical_flip&apos;)</span><br><span class="line">        show_pic(im, text_polys, &apos;vertical_flip_ori&apos;)</span><br><span class="line"></span><br><span class="line">        print(&apos;加噪声&apos;)</span><br><span class="line">        t_im = self.add_noise(im)</span><br><span class="line">        print(t_im.shape)</span><br><span class="line">        show_pic(t_im, text_polys, &apos;add_noise&apos;)</span><br><span class="line">        show_pic(im, text_polys, &apos;add_noise_ori&apos;)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/10/13/ocr答题卡识别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/13/ocr答题卡识别/" class="post-title-link" itemprop="url">ocr答题卡识别</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-13 22:18:43 / 修改时间：22:20:04" itemprop="dateCreated datePublished" datetime="2019-10-13T22:18:43+08:00">2019-10-13</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sort_contours</span><span class="params">(cnts, method=<span class="string">"left-to-right"</span>)</span>:</span></span><br><span class="line">    reverse = <span class="literal">False</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">"right-to-left"</span> <span class="keyword">or</span> method == <span class="string">"bottom-to-top"</span>:</span><br><span class="line">        reverse = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">"top-to-bottom"</span> <span class="keyword">or</span> method == <span class="string">"bottom-to-top"</span>:</span><br><span class="line">        i = <span class="number">1</span></span><br><span class="line">    boundingBoxes = [cv2.boundingRect(c) <span class="keyword">for</span> c <span class="keyword">in</span> cnts] <span class="comment">#用一个最小的矩形，把找到的形状包起来x,y,h,w</span></span><br><span class="line">    (cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),</span><br><span class="line">                                        key=<span class="keyword">lambda</span> b: b[<span class="number">1</span>][i], reverse=reverse))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cnts, boundingBoxes</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resize</span><span class="params">(image, width=None, height=None, inter=cv2.INTER_AREA)</span>:</span></span><br><span class="line">    dim = <span class="literal">None</span></span><br><span class="line">    (h, w) = image.shape[:<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">if</span> width <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> height <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> image</span><br><span class="line">    <span class="keyword">if</span> width <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        r = height / float(h)</span><br><span class="line">        dim = (int(w * r), height)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        r = width / float(w)</span><br><span class="line">        dim = (width, int(h * r))</span><br><span class="line">    resized = cv2.resize(image, dim, interpolation=inter)</span><br><span class="line">    <span class="keyword">return</span> resized</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具包</span></span><br><span class="line"><span class="keyword">from</span> imutils <span class="keyword">import</span> contours</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> myutils_beifen</span><br><span class="line"></span><br><span class="line"><span class="comment"># # 设置参数</span></span><br><span class="line"><span class="comment"># ap = argparse.ArgumentParser()</span></span><br><span class="line"><span class="comment"># ap.add_argument("-i", "--image", required=True,</span></span><br><span class="line"><span class="comment"># 	help="path to input image")</span></span><br><span class="line"><span class="comment"># ap.add_argument("-t", "--template", required=True,</span></span><br><span class="line"><span class="comment"># 	help="path to template OCR-A image")</span></span><br><span class="line"><span class="comment"># args = vars(ap.parse_args())</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定信用卡类型</span></span><br><span class="line">FIRST_NUMBER = &#123;</span><br><span class="line">	<span class="string">"3"</span>: <span class="string">"American Express"</span>,</span><br><span class="line">	<span class="string">"4"</span>: <span class="string">"Visa"</span>,</span><br><span class="line">	<span class="string">"5"</span>: <span class="string">"MasterCard"</span>,</span><br><span class="line">	<span class="string">"6"</span>: <span class="string">"Discover Card"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 绘图展示</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cv_show</span><span class="params">(name,img)</span>:</span></span><br><span class="line">	cv2.imshow(name, img)</span><br><span class="line">	cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">	cv2.destroyAllWindows()</span><br><span class="line"><span class="comment"># 读取一个模板图像</span></span><br><span class="line"><span class="comment"># img = cv2.imread(args["template"])</span></span><br><span class="line">img  = cv2.imread(<span class="string">'images/ocr_a_reference.png'</span>)</span><br><span class="line">cv_show(<span class="string">'img'</span>,img)</span><br><span class="line"><span class="comment"># 灰度图</span></span><br><span class="line">ref = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">cv_show(<span class="string">'ref'</span>,ref)</span><br><span class="line"><span class="comment"># 二值图像</span></span><br><span class="line">ref = cv2.threshold(ref, <span class="number">10</span>, <span class="number">255</span>, cv2.THRESH_BINARY_INV)[<span class="number">1</span>]</span><br><span class="line">cv_show(<span class="string">'ref'</span>,ref)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算轮廓</span></span><br><span class="line"><span class="comment">#cv2.findContours()函数接受的参数为二值图，即黑白的（不是灰度图）,cv2.RETR_EXTERNAL只检测外轮廓，cv2.CHAIN_APPROX_SIMPLE只保留终点坐标</span></span><br><span class="line"><span class="comment">#返回的list中每个元素都是图像中的一个轮廓</span></span><br><span class="line"></span><br><span class="line">ref_, refCnts, hierarchy = cv2.findContours(ref.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line"></span><br><span class="line">cv2.drawContours(img,refCnts,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">3</span>)  <span class="comment"># -1表示画所有的轮廓</span></span><br><span class="line">cv_show(<span class="string">'img'</span>,img)</span><br><span class="line"><span class="keyword">print</span> (np.array(refCnts).shape)</span><br><span class="line">refCnts = myutils.sort_contours(refCnts, method=<span class="string">"left-to-right"</span>)[<span class="number">0</span>] <span class="comment">#排序，从左到右，从上到下</span></span><br><span class="line">digits = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历每一个轮廓</span></span><br><span class="line"><span class="keyword">for</span> (i, c) <span class="keyword">in</span> enumerate(refCnts):</span><br><span class="line">	<span class="comment"># 计算外接矩形并且resize成合适大小</span></span><br><span class="line">	(x, y, w, h) = cv2.boundingRect(c)</span><br><span class="line">	roi = ref[y:y + h, x:x + w]</span><br><span class="line">	roi = cv2.resize(roi, (<span class="number">57</span>, <span class="number">88</span>))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 每一个数字对应每一个模板</span></span><br><span class="line">	digits[i] = roi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化卷积核</span></span><br><span class="line">rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="number">9</span>, <span class="number">3</span>))  </span><br><span class="line">sqKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="number">5</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取输入图像，预处理</span></span><br><span class="line"><span class="comment"># image = cv2.imread(args["image"])</span></span><br><span class="line">image = cv2.imread(<span class="string">'images/credit_card_02.png'</span>)</span><br><span class="line">cv_show(<span class="string">'image'</span>,image)</span><br><span class="line">image = myutils.resize(image, width=<span class="number">300</span>)</span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line">cv_show(<span class="string">'gray'</span>,gray)</span><br><span class="line"></span><br><span class="line"><span class="comment">#礼帽操作，突出更明亮的区域</span></span><br><span class="line">tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, rectKernel) </span><br><span class="line">cv_show(<span class="string">'tophat'</span>,tophat) </span><br><span class="line"><span class="comment"># </span></span><br><span class="line">gradX = cv2.Sobel(tophat, ddepth=cv2.CV_32F, dx=<span class="number">1</span>, dy=<span class="number">0</span>, <span class="comment">#ksize=-1相当于用3*3的</span></span><br><span class="line">	ksize=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gradX = np.absolute(gradX)</span><br><span class="line">(minVal, maxVal) = (np.min(gradX), np.max(gradX))</span><br><span class="line">gradX = (<span class="number">255</span> * ((gradX - minVal) / (maxVal - minVal)))</span><br><span class="line">gradX = gradX.astype(<span class="string">"uint8"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (np.array(gradX).shape)</span><br><span class="line">cv_show(<span class="string">'gradX'</span>,gradX)</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过闭操作（先膨胀，再腐蚀）将数字连在一起</span></span><br><span class="line">gradX = cv2.morphologyEx(gradX, cv2.MORPH_CLOSE, rectKernel) </span><br><span class="line">cv_show(<span class="string">'gradX'</span>,gradX)</span><br><span class="line"><span class="comment">#THRESH_OTSU会自动寻找合适的阈值，适合双峰，需把阈值参数设置为0</span></span><br><span class="line">thresh = cv2.threshold(gradX, <span class="number">0</span>, <span class="number">255</span>,</span><br><span class="line">	cv2.THRESH_BINARY | cv2.THRESH_OTSU)[<span class="number">1</span>] </span><br><span class="line">cv_show(<span class="string">'thresh'</span>,thresh)</span><br><span class="line"></span><br><span class="line"><span class="comment">#再来一个闭操作</span></span><br><span class="line"></span><br><span class="line">thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, sqKernel) <span class="comment">#再来一个闭操作</span></span><br><span class="line">cv_show(<span class="string">'thresh'</span>,thresh)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算轮廓</span></span><br><span class="line"></span><br><span class="line">thresh_, threshCnts, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,</span><br><span class="line">	cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line"></span><br><span class="line">cnts = threshCnts</span><br><span class="line">cur_img = image.copy()</span><br><span class="line">cv2.drawContours(cur_img,cnts,<span class="number">-1</span>,(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">3</span>) </span><br><span class="line">cv_show(<span class="string">'img'</span>,cur_img)</span><br><span class="line">locs = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历轮廓</span></span><br><span class="line"><span class="keyword">for</span> (i, c) <span class="keyword">in</span> enumerate(cnts):</span><br><span class="line">	<span class="comment"># 计算矩形</span></span><br><span class="line">	(x, y, w, h) = cv2.boundingRect(c)</span><br><span class="line">	ar = w / float(h)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 选择合适的区域，根据实际任务来，这里的基本都是四个数字一组</span></span><br><span class="line">	<span class="keyword">if</span> ar &gt; <span class="number">2.5</span> <span class="keyword">and</span> ar &lt; <span class="number">4.0</span>:</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (w &gt; <span class="number">40</span> <span class="keyword">and</span> w &lt; <span class="number">55</span>) <span class="keyword">and</span> (h &gt; <span class="number">10</span> <span class="keyword">and</span> h &lt; <span class="number">20</span>):</span><br><span class="line">			<span class="comment">#符合的留下来</span></span><br><span class="line">			locs.append((x, y, w, h))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将符合的轮廓从左到右排序</span></span><br><span class="line">locs = sorted(locs, key=<span class="keyword">lambda</span> x:x[<span class="number">0</span>])</span><br><span class="line">output = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历每一个轮廓中的数字</span></span><br><span class="line"><span class="keyword">for</span> (i, (gX, gY, gW, gH)) <span class="keyword">in</span> enumerate(locs):</span><br><span class="line">	<span class="comment"># initialize the list of group digits</span></span><br><span class="line">	groupOutput = []</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 根据坐标提取每一个组</span></span><br><span class="line">	group = gray[gY - <span class="number">5</span>:gY + gH + <span class="number">5</span>, gX - <span class="number">5</span>:gX + gW + <span class="number">5</span>]</span><br><span class="line">	cv_show(<span class="string">'group'</span>,group)</span><br><span class="line">	<span class="comment"># 预处理</span></span><br><span class="line">	group = cv2.threshold(group, <span class="number">0</span>, <span class="number">255</span>,</span><br><span class="line">		cv2.THRESH_BINARY | cv2.THRESH_OTSU)[<span class="number">1</span>]</span><br><span class="line">	cv_show(<span class="string">'group'</span>,group)</span><br><span class="line">	<span class="comment"># 计算每一组的轮廓</span></span><br><span class="line">	group_,digitCnts,hierarchy = cv2.findContours(group.copy(), cv2.RETR_EXTERNAL,</span><br><span class="line">		cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line">	digitCnts = contours.sort_contours(digitCnts,</span><br><span class="line">		method=<span class="string">"left-to-right"</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 计算每一组中的每一个数值</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> digitCnts:</span><br><span class="line">		<span class="comment"># 找到当前数值的轮廓，resize成合适的的大小</span></span><br><span class="line">		(x, y, w, h) = cv2.boundingRect(c)</span><br><span class="line">		roi = group[y:y + h, x:x + w]</span><br><span class="line">		roi = cv2.resize(roi, (<span class="number">57</span>, <span class="number">88</span>)) <span class="comment"># 模板匹配要求大小一致</span></span><br><span class="line">		cv_show(<span class="string">'roi'</span>,roi)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># 计算匹配得分</span></span><br><span class="line">		scores = []</span><br><span class="line"></span><br><span class="line">		<span class="comment"># 在模板中计算每一个得分</span></span><br><span class="line">		<span class="keyword">for</span> (digit, digitROI) <span class="keyword">in</span> digits.items():</span><br><span class="line">			<span class="comment"># 模板匹配</span></span><br><span class="line">			result = cv2.matchTemplate(roi, digitROI,</span><br><span class="line">				cv2.TM_CCOEFF)</span><br><span class="line">			(_, score, _, _) = cv2.minMaxLoc(result)</span><br><span class="line">			scores.append(score)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># 得到最合适的数字</span></span><br><span class="line">		groupOutput.append(str(np.argmax(scores)))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 画出来</span></span><br><span class="line">	cv2.rectangle(image, (gX - <span class="number">5</span>, gY - <span class="number">5</span>),</span><br><span class="line">		(gX + gW + <span class="number">5</span>, gY + gH + <span class="number">5</span>), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">1</span>)</span><br><span class="line">	cv2.putText(image, <span class="string">""</span>.join(groupOutput), (gX, gY - <span class="number">15</span>),</span><br><span class="line">		cv2.FONT_HERSHEY_SIMPLEX, <span class="number">0.65</span>, (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 得到结果</span></span><br><span class="line">	output.extend(groupOutput)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line">print(<span class="string">"Credit Card Type: &#123;&#125;"</span>.format(FIRST_NUMBER[output[<span class="number">0</span>]]))</span><br><span class="line">print(<span class="string">"Credit Card #: &#123;&#125;"</span>.format(<span class="string">""</span>.join(output)))</span><br><span class="line">cv2.imshow(<span class="string">"Image"</span>, image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>参考资料： 唐宇迪 OpenCV计算机视觉实战(Python版)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/10/13/ocr透视变换/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/13/ocr透视变换/" class="post-title-link" itemprop="url">ocr透视变换</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-13 22:16:10 / 修改时间：22:18:10" itemprop="dateCreated datePublished" datetime="2019-10-13T22:16:10+08:00">2019-10-13</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/python/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具包</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置参数</span></span><br><span class="line">ap = argparse.ArgumentParser()</span><br><span class="line">ap.add_argument(<span class="string">"-i"</span>, <span class="string">"--image"</span>, required = <span class="literal">False</span>,</span><br><span class="line">	help = <span class="string">"Path to the image to be scanned"</span>,default=<span class="string">'images/page.jpg'</span>) </span><br><span class="line">args = vars(ap.parse_args())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order_points</span><span class="params">(pts)</span>:</span></span><br><span class="line">	<span class="comment"># 一共4个坐标点</span></span><br><span class="line">	rect = np.zeros((<span class="number">4</span>, <span class="number">2</span>), dtype = <span class="string">"float32"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 按顺序找到对应坐标0123分别是 左上，右上，右下，左下</span></span><br><span class="line">	<span class="comment"># 计算左上，右下</span></span><br><span class="line">	s = pts.sum(axis = <span class="number">1</span>)</span><br><span class="line">	rect[<span class="number">0</span>] = pts[np.argmin(s)]</span><br><span class="line">	rect[<span class="number">2</span>] = pts[np.argmax(s)]</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 计算右上和左下</span></span><br><span class="line">	diff = np.diff(pts, axis = <span class="number">1</span>)</span><br><span class="line">	rect[<span class="number">1</span>] = pts[np.argmin(diff)]</span><br><span class="line">	rect[<span class="number">3</span>] = pts[np.argmax(diff)]</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> rect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">four_point_transform</span><span class="params">(image, pts)</span>:</span></span><br><span class="line">	<span class="comment"># 获取输入坐标点</span></span><br><span class="line">	rect = order_points(pts)</span><br><span class="line">	(tl, tr, br, bl) = rect</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 计算输入的w和h值</span></span><br><span class="line">	widthA = np.sqrt(((br[<span class="number">0</span>] - bl[<span class="number">0</span>]) ** <span class="number">2</span>) + ((br[<span class="number">1</span>] - bl[<span class="number">1</span>]) ** <span class="number">2</span>))</span><br><span class="line">	widthB = np.sqrt(((tr[<span class="number">0</span>] - tl[<span class="number">0</span>]) ** <span class="number">2</span>) + ((tr[<span class="number">1</span>] - tl[<span class="number">1</span>]) ** <span class="number">2</span>))</span><br><span class="line">	maxWidth = max(int(widthA), int(widthB))</span><br><span class="line"></span><br><span class="line">	heightA = np.sqrt(((tr[<span class="number">0</span>] - br[<span class="number">0</span>]) ** <span class="number">2</span>) + ((tr[<span class="number">1</span>] - br[<span class="number">1</span>]) ** <span class="number">2</span>))</span><br><span class="line">	heightB = np.sqrt(((tl[<span class="number">0</span>] - bl[<span class="number">0</span>]) ** <span class="number">2</span>) + ((tl[<span class="number">1</span>] - bl[<span class="number">1</span>]) ** <span class="number">2</span>))</span><br><span class="line">	maxHeight = max(int(heightA), int(heightB))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 变换后对应坐标位置</span></span><br><span class="line">	dst = np.array([</span><br><span class="line">		[<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">		[maxWidth - <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">		[maxWidth - <span class="number">1</span>, maxHeight - <span class="number">1</span>],</span><br><span class="line">		[<span class="number">0</span>, maxHeight - <span class="number">1</span>]], dtype = <span class="string">"float32"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 计算变换矩阵</span></span><br><span class="line">	M = cv2.getPerspectiveTransform(rect, dst)</span><br><span class="line">	warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 返回变换后结果</span></span><br><span class="line">	<span class="keyword">return</span> warped</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resize</span><span class="params">(image, width=None, height=None, inter=cv2.INTER_AREA)</span>:</span></span><br><span class="line">	dim = <span class="literal">None</span></span><br><span class="line">	(h, w) = image.shape[:<span class="number">2</span>]</span><br><span class="line">	<span class="keyword">if</span> width <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> height <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">		<span class="keyword">return</span> image</span><br><span class="line">	<span class="keyword">if</span> width <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">		r = height / float(h)</span><br><span class="line">		dim = (int(w * r), height)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		r = width / float(w)</span><br><span class="line">		dim = (width, int(h * r))</span><br><span class="line">	resized = cv2.resize(image, dim, interpolation=inter)</span><br><span class="line">	<span class="keyword">return</span> resized</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取输入</span></span><br><span class="line">image = cv2.imread(args[<span class="string">"image"</span>])</span><br><span class="line"><span class="comment">#坐标也会相同变化</span></span><br><span class="line">ratio = image.shape[<span class="number">0</span>] / <span class="number">500.0</span></span><br><span class="line">orig = image.copy()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">image = resize(orig, height = <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line">gray = cv2.GaussianBlur(gray, (<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>)</span><br><span class="line">edged = cv2.Canny(gray, <span class="number">75</span>, <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 展示预处理结果</span></span><br><span class="line">print(<span class="string">"STEP 1: 边缘检测"</span>)</span><br><span class="line">cv2.imshow(<span class="string">"Image"</span>, image)</span><br><span class="line">cv2.imshow(<span class="string">"Edged"</span>, edged)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮廓检测</span></span><br><span class="line">cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[<span class="number">1</span>]</span><br><span class="line">cnts = sorted(cnts, key = cv2.contourArea, reverse = <span class="literal">True</span>)[:<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历轮廓</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> cnts:</span><br><span class="line">	<span class="comment"># 计算轮廓近似</span></span><br><span class="line">	peri = cv2.arcLength(c, <span class="literal">True</span>)</span><br><span class="line">	<span class="comment"># C表示输入的点集</span></span><br><span class="line">	<span class="comment"># epsilon表示从原始轮廓到近似轮廓的最大距离，它是一个准确度参数</span></span><br><span class="line">	<span class="comment"># True表示封闭的</span></span><br><span class="line">	approx = cv2.approxPolyDP(c, <span class="number">0.02</span> * peri, <span class="literal">True</span>)<span class="comment"># 越小越精准，长度的百分之多少作为精度</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 4个点的时候就拿出来</span></span><br><span class="line">	<span class="keyword">if</span> len(approx) == <span class="number">4</span>:</span><br><span class="line">		screenCnt = approx</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 展示结果</span></span><br><span class="line">print(<span class="string">"STEP 2: 获取轮廓"</span>)</span><br><span class="line">cv2.drawContours(image, [screenCnt], <span class="number">-1</span>, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line">cv2.imshow(<span class="string">"Outline"</span>, image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 透视变换</span></span><br><span class="line">warped = four_point_transform(orig, screenCnt.reshape(<span class="number">4</span>, <span class="number">2</span>) * ratio)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 二值处理</span></span><br><span class="line">warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)</span><br><span class="line">ref = cv2.threshold(warped, <span class="number">100</span>, <span class="number">255</span>, cv2.THRESH_BINARY)[<span class="number">1</span>]</span><br><span class="line">cv2.imwrite(<span class="string">'scan.jpg'</span>, ref)</span><br><span class="line"><span class="comment"># 展示结果</span></span><br><span class="line">print(<span class="string">"STEP 3: 变换"</span>)</span><br><span class="line">cv2.imshow(<span class="string">"Original"</span>, resize(orig, height = <span class="number">650</span>))</span><br><span class="line">cv2.imshow(<span class="string">"Scanned"</span>, resize(ref, height = <span class="number">650</span>))</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>参考资料： 唐宇迪 OpenCV计算机视觉实战(Python版)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2204,7 +2162,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2305,7 +2263,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">42</span>
+          
+        
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

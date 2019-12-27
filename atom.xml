@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caius-lu.github.io/"/>
-  <updated>2019-12-24T13:07:47.490Z</updated>
+  <updated>2019-12-27T13:52:45.348Z</updated>
   <id>https://caius-lu.github.io/</id>
   
   <author>
@@ -15,6 +15,93 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://caius-lu.github.io/2019/12/27/SENet-code/"/>
+    <id>https://caius-lu.github.io/2019/12/27/SENet-code/</id>
+    <published>2019-12-27T13:44:15.638Z</published>
+    <updated>2019-12-27T13:52:45.348Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;title: SENet_code&lt;br&gt;date: 2019-12-27 21:44:15&lt;br&gt;tags: [python]&lt;br&gt;categories: 
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SpatialSense</title>
+    <link href="https://caius-lu.github.io/2019/12/27/SpatialSense/"/>
+    <id>https://caius-lu.github.io/2019/12/27/SpatialSense/</id>
+    <published>2019-12-27T06:11:38.000Z</published>
+    <updated>2019-12-27T06:22:25.479Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SpatialSense" scheme="https://caius-lu.github.io/categories/SpatialSense/"/>
+    
+    
+      <category term="Deep Learning" scheme="https://caius-lu.github.io/tags/Deep-Learning/"/>
+    
+      <category term="论文阅读" scheme="https://caius-lu.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ADVERSARIALAL_AUTOAUGMENT</title>
+    <link href="https://caius-lu.github.io/2019/12/26/ADVERSARIALAL-AUTOAUGMENT/"/>
+    <id>https://caius-lu.github.io/2019/12/26/ADVERSARIALAL-AUTOAUGMENT/</id>
+    <published>2019-12-26T07:13:16.000Z</published>
+    <updated>2019-12-27T06:11:59.969Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;数据增广（DA，data
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Scene_Text_Detection</title>
+    <link href="https://caius-lu.github.io/2019/12/25/Scene-Text-Detection/"/>
+    <id>https://caius-lu.github.io/2019/12/25/Scene-Text-Detection/</id>
+    <published>2019-12-25T04:05:53.000Z</published>
+    <updated>2019-12-25T04:05:53.638Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Semantic_segmentation_overview</title>
@@ -457,135 +544,6 @@
     
     
       <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tensorflow自定义网络模型</title>
-    <link href="https://caius-lu.github.io/2019/10/17/tensorflow%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://caius-lu.github.io/2019/10/17/tensorflow自定义网络模型/</id>
-    <published>2019-10-17T05:30:47.000Z</published>
-    <updated>2019-10-18T01:43:51.304Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Slim&quot;&gt;&lt;a href=&quot;#Slim&quot; class=&quot;headerlink&quot; title=&quot;Slim&quot;&gt;&lt;/a&gt;Slim&lt;/h2&gt;&lt;p&gt;TF-Slim 模块是 TensorFlow 中最好用的 API 之一。尤其是里面引入的
-        
-      
-    
-    </summary>
-    
-      <category term="tensorflow" scheme="https://caius-lu.github.io/categories/tensorflow/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/tensorflow/python/"/>
-    
-      <category term="Deep Learning" scheme="https://caius-lu.github.io/categories/tensorflow/python/Deep-Learning/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="tensorflow" scheme="https://caius-lu.github.io/tags/tensorflow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图像增强常用函数</title>
-    <link href="https://caius-lu.github.io/2019/10/14/%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/"/>
-    <id>https://caius-lu.github.io/2019/10/14/图像增强常用函数/</id>
-    <published>2019-10-14T06:57:21.000Z</published>
-    <updated>2019-10-14T07:08:06.733Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;对目标检测一些常用的数据增强函数&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ocr答题卡识别</title>
-    <link href="https://caius-lu.github.io/2019/10/13/ocr%E7%AD%94%E9%A2%98%E5%8D%A1%E8%AF%86%E5%88%AB/"/>
-    <id>https://caius-lu.github.io/2019/10/13/ocr答题卡识别/</id>
-    <published>2019-10-13T14:18:43.000Z</published>
-    <updated>2019-10-13T14:20:04.212Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ocr透视变换</title>
-    <link href="https://caius-lu.github.io/2019/10/13/ocr%E9%80%8F%E8%A7%86%E5%8F%98%E6%8D%A2/"/>
-    <id>https://caius-lu.github.io/2019/10/13/ocr透视变换/</id>
-    <published>2019-10-13T14:16:10.000Z</published>
-    <updated>2019-10-13T14:18:10.536Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/categories/opencv/"/>
-    
-      <category term="python" scheme="https://caius-lu.github.io/categories/opencv/python/"/>
-    
-      <category term="计算机视觉" scheme="https://caius-lu.github.io/categories/opencv/python/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-    
-    
-      <category term="python" scheme="https://caius-lu.github.io/tags/python/"/>
-    
-      <category term="opencv" scheme="https://caius-lu.github.io/tags/opencv/"/>
     
   </entry>
   

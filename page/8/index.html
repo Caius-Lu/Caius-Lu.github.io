@@ -364,6 +364,759 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/24/pythonplot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/24/pythonplot/" class="post-title-link" itemprop="url">Matplotlib绘制六种可视化图表</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-24 16:20:39 / 修改时间：16:39:00" itemprop="dateCreated datePublished" datetime="2019-08-24T16:20:39+08:00">2019-08-24</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="01-折线图"><a href="#01-折线图" class="headerlink" title="01 折线图"></a>01 折线图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = np.linspace(<span class="number">0</span>,<span class="number">2</span>,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">plt.plot(x, x, label=<span class="string">'linear'</span>)</span><br><span class="line">plt.plot(x, x**<span class="number">2</span>, label=<span class="string">'quadratic'</span>)</span><br><span class="line">plt.plot(x, x**<span class="number">3</span>, label=<span class="string">'cubic'</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x label'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y label'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">"Simple Plot"</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/zhexian.png" title="zhexian">
+<h2 id="02-散点图"><a href="#02-散点图" class="headerlink" title="02  散点图"></a>02  散点图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0.</span>, <span class="number">5.</span>, <span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 红色破折号, 蓝色方块 ，绿色三角块</span></span><br><span class="line">plt.plot(x, x, <span class="string">'r--'</span>, x, x**<span class="number">2</span>, <span class="string">'bs'</span>, x, x**<span class="number">3</span>, <span class="string">'g^'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/sandian.png" title="sandian">
+<h2 id="03-直方图"><a href="#03-直方图" class="headerlink" title="03 直方图"></a>03 直方图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">mu1, sigma1 = <span class="number">100</span>, <span class="number">15</span></span><br><span class="line">mu2, sigma2 = <span class="number">80</span>, <span class="number">15</span></span><br><span class="line">x1 = mu1 + sigma1 * np.random.randn(<span class="number">10000</span>)</span><br><span class="line">x2 = mu2 + sigma2 * np.random.randn(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># the histogram of the data</span></span><br><span class="line"><span class="comment"># 50：将数据分成50组</span></span><br><span class="line"><span class="comment"># facecolor：颜色；alpha：透明度</span></span><br><span class="line"><span class="comment"># density：是密度而不是具体数值</span></span><br><span class="line">n1, bins1, patches1 = plt.hist(x1, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'g'</span>, alpha=<span class="number">1</span>)</span><br><span class="line">n2, bins2, patches2 = plt.hist(x2, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'r'</span>, alpha=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># n：概率值；bins：具体数值；patches：直方图对象。</span></span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'Smarts'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Probability'</span>)</span><br><span class="line">plt.title(<span class="string">'Histogram of IQ'</span>)</span><br><span class="line"></span><br><span class="line">plt.text(<span class="number">110</span>, <span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)</span><br><span class="line">plt.text(<span class="number">50</span>, <span class="number">.025</span>, <span class="string">r'$\mu=80,\ \sigma=15$'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x，y轴的具体范围</span></span><br><span class="line">plt.axis([<span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>, <span class="number">0.03</span>])</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/zhifang.png" title="zhifang">
+<h2 id="04-柱状图"><a href="#04-柱状图" class="headerlink" title="04 柱状图"></a>04 柱状图</h2><h3 id="4-1-并列柱状图"><a href="#4-1-并列柱状图" class="headerlink" title="4.1 并列柱状图"></a>4.1 并列柱状图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">size = <span class="number">5</span></span><br><span class="line">a = np.random.random(size)</span><br><span class="line">b = np.random.random(size)</span><br><span class="line">c = np.random.random(size)</span><br><span class="line">x = np.arange(size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有多少个类型，只需更改n即可</span></span><br><span class="line">total_width, n = <span class="number">0.8</span>, <span class="number">3</span>     </span><br><span class="line">width = total_width / n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新拟定x的坐标</span></span><br><span class="line">x = x - (total_width - width) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里使用的是偏移</span></span><br><span class="line">plt.bar(x, a,  width=width, label=<span class="string">'a'</span>)</span><br><span class="line">plt.bar(x + width, b, width=width, label=<span class="string">'b'</span>)</span><br><span class="line">plt.bar(x + <span class="number">2</span> * width, c, width=width, label=<span class="string">'c'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/binlie.png" title="binlie">
+<h3 id="4-2-叠加柱状图"><a href="#4-2-叠加柱状图" class="headerlink" title="4.2 叠加柱状图"></a>4.2 叠加柱状图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">size = <span class="number">5</span></span><br><span class="line">a = np.random.random(size)</span><br><span class="line">b = np.random.random(size)</span><br><span class="line">c = np.random.random(size)</span><br><span class="line"></span><br><span class="line">x = np.arange(size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里使用的是偏移</span></span><br><span class="line">plt.bar(x, a, width=<span class="number">0.5</span>, label=<span class="string">'a'</span>,fc=<span class="string">'r'</span>)</span><br><span class="line">plt.bar(x, b, bottom=a, width=<span class="number">0.5</span>, label=<span class="string">'b'</span>, fc=<span class="string">'g'</span>)</span><br><span class="line">plt.bar(x, c, bottom=a+b, width=<span class="number">0.5</span>, label=<span class="string">'c'</span>, fc=<span class="string">'b'</span>)</span><br><span class="line"></span><br><span class="line">plt.ylim(<span class="number">0</span>, <span class="number">2.5</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/diejia.png" title="diejia">
+<h2 id="05-饼图"><a href="#05-饼图" class="headerlink" title="05 饼图"></a>05 饼图</h2><h3 id="5-1-普通饼图"><a href="#5-1-普通饼图" class="headerlink" title="5.1 普通饼图"></a>5.1 普通饼图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">labels = <span class="string">'Frogs'</span>, <span class="string">'Hogs'</span>, <span class="string">'Dogs'</span>, <span class="string">'Logs'</span></span><br><span class="line">sizes = [<span class="number">15</span>, <span class="number">30</span>, <span class="number">45</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置分离的距离，0表示不分离</span></span><br><span class="line">explode = (<span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>, <span class="number">0</span>) </span><br><span class="line"></span><br><span class="line">plt.pie(sizes, explode=explode, labels=labels, autopct=<span class="string">'%1.1f%%'</span>,</span><br><span class="line">        shadow=<span class="literal">True</span>, startangle=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Equal aspect ratio 保证画出的图是正圆形</span></span><br><span class="line">plt.axis(<span class="string">'equal'</span>) </span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/bingtu1.png" title="bingtu1">
+<h3 id="5-2-嵌套饼图"><a href="#5-2-嵌套饼图" class="headerlink" title="5.2 嵌套饼图"></a>5.2 嵌套饼图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置每环的宽度</span></span><br><span class="line">size = <span class="number">0.3</span></span><br><span class="line">vals = np.array([[<span class="number">60.</span>, <span class="number">32.</span>], [<span class="number">37.</span>, <span class="number">40.</span>], [<span class="number">29.</span>, <span class="number">10.</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过get_cmap随机获取颜色</span></span><br><span class="line">cmap = plt.get_cmap(<span class="string">"tab20c"</span>)</span><br><span class="line">outer_colors = cmap(np.arange(<span class="number">3</span>)*<span class="number">4</span>)</span><br><span class="line">inner_colors = cmap(np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>]))</span><br><span class="line"></span><br><span class="line">print(vals.sum(axis=<span class="number">1</span>))</span><br><span class="line"><span class="comment"># [92. 77. 39.]</span></span><br><span class="line"></span><br><span class="line">plt.pie(vals.sum(axis=<span class="number">1</span>), radius=<span class="number">1</span>, colors=outer_colors,</span><br><span class="line">       wedgeprops=dict(width=size, edgecolor=<span class="string">'w'</span>))</span><br><span class="line">print(vals.flatten())</span><br><span class="line"><span class="comment"># [60. 32. 37. 40. 29. 10.]</span></span><br><span class="line"></span><br><span class="line">plt.pie(vals.flatten(), radius=<span class="number">1</span>-size, colors=inner_colors,</span><br><span class="line">       wedgeprops=dict(width=size, edgecolor=<span class="string">'w'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># equal 使得为正圆</span></span><br><span class="line">plt.axis(<span class="string">'equal'</span>) </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/qiantaobingtu.png" title="qiantaobingtu">
+<h3 id="5-3-极轴饼图"><a href="#5-3-极轴饼图" class="headerlink" title="5.3 极轴饼图"></a>5.3 极轴饼图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">N = <span class="number">10</span></span><br><span class="line">theta = np.linspace(<span class="number">0.0</span>, <span class="number">2</span> * np.pi, N, endpoint=<span class="literal">False</span>)</span><br><span class="line">radii = <span class="number">10</span> * np.random.rand(N)</span><br><span class="line">width = np.pi / <span class="number">4</span> * np.random.rand(N)</span><br><span class="line"></span><br><span class="line">ax = plt.subplot(<span class="number">111</span>, projection=<span class="string">'polar'</span>)</span><br><span class="line">bars = ax.bar(theta, radii, width=width, bottom=<span class="number">0.0</span>)</span><br><span class="line"><span class="comment"># left表示从哪开始，</span></span><br><span class="line"><span class="comment"># radii表示从中心点向边缘绘制的长度（半径）</span></span><br><span class="line"><span class="comment"># width表示末端的弧长</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义颜色和不透明度</span></span><br><span class="line"><span class="keyword">for</span> r, bar <span class="keyword">in</span> zip(radii, bars):</span><br><span class="line">    bar.set_facecolor(plt.cm.viridis(r / <span class="number">10.</span>))</span><br><span class="line">    bar.set_alpha(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/jizhou.png" title="jizhou">
+<h2 id="06-三维图"><a href="#06-三维图" class="headerlink" title="06 三维图"></a>06 三维图</h2><h3 id="6-1-绘制三维散点图"><a href="#6-1-绘制三维散点图" class="headerlink" title="6.1 绘制三维散点图"></a>6.1 绘制三维散点图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">data = np.random.randint(<span class="number">0</span>, <span class="number">255</span>, size=[<span class="number">40</span>, <span class="number">40</span>, <span class="number">40</span>])</span><br><span class="line"></span><br><span class="line">x, y, z = data[<span class="number">0</span>], data[<span class="number">1</span>], data[<span class="number">2</span>]</span><br><span class="line">ax = plt.subplot(<span class="number">111</span>, projection=<span class="string">'3d'</span>)  <span class="comment"># 创建一个三维的绘图工程</span></span><br><span class="line"><span class="comment">#  将数据点分成三部分画，在颜色上有区分度</span></span><br><span class="line">ax.scatter(x[:<span class="number">10</span>], y[:<span class="number">10</span>], z[:<span class="number">10</span>], c=<span class="string">'y'</span>)  <span class="comment"># 绘制数据点</span></span><br><span class="line">ax.scatter(x[<span class="number">10</span>:<span class="number">20</span>], y[<span class="number">10</span>:<span class="number">20</span>], z[<span class="number">10</span>:<span class="number">20</span>], c=<span class="string">'r'</span>)</span><br><span class="line">ax.scatter(x[<span class="number">30</span>:<span class="number">40</span>], y[<span class="number">30</span>:<span class="number">40</span>], z[<span class="number">30</span>:<span class="number">40</span>], c=<span class="string">'g'</span>)</span><br><span class="line"></span><br><span class="line">ax.set_zlabel(<span class="string">'Z'</span>)  <span class="comment"># 坐标轴</span></span><br><span class="line">ax.set_ylabel(<span class="string">'Y'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'X'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/sanwei.png" title="sanwei">
+<h3 id="6-2-绘制三维平面图"><a href="#6-2-绘制三维平面图" class="headerlink" title="6.2 绘制三维平面图"></a>6.2 绘制三维平面图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line">X = np.arange(<span class="number">-4</span>, <span class="number">4</span>, <span class="number">0.25</span>)</span><br><span class="line">Y = np.arange(<span class="number">-4</span>, <span class="number">4</span>, <span class="number">0.25</span>)</span><br><span class="line">X, Y = np.meshgrid(X, Y)</span><br><span class="line">R = np.sqrt(X**<span class="number">2</span> + Y**<span class="number">2</span>)</span><br><span class="line">Z = np.sin(R)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 具体函数方法可用 help(function) 查看，如：help(ax.plot_surface)</span></span><br><span class="line">ax.plot_surface(X, Y, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=<span class="string">'rainbow'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/08/24/pythonplot/pingmian3d.png" title="pingmian3d">
+<p>参考链接：   <a href="https://mp.weixin.qq.com/s/bMvrle-FRvli0pRNi83waQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/bMvrle-FRvli0pRNi83waQ</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/20/squeezenet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/20/squeezenet/" class="post-title-link" itemprop="url">SqueezeNet</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-20 16:36:47 / 修改时间：17:23:03" itemprop="dateCreated datePublished" datetime="2019-08-20T16:36:47+08:00">2019-08-20</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/轻量级网络/" itemprop="url" rel="index"><span itemprop="name">轻量级网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>论文地址:      <a href="https://arxiv.org/pdf/1602.07360.pdf" target="_blank" rel="noopener">SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and &lt;0.5MB model size</a><br>非官方代码:  <a href="https://github.com/arvention/SqueezeNet-PyTorch" target="_blank" rel="noopener">pytorch</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这篇文章是DeepScal，加州大学伯克利分校，以及斯坦福大学在ICLR 2017发表的一篇文章。文章的主要目的是为了压缩模型，提高运行速度。这篇文章主要提出了SqueezeNet: 使用少量参数保持精度。</p>
+<h2 id="结构设计策略"><a href="#结构设计策略" class="headerlink" title="结构设计策略"></a>结构设计策略</h2><p>这篇文章的首要目标是在保持准确率 的同时，有几个参数的CNN架构。这篇文章在设计CNN架构的时候采取了三个主要策略。这篇文章的主要模块 是Fire模块。</p>
+<ul>
+<li>用1x1的卷积核代替3x3的卷积核，从而减少参数量。1x1 卷积的参数比3x3的卷积核少了 9X.</li>
+<li>减少3x3 卷积输入通道的数量。假设有一个卷积层, 它完全由3x3 卷积组成。此层中参数的总数量为：(输入通道数) <em> (过滤器数) </em> (3 * 3)。要在squeeze层中将输入的通道数减少。</li>
+<li>在网络中减少下采样(maxpooling)实现, 以便卷积层具有较大的特征图。</li>
+</ul>
+<h2 id="Fire-Module"><a href="#Fire-Module" class="headerlink" title="Fire Module"></a>Fire Module</h2><p>Fire Module是将原来一层conv层变成两层：squeeze层+expand层，各自带上Relu激活层。在squeeze层里面全是1x1的卷积kernel，数量记为S11；在expand层里面有1x1和3x3的卷积kernel，expand层之后将1x1和3x3的卷积output feature maps在channel维度cat。<br><img src="/2019/08/20/squeezenet/fire.png" title="fire"></p>
+<hr>
+<p>自己手推的一张图，字比较丑，也没时间重现写一下。<br><img src="/2019/08/20/squeezenet/squeezenet.jpg" title="squeezenet"></p>
+<h3 id="fire-moudle的pytorch代码"><a href="#fire-moudle的pytorch代码" class="headerlink" title="fire moudle的pytorch代码"></a>fire moudle的pytorch代码</h3><p>很奇怪的是论文中用的是3个1x1，以及expand用的是4个1x1的卷积核和4个 3x3的卷积核，但是pytroch版本的代码并没有体现出来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class fire(nn.Module):</span><br><span class="line">    def __init__(self, inplanes,squeeze_planes, expand_planes):</span><br><span class="line">        super(fire,self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(inplanes,squeeze_planes, kernel_size=1, stride=1)</span><br><span class="line">        self.bn1 = nn.BatchNorm2d(squeeze_planes)</span><br><span class="line">        self.relu1 = nn.ReLU(inplace=True)</span><br><span class="line">        self.conv2 = nn.Conv2d(squeeze_planes, expand_planes, kernel_size=1, stride=1)</span><br><span class="line">        self.bn2 = nn.BatchNorm2d(expand_planes)</span><br><span class="line">        self.conv3 = nn.Conv2d(squeeze_planes,expand_planes,kernel_size=3, stride=1,padding=1)</span><br><span class="line">        self.bn3 = nn.BatchNorm2d(expand_planes)</span><br><span class="line">        self.relu2 = nn.ReLU(inplace=True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        # using MSR initialization</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        for m in self.modules():</span><br><span class="line">            if isinstance(m,nn.Conv2d):</span><br><span class="line">                n = m.kernel_size[0]*m.kernel_size[1]*m.in_channels</span><br><span class="line">                m.weight.data.normal_(0,math.sqrt(2./n))</span><br><span class="line">    def forward(self,x):</span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.bn1(x)</span><br><span class="line">        x = self.relu1(x)</span><br><span class="line">        out1 = self.conv2(x)</span><br><span class="line">        out1 = self.bn2(out1)</span><br><span class="line">        out2 = self.conv3(x)</span><br><span class="line">        out2 = self.bn3(out2)</span><br><span class="line"></span><br><span class="line">        out = torch.cat([out1,out2],1)</span><br><span class="line">        out = self.relu2(out)</span><br><span class="line"></span><br><span class="line">        return out</span><br></pre></td></tr></table></figure></p>
+<h2 id="SqueezeNet的具体网络结构"><a href="#SqueezeNet的具体网络结构" class="headerlink" title="SqueezeNet的具体网络结构"></a>SqueezeNet的具体网络结构</h2><img src="/2019/08/20/squeezenet/struct.png" title="struct">
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>imagenet数据上比较了alexnet，可以看到准确率差不多的情况下，squeezeNet模型参数数量显著降低了（下表倒数第三行），参数减少50X；如果再加上deep compression技术，压缩比可以达到461X！还是不错的结果。<br><img src="/2019/08/20/squeezenet/params.png" title="params"></p>
+<p>参考文章：<a href="https://blog.csdn.net/xbinworld/article/details/50897870" target="_blank" rel="noopener">https://blog.csdn.net/xbinworld/article/details/50897870</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/19/分治算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/19/分治算法/" class="post-title-link" itemprop="url">分治算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-19 19:21:24 / 修改时间：19:26:11" itemprop="dateCreated datePublished" datetime="2019-08-19T19:21:24+08:00">2019-08-19</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>问题： 给定一组数，要求从中找出第k小的元素。<br>分析：<br>这里通过快速排序算法来解决次问题。记一趟快速排序后，左子集中的元素个数为nleft，则选择问题，可能是一下几种情况之一： </p>
+<ul>
+<li>nleft等于k-1，则枢纽值即为所求； </li>
+<li>nleft大于k-1,则继续在左子树中找； </li>
+<li>nleft小于k-1,则继续在右子集中找<br>C++代码实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// t5.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;time.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int quickSelect(int a[], int l, int r, int k)</span><br><span class="line">&#123;</span><br><span class="line">	int p = rand() % (r - l + 1) + l;</span><br><span class="line">	int pivot = a[p];</span><br><span class="line">	&#123;int t = a[p]; a[p] = a[r]; a[r] = t; &#125;</span><br><span class="line">	int i = l,j = r;</span><br><span class="line">	while (i &lt; j)</span><br><span class="line">	&#123;</span><br><span class="line">		while (i &lt; j&amp;&amp;a[i] &lt; pivot) i++;</span><br><span class="line">		if (i &lt; j) &#123;</span><br><span class="line">			a[j] = a[i];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		while (i &lt; j&amp;&amp;a[i] &gt;pivot) j--;</span><br><span class="line">		if (i &lt; j) &#123;</span><br><span class="line">			a[i] = a[j];</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	a[i] = pivot;</span><br><span class="line">	p = i;</span><br><span class="line">	if (i - l + 1 == k) return a[i];</span><br><span class="line">	// j + 1, right, k - (j - left + 1)1)</span><br><span class="line">	if (i - l + 1 &lt; k) return quickSelect(a, i+1, r, k-i+l-1);</span><br><span class="line">	else return  quickSelect(a, l, i-1, k);</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a[] = &#123; 1,4,54,8,3,7,45,58,27,8,25,26,21,12 &#125;;</span><br><span class="line">	printf_s(&quot;%d\n&quot;, quickSelect(a, 0, 14, 6));</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/19/MobileNetsV2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/19/MobileNetsV2/" class="post-title-link" itemprop="url">MobileNetsV2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-19 16:09:46 / 修改时间：16:24:34" itemprop="dateCreated datePublished" datetime="2019-08-19T16:09:46+08:00">2019-08-19</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/轻量级网络/" itemprop="url" rel="index"><span itemprop="name">轻量级网络</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>论文地址:<a href="https://arxiv.org/pdf/1801.04381.pdf" target="_blank" rel="noopener">MobileNetV2: Inverted Residuals and Linear Bottlenecks </a><br>非官方代码:<a href="https://github.com/tonylins/pytorch-mobilenet-v2" target="_blank" rel="noopener">pytorch</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这篇文章是谷歌在2019提出来的文章在MobileNets 基础上做的改进。</p>
+<h2 id="深度可分离卷积示例"><a href="#深度可分离卷积示例" class="headerlink" title="深度可分离卷积示例"></a>深度可分离卷积示例</h2><ul>
+<li>首先在Xception 中被广泛使用</li>
+<li>好处： 理论上可以成倍的减少卷积层的时间复杂度和空间复杂度<img src="/2019/08/19/MobileNetsV2/MobileNets.jpg" title="MobileNets">
+</li>
+</ul>
+<h2 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h2><h3 id="与MobileNets-的对比"><a href="#与MobileNets-的对比" class="headerlink" title="与MobileNets 的对比"></a>与MobileNets 的对比</h3><ul>
+<li>相同点<ul>
+<li>都采用 Depth-wise (DW) 卷积搭配 Point-wise (PW) 卷积的方式来提特征</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>Linear Bottleneck</li>
+<li>V2 在 DW 卷积之前新加了一个 PW 卷积。<ul>
+<li>DW卷积由于本身的计算特性不能改变通道数的能力。若通道数很少的话，DW在提取地低纬特征，效果可能并不会好。</li>
+<li>在每个DW之前，增加了PW用于升维，这样DW可以更好的提取特征</li>
+</ul>
+</li>
+<li>V2 去掉了第二个 PW 的激活函数<ul>
+<li>激活函数在高维空间能够有效的增加非线性，而在低维空间时则会破坏特征</li>
+<li>第二个 PW 的主要功能就是降维</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="与ResNet的对比"><a href="#与ResNet的对比" class="headerlink" title="与ResNet的对比"></a>与ResNet的对比</h3><ul>
+<li>相同点<ul>
+<li>MobileNet V2 借鉴 ResNet，都采用了 1x1-&gt;3x3-&gt;1x1的模式</li>
+<li>MobileNet V2 借鉴 ResNet，同样使用 Shortcut 将输出与输入相加</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>Inverted Residual Block</li>
+<li>ResNet 使用 标准卷积 提特征，MobileNet 始终使用 DW卷积 提特征</li>
+<li>ResNet 先降维 (0.25倍)、卷积、再升维，而 MobileNet V2 则是 先升维 (6倍)、卷积、再降维。直观的形象上来看，ResNet 的微结构是沙漏形，而 MobileNet V2 则是纺锤形，刚好相反。因此论文作者将 MobileNet V2 的结构称为 Inverted Residual Block。使用DW卷积而作的适配，特征提取能够在高维进行</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li>MobileNets 与MobileNets V2在模型结构上的对比</li>
+<li>MobileNetsV2 的卷积层数比V1要多，但是时间复杂度，以及空间复杂度，以及在cpu上的推理时间要远远优于MobileNets</li>
+</ul>
+<p>参考文章：<a href="https://zhuanlan.zhihu.com/p/33075914" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33075914</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/19/MobileNets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1405,711 +2158,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/14/algorithm1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/14/algorithm1/" class="post-title-link" itemprop="url">算法竞赛入门经典第一章</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-14 14:23:54 / 修改时间：14:26:34" itemprop="dateCreated datePublished" datetime="2019-08-14T14:23:54+08:00">2019-08-14</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">// t1.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &quot;stdio.h&quot;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	//printf(&quot;%.1f\n&quot;, 8.0 / 5.0);  // %点后面是保留几位浮点小数1.6</span><br><span class="line">	//printf(&quot;%.1f\n&quot;, 8 / 5);  // %点后面是保留几位浮点小数 结果为0</span><br><span class="line">	//printf(&quot;%d\n&quot;, 8.0 / 5.0);  // 整数值用%d输出，实数用%f输出 # int 是2字节 ，float是4字节 溢出</span><br><span class="line">	//							//整数/整数等与整数，浮点数除以浮点数等于浮点数</span><br><span class="line">	//printf(&quot;%.8f\n&quot;, 1 + 2 * sqrt(3) / (5 - 0.1));</span><br><span class="line">	//int a, b;</span><br><span class="line">	//scanf_s(&quot;%d%d&quot;, &amp;a, &amp;b);  //scanf_s 中的占位符要和变量的数据类型一一对应，要在变量前面加上“&amp;”符号</span><br><span class="line">	//printf(&quot;%d\n&quot;, a+b);</span><br><span class="line"></span><br><span class="line">	//const double pi = acos(-1.0);</span><br><span class="line">	//double r, h, s1, s2, s;</span><br><span class="line">	//scanf_s(&quot;%1f%1f&quot;, &amp;r, &amp;h);</span><br><span class="line">	//s1 = pi*r*r;</span><br><span class="line">	//s2 = 2 * pi*r*h;</span><br><span class="line">	//s = s1*2.0 + s2;</span><br><span class="line">	//printf_s(&quot;Area = %.3f\n&quot;, s);</span><br><span class="line">	//交换变量</span><br><span class="line">	//int a, b, m, n;</span><br><span class="line">	//scanf_s(&quot;%d%d&quot;, &amp;a, &amp;b);</span><br><span class="line">	///*a = a + b;</span><br><span class="line">	//b = a - b;</span><br><span class="line">	//a = a - b;*/</span><br><span class="line">	//printf_s(&quot;%d %d\n&quot;, b, a);</span><br><span class="line">	//int a, b, m, n;</span><br><span class="line">	//scanf_s(&quot;%d%d&quot;, &amp;n, &amp;m);</span><br><span class="line">	///*a = a + b;</span><br><span class="line">	//b = a - b;</span><br><span class="line">	//a = a - b;*/</span><br><span class="line">	//a = (4*n-m) / 2;</span><br><span class="line">	//b = n - a;</span><br><span class="line">	//if (m % 2 == 1 || a &lt; 0 || b &lt; 0)</span><br><span class="line">	//	printf_s(&quot;No answer!\n&quot;);</span><br><span class="line">	//else</span><br><span class="line">	//	printf_s(&quot;Answer is chicken %d   rabbit  %d\n&quot;, a, b);</span><br><span class="line">	//exp1 输入三个整数，求出他们的平均数，保留三位小数</span><br><span class="line">	//int a, b, c;</span><br><span class="line">	//scanf_s(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	//printf_s(&quot;%.3f&quot;, (a + b + c) / 3.0);</span><br><span class="line">	//exp2 输入华氏温度f,输出对应的摄氏温度c,保留3位小数.提示 : c = 5(f-32)/9.</span><br><span class="line">	//float f, c;</span><br><span class="line">	//scanf_s(&quot;%f&quot;, &amp;f);</span><br><span class="line">	//c = 5*(f - 32) / 9.0;</span><br><span class="line">	//printf_s(&quot;摄制温度为： %.3f&quot;, c);</span><br><span class="line">	//exp3</span><br><span class="line">	//int  n;</span><br><span class="line">	//scanf_s(&quot;%d&quot;, &amp;n);</span><br><span class="line">	//printf_s(&quot;%d&quot;, n*(n + 1) / 2);</span><br><span class="line">	//exp4  输入正整数《360 ，输出正弦余弦函数值。提示：使用数学函数</span><br><span class="line"></span><br><span class="line">	//int  n;</span><br><span class="line"></span><br><span class="line"> //   #define PI 3.1415926</span><br><span class="line"></span><br><span class="line">	//scanf_s(&quot;%d&quot;, &amp;n);</span><br><span class="line">	//if (n &lt; 0 || n&gt;360)</span><br><span class="line">	//	printf_s(&quot;error&quot;);</span><br><span class="line">	//else</span><br><span class="line">	//&#123;</span><br><span class="line">	//	printf_s(&quot;%.2f\n&quot;, cos(n*PI/180));</span><br><span class="line">	//	printf_s(&quot;%.2f&quot;, sin(n*PI / 180));</span><br><span class="line">	//&#125;</span><br><span class="line">	//	</span><br><span class="line">    // exp5 一件衣服95元，若消费满300元可以打85折，输入购买衣服的简书，输出需要支付的金额。保留两位小数</span><br><span class="line">	//int n,money;</span><br><span class="line">	//scanf_s(&quot;%d&quot;, &amp;n);</span><br><span class="line">	//money = n * 95;</span><br><span class="line">	//if (money &gt; 300)</span><br><span class="line">	//	printf_s(&quot;%.2f&quot;, money* 0.85);</span><br><span class="line">	//else</span><br><span class="line">	//	printf_s(&quot;%.2f&quot;, money);</span><br><span class="line">	//</span><br><span class="line">	//exp6  判断三个边是否能构成直角三角形 边长均为正整数</span><br><span class="line">	//int a, b, c;</span><br><span class="line">	//scanf_s(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c);</span><br><span class="line">	//if (((a*a + b*b)== c*c) || ((a*a + c*c) == b*b) || ((c*c + b*b) == a*a))</span><br><span class="line">	//	printf_s(&quot;yes\n&quot;);</span><br><span class="line">	//else</span><br><span class="line">	//	printf_s(&quot;not a triangle\n&quot;);</span><br><span class="line">	//exp7 判断一个年是不是闰年 能被4整除但是不能被100整除的年份</span><br><span class="line">	//int n;</span><br><span class="line">	//scanf_s(&quot;%d&quot;, &amp;n);</span><br><span class="line">	//if (n % 4 == 0 &amp;&amp; n % 100 != 0)</span><br><span class="line">	//	printf_s(&quot;yes\n&quot;);</span><br><span class="line">	//else</span><br><span class="line">	//	printf_s(&quot;no\n&quot;);</span><br><span class="line">	//	</span><br><span class="line">	//q1: int类型的最大值和最小值是多少 2^(n - 1)   - 1 -2^(n - 1)</span><br><span class="line">	//q2; double浮点数能精确到多少位小数？ 遵循IEEE标准的8字节（64位）的double能表示的有效数字的位数是：15 ~ 16</span><br><span class="line">	//q3: double类型的最大正数值和最小正数值</span><br><span class="line">	//q4: 逻辑运算符号的优先级</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">	     </span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>思考题解析： <a href="https://blog.csdn.net/panderang/article/details/54096426" target="_blank" rel="noopener">https://blog.csdn.net/panderang/article/details/54096426</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/26/顺序容器的定义/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/26/顺序容器的定义/" class="post-title-link" itemprop="url">c++中级教程 顺序容器的定义</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-26 21:15:21 / 修改时间：21:17:09" itemprop="dateCreated datePublished" datetime="2019-07-26T21:15:21+08:00">2019-07-26</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="顺序容器的定义"><a href="#顺序容器的定义" class="headerlink" title="顺序容器的定义"></a>顺序容器的定义</h2><ul>
-<li><h3 id="顺序容器"><a href="#顺序容器" class="headerlink" title="顺序容器"></a>顺序容器</h3></li>
-</ul>
-<ul>
-<li>vector</li>
-<li>list</li>
-<li>deque</li>
-</ul>
-<ul>
-<li><h3 id="顺序容器适配器"><a href="#顺序容器适配器" class="headerlink" title="顺序容器适配器"></a>顺序容器适配器</h3></li>
-</ul>
-<ul>
-<li>stack</li>
-<li>queue</li>
-<li>priority_queue</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/26/STLqueue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/26/STLqueue/" class="post-title-link" itemprop="url">c++中级教程  STL queue</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-26 20:10:21 / 修改时间：21:14:11" itemprop="dateCreated datePublished" datetime="2019-07-26T20:10:21+08:00">2019-07-26</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programs/" itemprop="url" rel="index"><span itemprop="name">programs</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="STL-queue"><a href="#STL-queue" class="headerlink" title="STL queue"></a>STL queue</h2><ul>
-<li>队列： FIFO 先进先出</li>
-<li>自适应容器（容器适配器）</li>
-<li>栈适配器 STL queue<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>, <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;&gt;   q;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt;   q;</span><br><span class="line">q.empty()</span><br><span class="line">q.size()</span><br><span class="line">q.front()</span><br><span class="line">q.back()</span><br><span class="line">q.pop()</span><br><span class="line">q.push(item)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="可以用list和deque做queue"><a href="#可以用list和deque做queue" class="headerlink" title="可以用list和deque做queue"></a>可以用list和deque做queue</h3><p>先进先出，后进后出<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// queue.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>, <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;&gt; a;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; b;</span><br><span class="line">	<span class="comment">//queue&lt;int, vector&lt;int&gt;&gt; c;  不可以，因为vector不能进行两端操作</span></span><br><span class="line">	<span class="comment">//队列有什么用途？？？</span></span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line">	q.push(<span class="number">10</span>);</span><br><span class="line">	q.push(<span class="number">5</span>);</span><br><span class="line">	q.push(<span class="number">-1</span>);</span><br><span class="line">	q.push(<span class="number">20</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"现在队列里有"</span> &lt;&lt; q.size() &lt;&lt; <span class="string">"个数据 "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"队首的数据："</span> &lt;&lt; q.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"队尾的数据："</span> &lt;&lt; q.back() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	q.pop();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"新的队首的数据："</span> &lt;&lt; q.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">while</span> (q.size() != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">" 删除"</span> &lt;&lt; a.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		q.pop();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"队列为空！"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="优先级队列-priority-queue"><a href="#优先级队列-priority-queue" class="headerlink" title="优先级队列 priority_queue"></a>优先级队列 priority_queue</h2><ul>
-<li>自适应容器（容器适配器）：不能使用list</li>
-<li>最大值优先级队列、最小值优先级队列(值越大，优先级越高，值越小优先级越高)</li>
-<li>优先级队列适配器 STL priority_queue</li>
-</ul>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;int, deque&lt;int&gt;&gt; pg1;</span><br><span class="line">//对队列里的数据进行随机操作，所以不能使用list</span><br><span class="line">priority_queue&lt;int, vector&lt;int&gt;&gt; pg2; //vector是默认的</span><br><span class="line">								//谓词</span><br><span class="line">priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; pg2; //vector是默认的，最小优先队列</span><br><span class="line">pg.empty()</span><br><span class="line">pg.size()</span><br><span class="line">pg.top()</span><br><span class="line">pg.pop()</span><br><span class="line">pg.push(item)</span><br><span class="line">~~~~~~~~~~</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">// priority_queue.cpp : 定义控制台应用程序的入口点。</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;deque&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	priority_queue&lt;int, deque&lt;int&gt;&gt; pg1;</span><br><span class="line">    //对队列里的数据进行随机操作，所以不能使用list</span><br><span class="line">	priority_queue&lt;int, vector&lt;int&gt;&gt; pg2; //vector是默认的</span><br><span class="line">									//谓词</span><br><span class="line">	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; pg2; //vector是默认的，最小优先队列</span><br><span class="line"></span><br><span class="line">	pg2.push(10);</span><br><span class="line">	pg2.push(5);</span><br><span class="line">	pg2.push(-1);</span><br><span class="line">	pg2.push(20);</span><br><span class="line">	cout &lt;&lt; &quot;优先级队列一共有： &quot; &lt;&lt; pg2.size() &lt;&lt; &quot;个数据&quot; &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; pg2.top() &lt;&lt; endl;</span><br><span class="line">	while (!pg2.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;从优先级队列里删除： &quot; &lt;&lt; pg2.top() &lt;&lt; endl;</span><br><span class="line">		pg2.pop();</span><br><span class="line">	&#125;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">优先级队列一共有： 4个数据</span><br><span class="line">20</span><br><span class="line">从优先级队列里删除： 20</span><br><span class="line">从优先级队列里删除： 10</span><br><span class="line">从优先级队列里删除： 5</span><br><span class="line">从优先级队列里删除： -1</span><br><span class="line">请按任意键继续. . .</span><br><span class="line"></span><br><span class="line">~~</span><br></pre></td></tr></table></figure>
-<hr>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/07/25/firstblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/25/firstblog/" class="post-title-link" itemprop="url">firstblog</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-25 19:36:21 / 修改时间：21:22:35" itemprop="dateCreated datePublished" datetime="2019-07-25T19:36:21+08:00">2019-07-25</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/dailylife/" itemprop="url" rel="index"><span itemprop="name">dailylife</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>以上是摘要<br></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/25/firstblog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2159,7 +2207,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2260,7 +2308,9 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           
         
-        <span class="site-state-item-count">42</span>
+          
+        
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

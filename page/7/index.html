@@ -364,346 +364,6 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/numpy实现神经网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/28/numpy实现神经网络/" class="post-title-link" itemprop="url">numpy实现神经网络</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-28 16:44:57 / 修改时间：16:46:12" itemprop="dateCreated datePublished" datetime="2019-08-28T16:44:57+08:00">2019-08-28</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># N 为batch size, D_in 为输入维度</span></span><br><span class="line"><span class="comment"># H 为隐藏层的维度, D_out 为输出的维度</span></span><br><span class="line">N, D_in, H, D_out = <span class="number">64</span>, <span class="number">1000</span>, <span class="number">100</span>, <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建随机的输入和输出数据</span></span><br><span class="line">x = np.random.randn(N, D_in) <span class="comment"># N × D_in 的矩阵</span></span><br><span class="line">y = np.random.randn(N, D_out) <span class="comment"># N × D_out 的矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对两个隐藏层w1,w2进行初始化</span></span><br><span class="line">w1 = np.random.randn(D_in, H)</span><br><span class="line">w2 = np.random.randn(H, D_out)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置学习率</span></span><br><span class="line">learning_rate = <span class="number">1e-6</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">500</span>):</span><br><span class="line">    <span class="comment"># 前向传播: 计算预测结果 y_pred</span></span><br><span class="line">    h = x.dot(w1) <span class="comment"># x维度为64 × 1000, w1维度为 1000 × 100, 计算完以后, h维度为 64 × 100</span></span><br><span class="line">    h_relu = np.maximum(h,<span class="number">0</span>)</span><br><span class="line">    y_pred = h_relu.dot(w2) <span class="comment"># h_relu维度为 64×100, w2维度为100×10, y的维度为64×10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算损失</span></span><br><span class="line">    loss = np.square(y_pred - y).sum()</span><br><span class="line">    print(t, loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 反向传播根据loss更新w1和w2的值</span></span><br><span class="line">    grad_y_pred = <span class="number">2.0</span>*(y_pred - y) <span class="comment"># 对y_pred求导</span></span><br><span class="line">    grad_w2 = h_relu.T.dot(grad_y_pred) <span class="comment"># 对w2求导, 微分矩阵应该与w2的size相同</span></span><br><span class="line">    grad_h_relu = grad_y_pred.dot(w2.T) <span class="comment"># 对h_relu求导</span></span><br><span class="line">    grad_h = grad_h_relu.copy()</span><br><span class="line">    grad_h[h &lt; <span class="number">0</span>] = <span class="number">0</span> <span class="comment"># 经过relu, 将小于0的梯度归0</span></span><br><span class="line">    grad_w1 = x.T.dot(grad_h)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update weights</span></span><br><span class="line">    w1 = w1 - learning_rate * grad_w1</span><br><span class="line">    w2 = w2 - learning_rate * grad_w2</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/glob模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chao Lu">
-      <meta itemprop="description" content="hello,every body!~">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="一只程序猿的小小博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/28/glob模块/" class="post-title-link" itemprop="url">glob模块</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-28 16:13:37 / 修改时间：17:39:41" itemprop="dateCreated datePublished" datetime="2019-08-28T16:13:37+08:00">2019-08-28</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>glob模块是Python最简单的模块之一, 内容非常少, 用它可以查找符合特定规则的文件路径名, 查找文件时只会用到三个匹配符:</p>
-<ol>
-<li>* : 匹配0个或多个字符</li>
-<li>? : 匹配单个字符</li>
-<li>[] : 匹配指定范围内的字符, 如[0-9]匹配数字</li>
-</ol>
-<h2 id="glob-glob"><a href="#glob-glob" class="headerlink" title="glob.glob()"></a>glob.glob()</h2><p>参数:<br>_(str): 文件路径的正则表达式</p>
-<p>返回值:<br>_(list): 符合正则表达式的文件路径列表</p>
-<p>备注:<br>返回所有匹配的文件路径列表, 它只有一个参数pathname, 定义了文件路径匹配的规则, 这里可以是绝对路径或者相对路径:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> glob</span><br><span class="line">pathes_list = glob.glob(<span class="string">"~/Pictures/*.jpg"</span>)</span><br><span class="line"><span class="comment"># 获取Pictures下的所有图片</span></span><br><span class="line"></span><br><span class="line">relative_pathes_list = glob.glob(<span class="string">"../*.py"</span>)</span><br><span class="line"><span class="comment"># 获取上级目录中的所有.py文件</span></span><br></pre></td></tr></table></figure></p>
-<p>在 linux, osx 系统中, 通配符的匹配是大小写区分的, 也就是需要特别指定大小写:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'jpg'</span>, <span class="string">'JPG'</span>, <span class="string">'jpeg'</span>, <span class="string">'JPEG'</span>]</span><br></pre></td></tr></table></figure></p>
-<p>但是在 windows 当中, 通配符的匹配是不区分大小写的, 因此只需要指定大小写中的一个即可, 两个都指定的话, 会出现重复的情况<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'jpg'</span>, <span class="string">'jpeg'</span>]</span><br></pre></td></tr></table></figure></p>
-<h2 id="glob-iglob"><a href="#glob-iglob" class="headerlink" title="glob.iglob"></a>glob.iglob</h2><p>获取一个可遍历的对象, 使用它可以逐个获取匹配的文件路径名. 与glob.glob()的区别是: glob.glob()会同时获取到所有的匹配路径, 而glob.iglob()一次只获取一个匹配路径.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = glob.iglob(<span class="string">"../*.py"</span>)</span><br><span class="line"><span class="keyword">print</span> f <span class="comment"># &lt;generator object iglob at 0x00B9FF80&gt;</span></span><br><span class="line"><span class="keyword">for</span> py <span class="keyword">in</span> f:</span><br><span class="line">    print(py)</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/28/logging模块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2298,6 +1958,460 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/26/仿射变换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/26/仿射变换/" class="post-title-link" itemprop="url">仿射变换</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 12:52:43" itemprop="dateCreated datePublished" datetime="2019-08-26T12:52:43+08:00">2019-08-26</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-27 13:15:39" itemprop="dateModified" datetime="2019-08-27T13:15:39+08:00">2019-08-27</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/maths/" itemprop="url" rel="index"><span itemprop="name">maths</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/maths/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>欧式变换包括平移和旋转变换</p>
+<p>什么是仿射变换？ 简单的来说“仿射变换” 就是：“线性变换”+平移<br>尺度变换包括相似变换，当x与y变换的尺度相等的时候，叫做相似变换<br>什么是线性变换？</p>
+<h2 id="1-线性变换"><a href="#1-线性变换" class="headerlink" title="1 线性变换"></a>1 线性变换</h2><hr>
+<p>线性变换从几何直观有三个 要点：</p>
+<ul>
+<li>变换前是直线的，变换后依旧是直线</li>
+<li>直线比例保持不变</li>
+<li>变换前是原点，变换后依然是原点</li>
+</ul>
+<hr>
+<h2 id="2-仿射变换"><a href="#2-仿射变换" class="headerlink" title="2 仿射变换"></a>2 仿射变换</h2><p>仿射变换从几何直观只有两个要点：</p>
+<ul>
+<li>变换前是直线的，变换后依然是直线</li>
+<li>直线比例保持不变<br>*</li>
+</ul>
+<p>与线性变换相比少了原点保持不变这一条</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://caius-lu.github.io/2019/08/24/ssd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chao Lu">
+      <meta itemprop="description" content="hello,every body!~">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只程序猿的小小博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/24/ssd/" class="post-title-link" itemprop="url">SSD源码解析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-24 16:40:05" itemprop="dateCreated datePublished" datetime="2019-08-24T16:40:05+08:00">2019-08-24</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-28 12:49:37" itemprop="dateModified" datetime="2019-08-28T12:49:37+08:00">2019-08-28</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>论文地址:        <a href="https://arxiv.org/pdf/1512.02325.pdf" target="_blank" rel="noopener">SSD: Single Shot MultiBox Detector </a><br>非官方代码:    <a href="https://github.com/amdegroot/ssd.pytorch" target="_blank" rel="noopener">pytorch</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>SSD，全称Single Shot MultiBox Detector，是一种One-Stage的方法，它由Wei Liu在ECCV 2016上提出，SSD具有如下主要特点：</p>
+<ul>
+<li>从YOLO中继承了将detection转化为regression的思路，同时一次即可完成网络训练</li>
+<li>基于Faster RCNN中的anchor，提出了相似的prior box</li>
+<li>加入基于特征金字塔（Pyramidal Feature Hierarchy）的检测方式，相当于半个FPN思路</li>
+</ul>
+<h2 id="SSD的-网络结构"><a href="#SSD的-网络结构" class="headerlink" title="SSD的 网络结构"></a>SSD的 网络结构</h2><img src="/2019/08/24/ssd/ssdarchitecture.png" title="ssdarchitecture">
+<p>由上图可以看出，SSD的基础网络结构由基础网络VGG16组成，在VGG16基础网络之后接了一个3x3的卷积和一个1x1的卷积做特征融合，然后增加了一个Extra Feature Layers 层，这个层由八个卷积层构成。SSD在前面的基础网络去conv_4_3之后的relu层输出，以及倒数第二层的conv_7_1的relu再加上Extra Feature Layers层的第1,3,5,7层 共有6个 featuremap层，在此基础上对box进行预测。但感觉要提升效果的话可以对基础网络进行更改，增加特征融合等等。</p>
+<h3 id="空洞卷积-Dilation-Conv"><a href="#空洞卷积-Dilation-Conv" class="headerlink" title="空洞卷积(Dilation Conv)"></a>空洞卷积(Dilation Conv)</h3><p> ssd网络里还使用了空洞卷积(Dilation Conv),采用VGG16做基础模型，首先VGG16是在ILSVRC CLS-LOC数据集预训练。然后借鉴了DeepLab-LargeFOV，分别将VGG16的全连接层fc6和fc7转换成 3×3卷积层 conv6和 1×1 卷积层conv7，同时将池化层 pool5 由原来的 stride=2 的 2×2 变成 stride=1 的(猜想是不想reduce特征图大小)，为了配合这种变化，采用了一种 Atrous Algorithm，其实就是conv6采用扩展卷积或带孔卷积（Dilation Conv），其在不增加参数与模型复杂度的条件下指数级扩大卷积的视野，其使用扩张率(dilation rate)参数，来表示扩张的大小，如下图所示，(a)是普通的 3×3 卷积，其视野就是 3×3 ，(b)是扩张率为 1，此时视野变成 7×7 ，(c)扩张率为3时，视野扩大为 15×15 ，但是视野的特征更稀疏了。Conv6采用 3×3 大小但dilation rate=6的扩展卷积。</p>
+<h2 id="Prior-Box"><a href="#Prior-Box" class="headerlink" title="Prior Box"></a>Prior Box</h2><p>  SSD中有着类似anchor机制的Prior Box机制，用于来生成先验框，后面将这些先验框与真实的gt进行匹配，然后与预测的进行回归。从而得到物体真实的 位置。<br>SSD的prior Box 按照如下规则生成：</p>
+<ul>
+<li><p>以feature map上每个点的中点为中心（offset=0.5），生成一些列同心的prior box（然后中心点的坐标会乘以step，相当于从feature map位置映射回原图位置）</p>
+</li>
+<li><p>正方形prior box最小边长为’’’pash $min_size$’’’，最大边长为：\sqrt{min_size*max_size}<br>E=mc^2</p>
+</li>
+<li><p>根据相应的aspect ratio，会生成不同个数的长方形 ，长宽为：$ \sqrt{aspect_ratio}<em>min_size$ 和 $1/  \sqrt{aspect_ratio}</em>min_size$     $f(x)=ax+b$</p>
+</li>
+<li><p>最终网络生成固定数量的Prior Box</p>
+</li>
+<li>每个feature map 对应prior box的min_size 和max_size 由以下的公式决定，公式中的m是使用feature map的数量(m=6)<script type="math/tex; mode=display">
+S_k = S_min + \frac{S_max-S_min}{m-1}(k-1) , k \in[1,m]</script>第一层feature map对应的min_size=S1，max_size=S2；第二层min_size=S2，max_size=S3；其他类推。在原文中，Smin=0.2，Smax=0.9<img src="/2019/08/24/ssd/priorbox.png" title="priorbox">
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>min_size</th>
+<th>max_size</th>
+<th>def.boxes num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conv4_3</td>
+<td>30</td>
+<td>60</td>
+<td>4</td>
+</tr>
+<tr>
+<td>fc7</td>
+<td>60</td>
+<td>111</td>
+<td>6</td>
+</tr>
+<tr>
+<td>conv6_2</td>
+<td>111</td>
+<td>162</td>
+<td>6</td>
+</tr>
+<tr>
+<td>fc7</td>
+<td>162</td>
+<td>213</td>
+<td>6</td>
+</tr>
+<tr>
+<td>conv4_3</td>
+<td>213</td>
+<td>264</td>
+<td>4</td>
+</tr>
+<tr>
+<td>fc7</td>
+<td>264</td>
+<td>315</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="训练策略"><a href="#训练策略" class="headerlink" title="训练策略"></a>训练策略</h2><h3 id="正负样本"><a href="#正负样本" class="headerlink" title="正负样本"></a>正负样本</h3><p>给定输入图像以及每个物体的Ground Truth,首先找到每个Ground True box对应的default box中IOU最大的最为正样本。然后,在剩下的default box中寻找与Ground Truth 的IOU大于0.5的default box作为正样本。一个Ground Truth可能对应多个正样本default box.其他的default box作为负样本。,为了保证样本尽量平衡,SSD采用了hard nagative mining,即对负样本进行抽样,抽样时按照置信度误差(预测背景的置信度越小,误差越大)进行奖序排列,选取误差较大的top-k作为训练的负样本,保证正负样本比例接近1:3。</p>
+<h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>目标函数为训练过程中的优化标准,目标函数也称损失函数,主要包括位置误差(localization loss,loc) 与置信度误差(confidence loss,conf,分类损失)的加权和,定义为：</p>
+<h1 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h1><h2 id="基础模型定义"><a href="#基础模型定义" class="headerlink" title="基础模型定义"></a>基础模型定义</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># vgg([64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'C', 512, 512, 512, 'M',</span></span><br><span class="line"><span class="comment">#             512, 512, 512], 3)</span></span><br><span class="line"><span class="comment"># This function is derived from torchvision VGG make_layers()</span></span><br><span class="line"><span class="comment"># https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vgg</span><span class="params">(cfg, i, batch_norm=False)</span>:</span></span><br><span class="line">    layers = []</span><br><span class="line">    in_channels = i</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> cfg:</span><br><span class="line">        <span class="keyword">if</span> v == <span class="string">'M'</span>:</span><br><span class="line">            layers += [nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)]</span><br><span class="line">        <span class="keyword">elif</span> v == <span class="string">'C'</span>:</span><br><span class="line">            layers += [nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, ceil_mode=<span class="literal">True</span>)]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            conv2d = nn.Conv2d(in_channels, v, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> batch_norm:</span><br><span class="line">                layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=<span class="literal">True</span>)]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                layers += [conv2d, nn.ReLU(inplace=<span class="literal">True</span>)]</span><br><span class="line">            in_channels = v</span><br><span class="line">    pool5 = nn.MaxPool2d(kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line">    conv6 = nn.Conv2d(<span class="number">512</span>, <span class="number">1024</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">6</span>, dilation=<span class="number">6</span>)</span><br><span class="line">    conv7 = nn.Conv2d(<span class="number">1024</span>, <span class="number">1024</span>, kernel_size=<span class="number">1</span>)</span><br><span class="line">    layers += [pool5, conv6,</span><br><span class="line">               nn.ReLU(inplace=<span class="literal">True</span>), conv7, nn.ReLU(inplace=<span class="literal">True</span>)]</span><br><span class="line">    <span class="keyword">return</span> layers</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">base = &#123;</span><br><span class="line">    <span class="string">'300'</span>: [<span class="number">64</span>, <span class="number">64</span>, <span class="string">'M'</span>, <span class="number">128</span>, <span class="number">128</span>, <span class="string">'M'</span>, <span class="number">256</span>, <span class="number">256</span>, <span class="number">256</span>, <span class="string">'C'</span>, <span class="number">512</span>, <span class="number">512</span>, <span class="number">512</span>, <span class="string">'M'</span>,</span><br><span class="line">            <span class="number">512</span>, <span class="number">512</span>, <span class="number">512</span>],</span><br><span class="line">    <span class="string">'512'</span>: [],</span><br><span class="line">&#125;</span><br><span class="line">extras = &#123;</span><br><span class="line">    <span class="string">'300'</span>: [<span class="number">256</span>, <span class="string">'S'</span>, <span class="number">512</span>, <span class="number">128</span>, <span class="string">'S'</span>, <span class="number">256</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">128</span>, <span class="number">256</span>],</span><br><span class="line">    <span class="string">'512'</span>: [],</span><br><span class="line">&#125;</span><br><span class="line">mbox = &#123;</span><br><span class="line">    <span class="string">'300'</span>: [<span class="number">4</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">4</span>],  <span class="comment"># number of boxes per feature map location</span></span><br><span class="line">    <span class="string">'512'</span>: [],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_extras</span><span class="params">(cfg, i, batch_norm=False)</span>:</span></span><br><span class="line">    <span class="comment"># Extra layers added to VGG for feature scaling</span></span><br><span class="line">    layers =[]</span><br><span class="line">    in_channel = i</span><br><span class="line">    flag = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> enumerate(cfg):</span><br><span class="line">        <span class="keyword">if</span> in_channel !=<span class="string">"S"</span>:</span><br><span class="line">            <span class="keyword">if</span> v == <span class="string">"S"</span>:</span><br><span class="line">                layers += [nn.Conv2d(in_channel,cfg[k+<span class="number">1</span>],</span><br><span class="line">                                     kernel_size=(<span class="number">1</span>,<span class="number">3</span>)[flag], stride=<span class="number">2</span>,padding=<span class="number">1</span>)]   <span class="comment"># flag 来控制卷积核是1 还是3</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                layers += [nn.Conv2d(in_channel, v, kernel_size=(<span class="number">1</span>,<span class="number">3</span>)[flag])]</span><br><span class="line"></span><br><span class="line">            flag = <span class="keyword">not</span> flag</span><br><span class="line"></span><br><span class="line">        in_channel = v</span><br><span class="line">    <span class="keyword">return</span> layers</span><br></pre></td></tr></table></figure>
+<h2 id="模型Head部分的生成"><a href="#模型Head部分的生成" class="headerlink" title="模型Head部分的生成"></a>模型Head部分的生成</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># cfg  [4, 6, 6, 6, 4, 4],  # number of boxes per feature map location</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multibox</span><span class="params">(vgg, extra_layers, cfg, num_classes)</span>:</span></span><br><span class="line">    loc_layers = []</span><br><span class="line">    conf_layers = []</span><br><span class="line">    vgg_source = [<span class="number">21</span>, <span class="number">-2</span>]</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> enumerate(vgg_source):</span><br><span class="line">        loc_layers += [nn.Conv2d(vgg[v].out_channels,</span><br><span class="line">                                 cfg[k] * <span class="number">4</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)]</span><br><span class="line">        conf_layers += [nn.Conv2d(vgg[v].out_channels,</span><br><span class="line">                        cfg[k] * num_classes, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)]</span><br><span class="line">    <span class="comment"># 对extra_layers中的（Conv2d-2_1、Conv2d-4_1、Conv2d-6_1、Conv2d-8_1）层通过卷积提取特征</span></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> enumerate(extra_layers[<span class="number">1</span>::<span class="number">2</span>], <span class="number">2</span>):</span><br><span class="line">        loc_layers += [nn.Conv2d(v.out_channels, cfg[k]</span><br><span class="line">                                 * <span class="number">4</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)]</span><br><span class="line">        conf_layers += [nn.Conv2d(v.out_channels, cfg[k]</span><br><span class="line">                                  * num_classes, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">return</span> vgg, extra_layers, (loc_layers, conf_layers)</span><br></pre></td></tr></table></figure>
+<h2 id="模型先验框的生成"><a href="#模型先验框的生成" class="headerlink" title="模型先验框的生成"></a>模型先验框的生成</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PriorBox</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""Compute priorbox coordinates in center-offset form for each source</span></span><br><span class="line"><span class="string">    feature map.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, cfg)</span>:</span></span><br><span class="line">        super(PriorBox, self).__init__()</span><br><span class="line">        self.image_size = cfg[<span class="string">'min_dim'</span>]</span><br><span class="line">        <span class="comment"># number of priors for feature map location (either 4 or 6)</span></span><br><span class="line">        self.num_priors = len(cfg[<span class="string">'aspect_ratios'</span>])</span><br><span class="line">        self.variance = cfg[<span class="string">'variance'</span>] <span class="keyword">or</span> [<span class="number">0.1</span>]</span><br><span class="line">        self.feature_maps = cfg[<span class="string">'feature_maps'</span>]</span><br><span class="line">        self.min_sizes = cfg[<span class="string">'min_sizes'</span>]</span><br><span class="line">        self.max_sizes = cfg[<span class="string">'max_sizes'</span>]</span><br><span class="line">        self.steps = cfg[<span class="string">'steps'</span>]</span><br><span class="line">        self.aspect_ratios = cfg[<span class="string">'aspect_ratios'</span>]</span><br><span class="line">        self.clip = cfg[<span class="string">'clip'</span>]</span><br><span class="line">        self.version = cfg[<span class="string">'name'</span>]</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> self.variance:</span><br><span class="line">            <span class="keyword">if</span> v &lt;= <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">raise</span> ValueError(<span class="string">'Variances must be greater than 0'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self)</span>:</span></span><br><span class="line">        mean = []</span><br><span class="line">        <span class="comment">#   'steps': [8, 16, 32, 64, 100, 300],</span></span><br><span class="line">        <span class="comment"># 'feature_maps': [38, 19, 10, 5, 3, 1],</span></span><br><span class="line">        <span class="comment">#  'min_sizes': [21, 45, 99, 153, 207, 261],</span></span><br><span class="line">        <span class="comment"># 'max_sizes': [45, 99, 153, 207, 261, 315],</span></span><br><span class="line">        <span class="keyword">for</span> k, f <span class="keyword">in</span> enumerate(self.feature_maps):</span><br><span class="line">            <span class="keyword">for</span> i, j <span class="keyword">in</span> product(range(f), repeat=<span class="number">2</span>):</span><br><span class="line">                f_k = self.image_size / self.steps[k]</span><br><span class="line">                <span class="comment"># unit center x,y</span></span><br><span class="line">                cx = (j + <span class="number">0.5</span>) / f_k</span><br><span class="line">                cy = (i + <span class="number">0.5</span>) / f_k</span><br><span class="line"></span><br><span class="line">                <span class="comment"># aspect_ratio: 1</span></span><br><span class="line">                <span class="comment"># rel size: min_size</span></span><br><span class="line">                s_k = self.min_sizes[k]/self.image_size</span><br><span class="line">                mean += [cx, cy, s_k, s_k]</span><br><span class="line"></span><br><span class="line">                <span class="comment"># aspect_ratio: 1</span></span><br><span class="line">                <span class="comment"># rel size: sqrt(s_k * s_(k+1))</span></span><br><span class="line">                s_k_prime = sqrt(s_k * (self.max_sizes[k]/self.image_size))</span><br><span class="line">                mean += [cx, cy, s_k_prime, s_k_prime]</span><br><span class="line"></span><br><span class="line">                <span class="comment"># rest of aspect ratios</span></span><br><span class="line">                <span class="keyword">for</span> ar <span class="keyword">in</span> self.aspect_ratios[k]:</span><br><span class="line">                    mean += [cx, cy, s_k*sqrt(ar), s_k/sqrt(ar)]</span><br><span class="line">                    mean += [cx, cy, s_k/sqrt(ar), s_k*sqrt(ar)]</span><br><span class="line">        <span class="comment"># back to torch land</span></span><br><span class="line">        output = torch.Tensor(mean).view(<span class="number">-1</span>, <span class="number">4</span>)</span><br><span class="line">        <span class="keyword">if</span> self.clip:</span><br><span class="line">            output.clamp_(max=<span class="number">1</span>, min=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+<h2 id="MultiBox-损失函数"><a href="#MultiBox-损失函数" class="headerlink" title="MultiBox 损失函数"></a>MultiBox 损失函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultiBoxLoss</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""SSD Weighted Loss Function</span></span><br><span class="line"><span class="string">    Compute Targets:</span></span><br><span class="line"><span class="string">        1) Produce Confidence Target Indices by matching  ground truth boxes</span></span><br><span class="line"><span class="string">           with (default) 'priorboxes' that have jaccard index &gt; threshold parameter</span></span><br><span class="line"><span class="string">           (default threshold: 0.5).</span></span><br><span class="line"><span class="string">        2) Produce localization target by 'encoding' variance into offsets of ground</span></span><br><span class="line"><span class="string">           truth boxes and their matched  'priorboxes'.</span></span><br><span class="line"><span class="string">        3) Hard negative mining to filter the excessive number of negative examples</span></span><br><span class="line"><span class="string">           that comes with using a large number of default bounding boxes.</span></span><br><span class="line"><span class="string">           (default negative:positive ratio 3:1)</span></span><br><span class="line"><span class="string">    Objective Loss:</span></span><br><span class="line"><span class="string">        L(x,c,l,g) = (Lconf(x, c) + αLloc(x,l,g)) / N</span></span><br><span class="line"><span class="string">        Where, Lconf is the CrossEntropy Loss and Lloc is the SmoothL1 Loss</span></span><br><span class="line"><span class="string">        weighted by α which is set to 1 by cross val.</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            c: class confidences,</span></span><br><span class="line"><span class="string">            l: predicted boxes,</span></span><br><span class="line"><span class="string">            g: ground truth boxes</span></span><br><span class="line"><span class="string">            N: number of matched default boxes</span></span><br><span class="line"><span class="string">        See: https://arxiv.org/pdf/1512.02325.pdf for more details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        # 计算目标:</span></span><br><span class="line"><span class="string">        # 输出那些与真实框的iou大于一定阈值的框的下标.</span></span><br><span class="line"><span class="string">        # 根据与真实框的偏移量输出localization目标</span></span><br><span class="line"><span class="string">        # 用难样例挖掘算法去除大量负样本(默认正负样本比例为1:3)</span></span><br><span class="line"><span class="string">        # 目标损失:</span></span><br><span class="line"><span class="string">        # L(x,c,l,g) = (Lconf(x,c) + αLloc(x,l,g)) / N</span></span><br><span class="line"><span class="string">        # 参数:</span></span><br><span class="line"><span class="string">        # c: 类别置信度(class confidences)</span></span><br><span class="line"><span class="string">        # l: 预测的框(predicted boxes)</span></span><br><span class="line"><span class="string">        # g: 真实框(ground truth boxes)</span></span><br><span class="line"><span class="string">        # N: 匹配到的框的数量(number of matched default boxes)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"><span class="comment">#  MultiBoxLoss(cfg['num_classes'], 0.5, True, 0, True, 3, 0.5, False, args.cuda)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_classes, overlap_thresh, prior_for_matching,</span></span></span><br><span class="line"><span class="function"><span class="params">                 bkg_label, neg_mining, neg_pos, neg_overlap, encode_target,</span></span></span><br><span class="line"><span class="function"><span class="params">                 use_gpu=True)</span>:</span></span><br><span class="line">        super(MultiBoxLoss, self).__init__()</span><br><span class="line">        self.use_gpu = use_gpu</span><br><span class="line">        self.num_classes = num_classes  <span class="comment"># 列表数  21 </span></span><br><span class="line">        self.threshold = overlap_thresh <span class="comment"># 交并比阈值, 0.5</span></span><br><span class="line">        self.background_label = bkg_label <span class="comment"># 背景标签, 0</span></span><br><span class="line">        self.encode_target = encode_target  <span class="comment"># True 没卵用</span></span><br><span class="line">        self.use_prior_for_matching = prior_for_matching  <span class="comment"># True, 没卵用</span></span><br><span class="line">        self.do_neg_mining = neg_mining  <span class="comment"># 负样本和正样本的比例, 3:1</span></span><br><span class="line">        self.negpos_ratio = neg_pos <span class="comment"># 0.5 判定负样本的阈值.</span></span><br><span class="line">        self.neg_overlap = neg_overlap  <span class="comment"># False 没卵用</span></span><br><span class="line">        self.variance = cfg[<span class="string">'variance'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, predictions, targets)</span>:</span></span><br><span class="line">        <span class="string">"""Multibox Loss</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            predictions (tuple): A tuple containing loc preds, conf preds,</span></span><br><span class="line"><span class="string">            and prior boxes from SSD net.</span></span><br><span class="line"><span class="string">                conf shape: torch.size(batch_size,num_priors,num_classes)</span></span><br><span class="line"><span class="string">                loc shape: torch.size(batch_size,num_priors,4)</span></span><br><span class="line"><span class="string">                priors shape: torch.size(num_priors,4)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            targets (tensor): Ground truth boxes and labels for a batch,</span></span><br><span class="line"><span class="string">                shape: [batch_size,num_objs,5] (last idx is the label).</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        loc_data, conf_data, priors = predictions</span><br><span class="line">        <span class="comment"># loc_data: [batch_size, 8732, 4]</span></span><br><span class="line">        <span class="comment"># conf_data: [batch_size, 8732, 21]</span></span><br><span class="line">        <span class="comment"># priors: [8732, 4]  default box 对于任意的图片, 都是相同的, 因此无需带有 batch 维度</span></span><br><span class="line">        num = loc_data.size(<span class="number">0</span>) <span class="comment"># num = batch_size</span></span><br><span class="line">        priors = priors[:loc_data.size(<span class="number">1</span>), :] <span class="comment"># loc_data.size(1) = 8732, 因此 priors 维持不变</span></span><br><span class="line">        num_priors = (priors.size(<span class="number">0</span>)) <span class="comment"># num_priors = 8732</span></span><br><span class="line">        num_classes = self.num_classes <span class="comment"># num_classes = 21 (默认为voc数据集)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># match priors (default boxes) and ground truth boxes</span></span><br><span class="line">        <span class="comment"># 将priors(default boxes)和ground truth boxes匹配</span></span><br><span class="line">        loc_t = torch.Tensor(num, num_priors, <span class="number">4</span>) <span class="comment"># shape:[batch_size, 8732, 4]</span></span><br><span class="line">        conf_t = torch.LongTensor(num, num_priors)  <span class="comment"># shape:[batch_size, 8732]</span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> range(num):</span><br><span class="line">            <span class="comment"># targets是列表, 列表的长度为batch_size, 列表中每个元素为一个 tensor,</span></span><br><span class="line">            <span class="comment"># 其 shape 为 [num_objs, 5], 其中 num_objs 为当前图片中物体的数量, 第二维前4个元素为边框坐标, 最后一个元素为类别编号(1~20)</span></span><br><span class="line">            truths = targets[idx][:, :<span class="number">-1</span>].data <span class="comment"># [num_objs, 4]</span></span><br><span class="line">            labels = targets[idx][:, <span class="number">-1</span>].data  <span class="comment"># [num_objs] 使用的是 -1, 而不是 -1:, 因此, 返回的维度变少了</span></span><br><span class="line">            defaults = priors.data <span class="comment"># [8732, 4]</span></span><br><span class="line">            <span class="comment"># from ..box_utils import match</span></span><br><span class="line">            <span class="comment"># 关键函数, 实现候选框与真实框之间的匹配, 注意是候选框而不是预测结果框! 这个函数实现较为复杂, 会在后面着重讲解</span></span><br><span class="line">            match(self.threshold, truths, defaults, self.variance, labels,</span><br><span class="line">                  loc_t, conf_t,  )</span><br><span class="line">        <span class="keyword">if</span> self.use_gpu:</span><br><span class="line">            loc_t = loc_t.cuda()</span><br><span class="line">            conf_t = conf_t.cuda()</span><br><span class="line">        <span class="comment"># wrap targets</span></span><br><span class="line">        <span class="comment"># 用Variable封装loc_t, 新版本的 PyTorch 无需这么做, 只需要将 requires_grad 属性设置为 True 就行了</span></span><br><span class="line">        loc_t = Variable(loc_t, requires_grad=<span class="literal">False</span>)</span><br><span class="line">        conf_t = Variable(conf_t, requires_grad=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        pos = conf_t &gt; <span class="number">0</span> <span class="comment"># 筛选出 &gt;0 的box下标(大部分都是=0的)</span></span><br><span class="line">        num_pos = pos.sum(dim=<span class="number">1</span>, keepdim=<span class="literal">True</span>) <span class="comment"># 求和, 取得满足条件的box的数量, [batch_size, num_gt_threshold]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Localization Loss (Smooth L1)</span></span><br><span class="line">        <span class="comment"># Shape: [batch,num_priors,4]</span></span><br><span class="line">        <span class="comment"># 位置(localization)损失函数, 使用 Smooth L1 函数求损失</span></span><br><span class="line">        <span class="comment"># loc_data:[batch, num_priors, 4]</span></span><br><span class="line">        <span class="comment"># pos: [batch, num_priors]</span></span><br><span class="line">        <span class="comment"># pos_idx: [batch, num_priors, 4], 复制下标成坐标格式, 以便获取坐标值</span></span><br><span class="line">        pos_idx = pos.unsqueeze(pos.dim()).expand_as(loc_data)</span><br><span class="line">        loc_p = loc_data[pos_idx].view(<span class="number">-1</span>, <span class="number">4</span>) <span class="comment"># 获取预测结果值</span></span><br><span class="line">        loc_t = loc_t[pos_idx].view(<span class="number">-1</span>, <span class="number">4</span>)    <span class="comment"># 获取gt值</span></span><br><span class="line">        loss_l = F.smooth_l1_loss(loc_p, loc_t, size_average=<span class="literal">False</span>) <span class="comment"># 计算损失</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Compute max conf across batch for hard negative mining</span></span><br><span class="line">        <span class="comment"># 计算最大的置信度, 以进行难负样本挖掘</span></span><br><span class="line">        <span class="comment"># conf_data: [batch, num_priors, num_classes]</span></span><br><span class="line">        <span class="comment"># batch_conf: [batch, num_priors, num_classes]</span></span><br><span class="line">        batch_conf = conf_data.view(<span class="number">-1</span>, self.num_classes)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># conf_t: [batch, num_priors]</span></span><br><span class="line">        <span class="comment"># loss_c: [batch*num_priors, 1], 计算每个priorbox预测后的损失</span></span><br><span class="line">        loss_c = log_sum_exp(batch_conf) - batch_conf.gather(<span class="number">1</span>, conf_t.view(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 难负样本挖掘, 按照loss进行排序, 取loss最大的负样本参与更新</span></span><br><span class="line">        <span class="comment"># Hard Negative Mining</span></span><br><span class="line">        loss_c[pos] = <span class="number">0</span>  <span class="comment"># filter out pos boxes for now # 将所有的pos下标的box的loss置为0(pos指示的是正样本的下标)</span></span><br><span class="line">        <span class="comment"># 将 loss_c 的shape 从 [batch*num_priors, 1] 转换成 [batch, num_priors]</span></span><br><span class="line">        loss_c = loss_c.view(num, <span class="number">-1</span>)  <span class="comment"># reshape</span></span><br><span class="line">        <span class="comment"># 进行降序排序, 并获取到排序的下标</span></span><br><span class="line">        _, loss_idx = loss_c.sort(<span class="number">1</span>, descending=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 将下标进行升序排序, 并获取到下标的下标</span></span><br><span class="line">        _, idx_rank = loss_idx.sort(<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># num_pos: [batch, 1], 统计每个样本中的obj个数</span></span><br><span class="line">        num_pos = pos.long().sum(<span class="number">1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 根据obj的个数, 确定负样本的个数(正样本的3倍)</span></span><br><span class="line">        num_neg = torch.clamp(self.negpos_ratio*num_pos, max=pos.size(<span class="number">1</span>)<span class="number">-1</span>)</span><br><span class="line">        <span class="comment"># 获取到负样本的下标</span></span><br><span class="line">        neg = idx_rank &lt; num_neg.expand_as(idx_rank)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 计算包括正样本和负样本的置信度损失</span></span><br><span class="line">        <span class="comment"># pos: [batch, num_priors]</span></span><br><span class="line">        <span class="comment"># pos_idx: [batch, num_priors, num_classes]</span></span><br><span class="line">        pos_idx = pos.unsqueeze(<span class="number">2</span>).expand_as(conf_data)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># neg: [batch, num_priors]</span></span><br><span class="line">        <span class="comment"># neg_idx: [batch, num_priors, num_classes]</span></span><br><span class="line">        neg_idx = neg.unsqueeze(<span class="number">2</span>).expand_as(conf_data)</span><br><span class="line">        <span class="comment"># 按照pos_idx和neg_idx指示的下标筛选参与计算损失的预测数据</span></span><br><span class="line">        conf_p = conf_data[(pos_idx+neg_idx).gt(<span class="number">0</span>)].view(<span class="number">-1</span>, self.num_classes)</span><br><span class="line">        <span class="comment"># 按照pos_idx和neg_idx筛选目标数据</span></span><br><span class="line">        targets_weighted = conf_t[(pos+neg).gt(<span class="number">0</span>)]</span><br><span class="line">        <span class="comment"># 计算二者的交叉熵</span></span><br><span class="line">        loss_c = F.cross_entropy(conf_p, targets_weighted, size_average=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Sum of losses: L(x,c,l,g) = (Lconf(x, c) + αLloc(x,l,g)) / N</span></span><br><span class="line">        <span class="comment"># 将损失函数归一化后返回</span></span><br><span class="line">        N = num_pos.data.sum()</span><br><span class="line">        loss_l /= N</span><br><span class="line">        loss_c /= N</span><br><span class="line">        <span class="keyword">return</span> loss_l, loss_c</span><br></pre></td></tr></table></figure>
+<h2 id="match函数的解析"><a href="#match函数的解析" class="headerlink" title="match函数的解析"></a>match函数的解析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">match</span><span class="params">(threshold, truths, priors, variances, labels, loc_t, conf_t, idx)</span>:</span></span><br><span class="line">    <span class="comment"># threshold: (float) 确定是否匹配的交并比阈值</span></span><br><span class="line">    <span class="comment"># truths: (tensor: [num_obj, 4]) 存储真实 box 的边框坐标</span></span><br><span class="line">    <span class="comment"># priors: (tensor: [num_priors, 4], 即[8732, 4]), 存储推荐框的坐标, 注意, 此时的框是 default box, 而不是 SSD 网络预测出来的框的坐标, 预测的结果存储在 loc_data中, 其 shape 为[num_obj, 8732, 4].</span></span><br><span class="line">    <span class="comment"># variances: cfg['variance'], [0.1, 0.2], 用于将坐标转换成方便训练的形式(参考RCNN系列对边框坐标的处理)</span></span><br><span class="line">    <span class="comment"># labels: (tensor: [num_obj]), 代表了每个真实 box 对应的类别的编号</span></span><br><span class="line">    <span class="comment"># loc_t: (tensor: [batches, 8732, 4]),</span></span><br><span class="line">    <span class="comment"># conf_t: (tensor: [batches, 8732]),</span></span><br><span class="line">    <span class="comment"># idx: batches 中图片的序号, 标识当前正在处理的 image 在 batches 中的序号</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># jaccard index</span></span><br><span class="line">    overlaps = jaccard(    <span class="comment"># [A, B], 返回任意两个box之间的交并比, overlaps[i][j] 代表box_a中的第i个box与box_b中的第j个box之间的交并比.</span></span><br><span class="line">        truths,</span><br><span class="line">        point_form(priors)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 二部图匹配(Bipartite Matching)</span></span><br><span class="line">    <span class="comment"># [num_objs,1], 得到对于每个 gt box 来说的匹配度最高的 prior box, 前者存储交并比, 后者存储prior box在num_priors中的位置</span></span><br><span class="line">    best_prior_overlap, best_prior_idx = overlaps.max(<span class="number">1</span>, keepdim=<span class="literal">True</span>)  <span class="comment"># keepdim=True, 因此shape为[num_objs,1]</span></span><br><span class="line">    <span class="comment"># [1,num_priors] best ground truth for each prior</span></span><br><span class="line">    <span class="comment"># [1, num_priors], 即[1,8732], 同理, 得到对于每个 prior box 来说的匹配度最高的 gt box</span></span><br><span class="line">    best_truth_overlap, best_truth_idx = overlaps.max(<span class="number">0</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">    best_truth_idx.squeeze_(<span class="number">0</span>) <span class="comment"># 上面特意保留了维度(keepdim=True), 这里又都把维度 squeeze/reduce 了, 实际上只需用默认的 keepdim=False 就可以自动 squeeze/reduce 维度.</span></span><br><span class="line">    best_truth_overlap.squeeze_(<span class="number">0</span>)</span><br><span class="line">    best_prior_idx.squeeze_(<span class="number">1</span>)</span><br><span class="line">    best_prior_overlap.squeeze_(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    best_truth_overlap.index_fill_(<span class="number">0</span>, best_prior_idx, <span class="number">2</span>)  <span class="comment"># ensure best prior</span></span><br><span class="line">    <span class="comment"># 维度压缩后变为[num_priors], best_prior_idx 维度为[num_objs],</span></span><br><span class="line">    <span class="comment"># 该语句会将与gt box匹配度最好的prior box 的交并比置为 2, 确保其最大, 以免防止某些 gtbox 没有匹配的 priorbox.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 假想一种极端情况, 所有的priorbox与某个gtbox(标记为G)的交并比为1, 而其他gtbox分别有一个交并比</span></span><br><span class="line">    <span class="comment"># 最高的priorbox, 但是肯定小于1(因为其他的gtbox与G的交并比肯定小于1), 这样一来, 就会使得所有</span></span><br><span class="line">    <span class="comment"># 的priorbox都与G匹配, 为了防止这种情况, 我们将那些对gtbox来说, 具有最高交并比的priorbox,</span></span><br><span class="line">    <span class="comment"># 强制进行互相匹配, 即令best_truth_idx[best_prior_idx[j]] = j, 详细见下面的for循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># TODO refactor: index  best_prior_idx with long tensor</span></span><br><span class="line">    <span class="comment"># ensure every gt matches with its prior of max overlap</span></span><br><span class="line">    <span class="comment"># 注意!!: 因为 gt box 的数量要远远少于 prior box 的数量, 因此, 同一个 gt box 会与多个 prior box 匹配.</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(best_prior_idx.size(<span class="number">0</span>)):</span><br><span class="line">        best_truth_idx[best_prior_idx[j]] = j</span><br><span class="line">        <span class="comment"># best_prior_idx[j] 代表与box_a的第j个box交并比最高的 prior box 的下标, 将与该 gtbox</span></span><br><span class="line">        <span class="comment"># 匹配度最好的 prior box 的下标改为j, 由此,完成了该 gtbox 与第j个 prior box 的匹配.</span></span><br><span class="line">        <span class="comment"># 这里的循环只会进行num_obj次, 剩余的匹配为 best_truth_idx 中原本的值.</span></span><br><span class="line">        <span class="comment"># 这里处理的情况是, priorbox中第i个box与gtbox中第k个box的交并比最高,</span></span><br><span class="line">        <span class="comment"># 即 best_truth_idx[i]= k</span></span><br><span class="line">        <span class="comment"># 但是对于best_prior_idx[k]来说, 它却与priorbox的第l个box有着最高的交并比,</span></span><br><span class="line">        <span class="comment"># 即best_prior_idx[k]=l</span></span><br><span class="line">        <span class="comment"># 而对于gtbox的另一个边框gtbox[j]来说, 它与priorbox[i]的交并比最大,</span></span><br><span class="line">        <span class="comment"># 即但是对于best_prior_idx[j] = i.</span></span><br><span class="line">        <span class="comment"># 那么, 此时, 我们就应该将best_truth_idx[i]= k 修改成 best_truth_idx[i]= j.</span></span><br><span class="line">        <span class="comment"># 即令 priorbox[i] 与 gtbox[j]对应.</span></span><br><span class="line">        <span class="comment"># 这样做的原因: 防止某个gtbox没有匹配的 prior box.</span></span><br><span class="line">    matches = truths[best_truth_idx]          <span class="comment"># Shape: [num_priors,4]</span></span><br><span class="line">    <span class="comment"># truths 的shape 为[num_objs, 4], 而best_truth_idx是一个指示下标的列表, 列表长度为 8732,</span></span><br><span class="line">    <span class="comment"># 列表中的下标范围为0~num_objs-1, 代表的是与每个priorbox匹配的gtbox的下标</span></span><br><span class="line">    <span class="comment"># 上面的表达式会返回一个shape为 [num_priors, 4], 即 [8732, 4] 的tensor, 代表的就是与每个priorbox匹配的gtbox的坐标值.</span></span><br><span class="line">    conf = labels[best_truth_idx] + <span class="number">1</span>        <span class="comment"># 与上面的语句道理差不多, 这里得到的是每个prior box匹配的类别编号, shape 为[8732]</span></span><br><span class="line">    conf[best_truth_overlap &lt; threshold] = <span class="number">0</span> <span class="comment"># 将与gtbox的交并比小于阈值的置为0 , 即认为是非物体框</span></span><br><span class="line">    loc = encode(matches, priors, variances) <span class="comment"># 返回编码后的中心坐标和宽高.</span></span><br><span class="line">    loc_t[idx] = loc    <span class="comment"># [num_priors,4] encoded offsets to learn # 设置第idx张图片的gt编码坐标信息</span></span><br><span class="line">    conf_t[idx] = conf  <span class="comment"># [num_priors] top class label for each prior  设置第idx张图片的编号信息.(大于0即为物体编号, 认为有物体, 小于0认为是背景)</span></span><br></pre></td></tr></table></figure>
+<p>参考文章：<a href="https://blog.csdn.net/happyday_d/article/details/86021993" target="_blank" rel="noopener">https://blog.csdn.net/happyday_d/article/details/86021993</a><br>                   <a href="https://hellozhaozheng.github.io/z_post/PyTorch-SSD" target="_blank" rel="noopener">https://hellozhaozheng.github.io/z_post/PyTorch-SSD</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2347,7 +2461,7 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2702,9 +2816,58 @@ color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"
       
     
       
+        
+      
     
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
